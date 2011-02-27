@@ -5,7 +5,7 @@ The Aura System package provides a full-stack Aura framework built around Aura l
 
 Aura is very new, so the system is quite limited at this point. In particular, while it provides a scaffold for developing and testing library packages, it does not yet provide a web-oriented controller and view system.  (A cli-oriented controller system *is* provided.)
 
-Because the library packages are relatively volatile, they are not provided as submodules in the system.  Instead, use the `pacakge/update.php` script to update the library packages using `git`.
+Because the library packages are relatively volatile, they are not provided as submodules in the system.  Instead, use the `update.php` command-line script to install and upgrade the library packages via `git`.
 
 
 Installation
