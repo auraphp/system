@@ -18,7 +18,7 @@ The `git` and `curl` commands must be in your `$PATH` for this to work.
         $ git clone https://github.com/auraphp/system
     
     This will give you the overall system skeleton, along with the built-in
-    `aura.framework` library package and the `package/update.php` script.
+    `aura.framework` library package and the `update.php` script.
 
 2.  Issue `php update.php` to install the remaining library packages.
 
