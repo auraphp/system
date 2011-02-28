@@ -105,22 +105,22 @@ class SystemTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($expect, $actual);
     }
 
-    /**
-     * @todo Implement testGetPublicPath().
-     */
-    public function testGetPublicPath()
-    {
-        $expect = __DIR__ . DIRECTORY_SEPARATOR . 'public';
-        $actual = $this->system->getPublicPath();
-        $this->assertSame($expect, $actual);
-        
-        $expect = __DIR__ . DIRECTORY_SEPARATOR
-                . 'public' . DIRECTORY_SEPARATOR
-                . 'foo' . DIRECTORY_SEPARATOR
-                . 'bar' . DIRECTORY_SEPARATOR
-                . 'baz';
-                
-        $actual = $this->system->getPublicPath('foo/bar/baz');
-        $this->assertSame($expect, $actual);
-    }
+    // /**
+    //  * @todo Implement testGetPublicPath().
+    //  */
+    // public function testGetPublicPath()
+    // {
+    //     $expect = __DIR__ . DIRECTORY_SEPARATOR . 'public';
+    //     $actual = $this->system->getPublicPath();
+    //     $this->assertSame($expect, $actual);
+    //     
+    //     $expect = __DIR__ . DIRECTORY_SEPARATOR
+    //             . 'public' . DIRECTORY_SEPARATOR
+    //             . 'foo' . DIRECTORY_SEPARATOR
+    //             . 'bar' . DIRECTORY_SEPARATOR
+    //             . 'baz';
+    //             
+    //     $actual = $this->system->getPublicPath('foo/bar/baz');
+    //     $this->assertSame($expect, $actual);
+    // }
 }

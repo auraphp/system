@@ -10,7 +10,7 @@ namespace aura\framework;
 
 /**
  * 
- * An SPL autoloader adhering to PSR-0.
+ * An SPL autoloader adhering to [PSR-0](http://groups.google.com/group/php-standards/web/psr-0-final-proposal).
  * 
  * @package aura.framework
  * 
@@ -27,8 +27,26 @@ class Autoloader
      */
     protected $loaded = array();
     
+    /**
+     * 
+     * A map of class name prefixes to directory names.
+     * 
+     * @var array
+     * 
+     */
     protected $paths = array();
     
+    /**
+     * 
+     * Registers this autoloader with SPL.
+     * 
+     * @param string $config_mode The config mode of the Aura environment.
+     * In 'test' mode, the autoloader looks for classes in the package tests
+     * directories.
+     * 
+     * @return void
+     * 
+     */
     public function register($config_mode = null)
     {
         if ($config_mode == 'test') {
@@ -40,7 +58,7 @@ class Autoloader
     
     /**
      * 
-     * Adds a path for a class name prefix.
+     * Adds a directory path for a class name prefix.
      * 
      * @param string $name The class name prefix, e.g. 'aura\framework\\' or
      * 'Zend_'.
@@ -77,8 +95,8 @@ class Autoloader
      * 
      * @return void
      * 
-     * @throws RuntimeException when the file for the class or interface is
-     * not found.
+     * @throws Exception_AutoloadFileNotFound when the file for the class or 
+     * interface is not found.
      * 
      */
     public function load($class)
@@ -112,6 +130,20 @@ class Autoloader
         $this->loadRealFile($class);
     }
     
+    /**
+     * 
+     * Loads a class or interface using the class name prefix and path, trying
+     * the package tests directory along the way, and falling back to the 
+     * include-path if not found.
+     * 
+     * @param string $class The class or interface to load.
+     * 
+     * @return void
+     * 
+     * @throws Exception_AutoloadFileNotFound when the file for the class or 
+     * interface is not found.
+     * 
+     */
     public function loadTests($class)
     {
         // go through each of the registered paths
@@ -200,12 +232,35 @@ class Autoloader
         return $file;
     }
     
+    /**
+     * 
+     * Loads a class file, and retains a mapping for it in `$loaded`.
+     * 
+     * @param string $class The class to load.
+     * 
+     * @param string $file The file where the class resides.
+     * 
+     * @return void
+     * 
+     */
     protected function loadClassFile($class, $file)
     {
         require $file;
         $this->loaded[$class] = $file;
     }
     
+    /**
+     * 
+     * Loads a class via the include path using its real path.
+     * 
+     * @param string $class The class to load.
+     * 
+     * @return void
+     * 
+     * @throws Exception_AutoloadFileNotFound when the file for the class or 
+     * interface is not found.
+     * 
+     */
     protected function loadRealFile($class)
     {
         $file = $this->classToFile($class);

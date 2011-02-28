@@ -72,6 +72,16 @@ class Inflect
              . '.php';
     }
     
+    /**
+     * 
+     * Splits a fully-qualified class name into namespace and class portions.
+     * 
+     * @param string $spec The fully-qualified class name.
+     * 
+     * @return array A 2-element array where element 0 is the namespace and
+     * element 1 is the class.
+     * 
+     */
     public function splitNamespaceAndClass($spec)
     {
         // look for last namespace separator

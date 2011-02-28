@@ -16,22 +16,35 @@ use aura\framework\System as System;
 
 /**
  * 
- * This CLI command uses PHPUnit to make a skeleton test file from an existing 
+ * This command uses PHPUnit to make a skeleton test file from an existing 
  * class.
  * 
- * @package aura.test
+ * Usage is ...
+ * 
+ *      $ php cli.php aura.framework.make-test {$FILE}
+ * 
+ * ... where `$FILE` is a package file path, e.g. 
+ * `package/aura.framework/System.php`.
+ * 
+ * @package aura.framework
  * 
  */
 class Make extends Controller
 {
-    
+    /**
+     * 
+     * The include path before being modified by this class.
+     * 
+     * @var string
+     * 
+     */
     protected $include_path;
     
     /**
      * 
      * A word inflector.
      * 
-     * @var aura\framework\Inflect
+     * @var Inflect
      * 
      */
     protected $inflect;
@@ -54,16 +67,42 @@ class Make extends Controller
      */
     protected $test_dir;
     
+    /**
+     * 
+     * Sets a System object for this class.
+     * 
+     * @param System
+     * 
+     * @return void
+     * 
+     */
     public function setSystem(System $system)
     {
         $this->system = $system;
     }
     
+    /**
+     * 
+     * Sets an Inflect object for this class.
+     * 
+     * @param System
+     * 
+     * @return void
+     * 
+     */
     public function setInflect(Inflect $inflect)
     {
         $this->inflect = $inflect;
     }
     
+    /**
+     * 
+     * Runs before `action()` as called by signal. Modifies the include-path
+     * so that PHPUnit is part of it.
+     * 
+     * @return void
+     * 
+     */
     public function preAction()
     {
         $this->include_path = ini_get('include_path');
@@ -74,6 +113,13 @@ class Make extends Controller
         ini_set('include_path', $newpath);
     }
     
+    /**
+     * 
+     * Runs after `action()` as called by signal. Restores the include-path.
+     * 
+     * @return void
+     * 
+     */
     public function postAction()
     {
         ini_set('include_path', $this->include_path);
@@ -83,16 +129,15 @@ class Make extends Controller
      * 
      * Creates a test file from an existing class.
      * 
-     * @param string $spec The class file. E.g.,
-     * `package/aura.framework/src/Factory.php`, not `aura\\core\\Factory`.
-     * 
      * @return void
      * 
      */
     public function action()
     {
+        // get the class file for the test source
         $spec = $this->params[0];
         
+        // split up the pieces of the class file specification
         list($vendor, $package, $class) = $this->getVendorPackageClass($spec);
         
         // the fully-qualified class to write a test from
@@ -101,8 +146,7 @@ class Make extends Controller
         // the *class name only* of the test to write
         $test_name = "{$class}Test";
         
-        // find the original source file:
-        // include/$class_to_file
+        // the original source file
         $incl_file = $spec;
         $this->stdio->outln("Source file is '$incl_file'.");
         
@@ -112,20 +156,20 @@ class Make extends Controller
             "{$vendor}.{$package}/tests/" . $this->inflect->classToFile($test_name)
         );
         
+        // does the test file exist already?
         if (is_file($test_file)) {
             throw new Exception_TestFileExists(array(
                 'file' => $test_file,
             ));
         }
         
-        // generate the skeleton code
+        // generate the test skeleton code
         $skel = new \PHPUnit_Util_Skeleton_Test(
             $incl_name,
             $incl_file,
             $test_name,
             $test_file
         );
-        
         $skel_code = $skel->generate();
         
         // modify the resulting code

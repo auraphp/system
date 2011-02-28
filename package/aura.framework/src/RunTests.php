@@ -12,13 +12,35 @@ use aura\cli\Getopt as Getopt;
 
 /**
  * 
- * This CLI command uses PHPUnit to run the test suite for a package.
+ * This command uses PHPUnit to run package tests.
  * 
- * @package aura.test
+ * Usage to run all tests:
+ * 
+ *      $ php cli.php aura.framework.run-tests
+ * 
+ * No command-line options will be honored.
+ * 
+ * Usage to run tests in a single package:
+ * 
+ *      $ php cli.php aura.framework.run-tests {$PATH}
+ * 
+ * ... where `$PATH` is the path to a package test directory, e.g.
+ * `package/aura.framework/tests/`.  All options and switches passed at
+ * the command line will be passed to PHPUnit.
+ * 
+ * @package aura.framework
  * 
  */
 class RunTests extends Controller
 {
+    /**
+     * 
+     * Put Getopt into non-strict mode so that we don't need to redefine
+     * PHPUnit options here.
+     * 
+     * @var bool
+     * 
+     */
     protected $options_strict = Getopt::NON_STRICT;
     
     /**
@@ -34,31 +56,37 @@ class RunTests extends Controller
      * 
      * The Aura system directory object.
      * 
-     * @var string
+     * @var System
      * 
      */
     protected $system;
     
-    protected $package_dir;
-    
-    protected $tmp_dir;
-    
-    public function setSystem(\aura\framework\System $system)
+    /**
+     * 
+     * Sets the System object.
+     * 
+     * @param System $system The System object.
+     * 
+     * @return void
+     * 
+     */
+    public function setSystem(System $system)
     {
         $this->system = $system;
     }
     
+    /**
+     * 
+     * Sets the PHPUnit command.
+     * 
+     * @param string $phpunit The PHPUnit command.
+     * 
+     * @return void
+     * 
+     */
     public function setPhpunit($phpunit)
     {
         $this->phpunit = $phpunit;
-    }
-    
-    public function preAction()
-    {
-        parent::preAction();
-        $this->system_dir = $this->system->getRootPath();
-        $this->package_dir = $this->system->getPackagePath();
-        $this->tmp_dir = $this->system->getTmpPath();
     }
     
     /**
@@ -84,28 +112,14 @@ class RunTests extends Controller
         );
         
         // run phpunit as a separate process
-        $proc = proc_open($cmd, $spec, $pipes, $this->system_dir);
+        $system_dir = $this->system->getRootPath();
+        $proc = proc_open($cmd, $spec, $pipes, $system_dir);
         proc_close($proc);
     }
     
     /**
      * 
-     * 
-     * @param string $cmd The command to run PHPUnit.
-     * 
-     * @return void
-     * 
-     */
-    protected function runCmd($cmd)
-    {
-    }
-    
-    /**
-     * 
      * Builds the command to run PHPUnit for one test series.
-     * 
-     * @param array $argv The command-line arguments, including options
-     * for PHPUnit.
      * 
      * @return void
      * 
@@ -168,7 +182,8 @@ class RunTests extends Controller
         
         // add coverage
         if (extension_loaded('xdebug')) {
-            $coverage_dir = $this->system_dir . DIRECTORY_SEPARATOR
+            $system_dir = $this->system->getRootPath();
+            $coverage_dir = $system_dir . DIRECTORY_SEPARATOR
                           . 'tmp' . DIRECTORY_SEPARATOR
                           . 'test' . DIRECTORY_SEPARATOR
                           . 'coverage';
@@ -199,7 +214,8 @@ class RunTests extends Controller
         
         $xml[] = '<testsuites>';
         
-        $package_glob = $this->package_dir . DIRECTORY_SEPARATOR . '*';
+        $package_dir  = $this->system->getPackagePath();
+        $package_glob = $package_dir . DIRECTORY_SEPARATOR . '*';
         $package_list = glob($package_glob, GLOB_ONLYDIR);
         foreach ($package_list as $package_base) {
             $package_name = basename($package_base);
@@ -213,7 +229,8 @@ class RunTests extends Controller
         
         $xml[] = '</phpunit>';
         
-        $file = $this->tmp_dir . DIRECTORY_SEPARATOR
+        $tmp_dir = $this->system->getTmpPath();
+        $file = $tmp_dir . DIRECTORY_SEPARATOR
               . 'test' . DIRECTORY_SEPARATOR
               . 'phpunit.xml';
         

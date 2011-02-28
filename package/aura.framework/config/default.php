@@ -2,9 +2,9 @@
 /**
  * Instance params and setter values.
  */
-$controllers =& $di->params['aura\cli\ControllerFactory']['controllers'];
-$controllers['aura.framework.make-test']     = 'aura\framework\MakeTest';
-$controllers['aura.framework.run-tests']     = 'aura\framework\RunTests';
+$map =& $di->params['aura\cli\ControllerFactory']['map'];
+$map['aura.framework.make-test']     = 'aura\framework\MakeTest';
+$map['aura.framework.run-tests']     = 'aura\framework\RunTests';
 
 $di->setter['aura\framework\MakeTest'] = array(
     'setInflect' => $di->lazyGet('inflect'),
