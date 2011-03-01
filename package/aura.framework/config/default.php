@@ -2,7 +2,7 @@
 /**
  * Instance params and setter values.
  */
-$map =& $di->params['aura\cli\ControllerFactory']['map'];
+$map =& $di->params['aura\cli\CommandFactory']['map'];
 $map['aura.framework.make-test']     = 'aura\framework\MakeTest';
 $map['aura.framework.run-tests']     = 'aura\framework\RunTests';
 

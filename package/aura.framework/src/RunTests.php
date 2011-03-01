@@ -7,7 +7,7 @@
  * 
  */
 namespace aura\framework;
-use aura\cli\Controller as Controller;
+use aura\cli\Command as Command;
 use aura\cli\Getopt as Getopt;
 
 /**
@@ -31,7 +31,7 @@ use aura\cli\Getopt as Getopt;
  * @package aura.framework
  * 
  */
-class RunTests extends Controller
+class RunTests extends Command
 {
     /**
      * 

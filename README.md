@@ -11,7 +11,7 @@ Because the library packages are relatively volatile, they are not provided as s
 Installation
 ============
 
-The `git` and `curl` commands must be in your `$PATH` for this to work.
+The `git` command must be in your `$PATH` for this to work.
 
 1.  Clone the Aura `system` repository
 

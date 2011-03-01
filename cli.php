@@ -16,7 +16,7 @@ $context = $di->get('cli_context');
 $context->shiftArgv();
 
 // factory a controller from the next argument
-$controller_factory = $di->get('cli_controller_factory');
+$controller_factory = $di->get('cli_command_factory');
 
 // get the cli controller and execute
 try {

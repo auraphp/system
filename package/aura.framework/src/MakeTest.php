@@ -7,12 +7,7 @@
  * 
  */
 namespace aura\framework;
-use aura\cli\Controller as Controller;
-use aura\cli\Context as Context;
-use aura\cli\Stdio as Stdio;
-use aura\cli\Getopt as Getopt;
-use aura\framework\Inflect as Inflect;
-use aura\framework\System as System;
+use aura\cli\Command as Command;
 
 /**
  * 
@@ -29,7 +24,7 @@ use aura\framework\System as System;
  * @package aura.framework
  * 
  */
-class Make extends Controller
+class Make extends Command
 {
     /**
      * 
