@@ -105,6 +105,25 @@ class SystemTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($expect, $actual);
     }
 
+    /**
+     * @todo Implement testGetIncludePath().
+     */
+    public function testGetIncludePath()
+    {
+        $expect = __DIR__ . DIRECTORY_SEPARATOR . 'include';
+        $actual = $this->system->getIncludePath();
+        $this->assertSame($expect, $actual);
+        
+        $expect = __DIR__ . DIRECTORY_SEPARATOR
+                . 'include' . DIRECTORY_SEPARATOR
+                . 'foo' . DIRECTORY_SEPARATOR
+                . 'bar' . DIRECTORY_SEPARATOR
+                . 'baz';
+                
+        $actual = $this->system->getIncludePath('foo/bar/baz');
+        $this->assertSame($expect, $actual);
+    }
+
     // /**
     //  * @todo Implement testGetPublicPath().
     //  */

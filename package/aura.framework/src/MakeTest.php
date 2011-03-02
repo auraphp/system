@@ -24,7 +24,7 @@ use aura\cli\Command as Command;
  * @package aura.framework
  * 
  */
-class Make extends Command
+class MakeTest extends Command
 {
     /**
      * 
@@ -153,9 +153,7 @@ class Make extends Command
         
         // does the test file exist already?
         if (is_file($test_file)) {
-            throw new Exception_TestFileExists(array(
-                'file' => $test_file,
-            ));
+            throw new Exception_TestFileExists($test_file);
         }
         
         // generate the test skeleton code
@@ -195,9 +193,7 @@ class Make extends Command
         // incoming spec: packages/aura.framework/src/foo/Bar.php
         $real = realpath($spec);
         if (! $real) {
-            throw new Exception_SourceNotFound(array(
-                'file' => $spec,
-            ));
+            throw new Exception_SourceNotFound($spec);
         }
         
         // strip off the package dir prefix

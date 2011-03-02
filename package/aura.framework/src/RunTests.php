@@ -135,9 +135,7 @@ class RunTests extends Command
         // does the file or dir exist?
         $real = realpath($file);
         if (! file_exists($real)) {
-            throw new Exception_TestFileNotFound(array(
-                'test' => $file,
-            ));
+            throw new Exception_TestFileNotFound($file);
         }
         
         // start building the phpunit command
