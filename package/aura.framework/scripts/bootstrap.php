@@ -9,16 +9,25 @@
  * 
  */
 namespace aura\framework;
-use aura\framework\Autoloader;
+use aura\autoload\Loader;
 use aura\di\Container;
 use aura\di\Forge;
 use aura\di\Config;
 
-// loads config files in a restricted scope
+/**
+ * 
+ * Loads config files in a restricted scope.
+ * 
+ * @return void
+ * 
+ */
 function load_config($file, $system, $loader, $di) {
     require $file;
 }
 
+/**
+ * Setup.
+ */
 // turn up error reporting
 error_reporting(E_ALL | E_STRICT);
 ini_set('display_errors', true);
@@ -38,16 +47,14 @@ set_include_path("$system/include");
 /**
  * Autoloader
  */
-require "$system/package/aura.framework/src/Autoloader.php";
-require "$system/package/aura.framework/src/Exception.php";
-require "$system/package/aura.framework/src/Exception/AutoloadFileNotFound.php";
-$loader = new Autoloader;
-$loader->register($config_mode);
+require "$system/package/aura.autoload/src.php";
+$loader = new Loader;
+$loader->register();
 
 /**
  * DI container
  */
-$loader->setPath('aura\di\\', "$system/package/aura.di/src");
+$loader->addPath('aura\di\\', "$system/package/aura.di/src");
 $di = new Container(new Forge(new Config));
 
 /**
@@ -65,6 +72,6 @@ if (file_exists($cache_file)) {
 }
 
 /**
- * Load config
+ * Load config from scratch
  */
 require __DIR__ . DIRECTORY_SEPARATOR . 'config.php';

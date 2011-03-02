@@ -26,7 +26,11 @@ foreach ($package_list as $package_path) {
     // ... add it to the autoloader ...
     $package_ns = str_replace('.', '\\', basename($package_path)) . '\\';
     $package_src = $package_path . DIRECTORY_SEPARATOR . 'src';
-    $loader->setPath($package_ns, $package_src);
+    $loader->addPath($package_ns, $package_src);
+    
+    // if we are in 'test' mode, add the tests dir too
+    $package_test = $package_path . DIRECTORY_SEPARATOR . 'tests';
+    $loader->addPath($package_ns, $package_test);
     
     // ... and run its default config file, if any.
     $package_config = $package_path . DIRECTORY_SEPARATOR
