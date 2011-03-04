@@ -218,9 +218,11 @@ class RunTests extends Command
         foreach ($package_list as $package_base) {
             $package_name = basename($package_base);
             $package_test = $package_base . DIRECTORY_SEPARATOR . 'tests';
-            $xml[] = "<testsuite name=\"{$package_name}\">";
-            $xml[] = "<directory>{$package_test}</directory>";
-            $xml[] = '</testsuite>';
+            if (is_dir($package_test)) {
+              $xml[] = "<testsuite name=\"{$package_name}\">";
+              $xml[] = "<directory>{$package_test}</directory>";
+              $xml[] = '</testsuite>';
+            }
         }
         
         $xml[] = '</testsuites>';
