@@ -54,7 +54,7 @@ $loader->register();
 /**
  * DI container
  */
-$loader->addPath('aura\di\\', "$system/package/aura.di/src");
+$loader->addPrefix('aura\di\\', "$system/package/aura.di/src");
 $di = new Container(new Forge(new Config));
 
 /**
