@@ -15,13 +15,13 @@ require __DIR__ . '/package/aura.framework/scripts/bootstrap.php';
 $context = $di->get('cli_context');
 $context->shiftArgv();
 
-// factory a controller from the next argument
-$controller_factory = $di->get('cli_command_factory');
+// get the command factory
+$command_factory = $di->get('cli_command_factory');
 
-// get the cli controller and execute
+// instantiate a command object and execute
 try {
-    $controller = $controller_factory->newInstance($context->shiftArgv());
-    $controller->exec();
+    $command = $command_factory->newInstance($context->shiftArgv());
+    $command->exec();
 } catch (Exception $e) {
     echo $e . PHP_EOL;
     exit(1);
