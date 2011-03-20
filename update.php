@@ -9,6 +9,14 @@
 namespace aura\framework;
 
 /**
+ * Need 'allow_url_fopen' to be on.
+ */
+if (! ini_get('allow_url_fopen')) {
+    echo "Cannot update when 'allow_url_fopen' is turned off." . PHP_EOL;
+    exit(1);
+}
+
+/**
  * Pull changes the system as a whole.
  */
 `git pull`;
