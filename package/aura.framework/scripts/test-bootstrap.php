@@ -19,7 +19,7 @@ class TestContainer
 {
     public function __call($method, $params)
     {
-        // do nothing
+        return $this;
     }
 }
 

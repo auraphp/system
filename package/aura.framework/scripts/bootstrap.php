@@ -10,7 +10,7 @@
  */
 namespace aura\framework;
 use aura\autoload\Loader;
-use aura\di\Container;
+use aura\di\Manager;
 use aura\di\Forge;
 use aura\di\Config;
 
@@ -55,10 +55,10 @@ $loader->register();
  * DI container
  */
 $loader->addPrefix('aura\di\\', "$system/package/aura.di/src");
-$di = new Container(new Forge(new Config));
+$di = new Manager(new Forge(new Config));
 
 /**
- * Cached config
+ * Config
  */
 $cache_file = $system . DIRECTORY_SEPARATOR
             . 'tmp' . DIRECTORY_SEPARATOR
@@ -68,6 +68,7 @@ $cache_file = $system . DIRECTORY_SEPARATOR
 
 if (file_exists($cache_file)) {
     load_config($cache_file, $system, $loader, $di);
+    $di->lock();
     return;
 }
 
@@ -75,3 +76,4 @@ if (file_exists($cache_file)) {
  * Load config from scratch
  */
 require __DIR__ . DIRECTORY_SEPARATOR . 'config.php';
+$di->lock();
