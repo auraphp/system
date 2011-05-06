@@ -22,7 +22,7 @@ use aura\di\Config;
  * 
  */
 function load_config($file, $system, $loader, $di) {
-    require $file;
+    require_once $file;
 }
 
 /**
