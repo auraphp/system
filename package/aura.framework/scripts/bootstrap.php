@@ -47,7 +47,7 @@ set_include_path("$system/include");
 /**
  * Autoloader
  */
-require "$system/package/aura.autoload/src.php";
+require_once "$system/package/aura.autoload/src.php";
 $loader = new Loader;
 $loader->register();
 
@@ -75,5 +75,5 @@ if (file_exists($cache_file)) {
 /**
  * Load config from scratch
  */
-require __DIR__ . DIRECTORY_SEPARATOR . 'config.php';
+require_once __DIR__ . DIRECTORY_SEPARATOR . 'config.php';
 $di->lock();

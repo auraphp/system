@@ -12,7 +12,7 @@ namespace aura\framework;
 use aura\autoload\Loader;
 
 function load_config($file, $system, $loader, $di) {
-    require $file;
+    require_once $file;
 }
 
 class TestContainer
@@ -38,7 +38,7 @@ $config_mode = 'test';
 /**
  * Autoloader
  */
-require "$system/package/aura.autoload/src.php";
+require_once "$system/package/aura.autoload/src.php";
 $loader = new Loader;
 $loader->register();
 
@@ -50,7 +50,7 @@ $di = new TestContainer;
 /**
  * Load config
  */
-include __DIR__ . DIRECTORY_SEPARATOR . 'config.php';
+include_once __DIR__ . DIRECTORY_SEPARATOR . 'config.php';
 
 // kill off this variable, as it is likely to have closures; this avoids
 // "Exception: Serialization of 'Closure' is not allowed". and done!

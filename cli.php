@@ -9,10 +9,11 @@
 namespace aura\framework;
 
 // bootstrap
-require __DIR__ . '/package/aura.framework/scripts/bootstrap.php';
+require_once __DIR__ . '/package/aura.framework/scripts/bootstrap.php';
 
 // get the context and remove the invoking script name from the arguments
 $context = $di->get('cli_context');
+
 $context->shiftArgv();
 
 // get the command factory
