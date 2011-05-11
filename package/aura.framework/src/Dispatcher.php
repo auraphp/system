@@ -183,7 +183,7 @@ class Dispatcher
     {
         // set the route from the context
         $this->route = $this->router->match(
-            $this->context->getServer('PATH_INFO'),
+            $this->context->getServer('PATH_INFO', '/'),
             $this->context->getServer()
         );
         
@@ -263,8 +263,8 @@ class Dispatcher
         $this->http_response->setVersion($this->transfer->getVersion());
         $this->http_response->setStatusCode($this->transfer->getStatusCode());
         $this->http_response->setStatusText($this->transfer->getStatusText());
-        $this->http_response->setHeaders($this->transfer->getHeaders());
-        $this->http_response->setCookies($this->transfer->getCookies());
+        $this->http_response->headers->setAll($this->transfer->getHeaders());
+        $this->http_response->cookies->setAll($this->transfer->getCookies());
         $this->http_response->setContent($this->content);
     }
 }
