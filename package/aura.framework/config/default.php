@@ -16,13 +16,15 @@ $di->setter['aura\framework\RunTests'] = array(
     'setSystem'  => $di->lazyGet('system'),
 );
 
-$di->params['aura\framework\Dispatcher']['context'] = $di->lazyGet('web_context');
-$di->params['aura\framework\Dispatcher']['router'] = $di->lazyGet('router_map');
-$di->params['aura\framework\Dispatcher']['controller_factory'] = $di->lazyNew('aura\web\ControllerFactory');
-$di->params['aura\framework\Dispatcher']['view'] = $di->lazyNew('aura\view\TwoStep');
-$di->params['aura\framework\Dispatcher']['http_response'] = $di->lazyNew('aura\http\Response');
-$di->params['aura\framework\Dispatcher']['signal'] = $di->lazyGet('signal_manager');
-$di->params['aura\framework\Dispatcher']['loader'] = $loader;
+$di->params['aura\framework\Dispatcher'] = array(
+    'context'            => $di->lazyGet('web_context'),
+    'router'             => $di->lazyGet('router_map'),
+    'controller_factory' => $di->lazyNew('aura\web\ControllerFactory'),
+    'view'               => $di->lazyNew('aura\view\TwoStep'),
+    'http_response'      => $di->lazyNew('aura\http\Response'),
+    'signal'             => $di->lazyGet('signal_manager'),
+    'loader'             => $loader,
+);
 
 /**
  * Dependency services.
@@ -35,6 +37,6 @@ $di->set('system', function() use ($system) {
     return new aura\framework\System($system);
 });
 
-$di->set('framework_dispatcher', function() use ($di) {
+$di->set('dispatcher', function() use ($di) {
     return $di->newInstance('aura\framework\Dispatcher');
 });

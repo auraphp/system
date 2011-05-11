@@ -8,7 +8,7 @@
  */
 namespace aura\framework;
 require dirname(__DIR__) . '/package/aura.framework/scripts/bootstrap.php';
-$dispatcher = $di->get('framework_dispatcher');
+$dispatcher = $di->get('dispatcher');
 
 $context = $di->get('web_context');
 try {
