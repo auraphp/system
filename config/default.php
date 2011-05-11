@@ -10,3 +10,14 @@
  * @var aura\di\Container $di The DI container for the system.
  * 
  */
+
+// set up a simple "hello world" routing
+$di->get('router_map')->add('home', '/', array(
+    'values' => array(
+        'controller' => 'hello_world',
+        'action' => 'index',
+    ),
+));
+
+// map the 'hello_world' controller value a particular class
+$di->params['aura\web\ControllerFactory']['map']['hello_world'] = 'aura\framework\example\HelloWorld';
