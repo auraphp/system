@@ -54,11 +54,11 @@ Setting Your Virtual Host
 -------------------------
 Open your terminal, and type this,
 
-$sudo su 
+$ sudo su 
 
-$echo "127.0.0.1 blog.local www.aurasystem.local" >> /etc/hosts
+$ echo "127.0.0.1 blog.local www.aurasystem.local" >> /etc/hosts
 
-$vim /etc/apache2/sites-available/aurasystem.local
+$ vim /etc/apache2/sites-available/aurasystem.local
 
 Paste the below lines 
 
@@ -71,17 +71,17 @@ Paste the below lines
     </directory>
 </VirtualHost>
 
-$a2ensite aurasystem.local
-$apache2ctl restart
+$ a2ensite aurasystem.local
+$ apache2ctl restart
 
-Probably need $a2enmod rewrite
+Probably need $ a2enmod rewrite
 
 Example of Web Controller
 =========================
 The aura system package comes with a default HelloWorld controller which extends the base Page controller. 
 The example resides at system/package/aura.framework/src/example directory.
 Currently the HelloWorld controller is placed outside the HelloWorld folder. We will be moving the controller inside the HelloWorld folder in the next commits.
-You can create action starting with the name action<Action Name> . So for eg an action named read will be named as actionRead() .
+You can create action starting with the name action . So for eg an action named read will be named as actionRead() .
 
     /*
     * Read Action
