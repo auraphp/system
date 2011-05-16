@@ -47,43 +47,8 @@ To run the tests for a single package, specify the package tests directory:
 Structure of System
 ===================
 You can issue the tree command from terminal ( if you are in GNU/Linux ).
+All the packages reside inside the package directory. You can create your own packages and place inside the package folder.
 
-|-- cli.php //Running cli commands
-|-- config
-|-- include
-|-- package
-|   |-- [aura.autoload](http://auraphp.github.com/aura.autoload/)
-|   |-- [aura.cli](http://auraphp.github.com/aura.cli/)
-|   |-- [aura.di](http://auraphp.github.com/aura.di/)
-|   |-- aura.framework
-|   |   |-- src
-|   |   |   |-- example
-|   |   |   |   |-- HelloWorld
-|   |   |   |   |   |-- Layout
-|   |   |   |   |   `-- View
-|   |   |   |   |       |-- index.php
-|   |   |   |   |       `-- read.php
-|   |   |   |   `-- HelloWorld.php
-|   |-- [aura.http](http://auraphp.github.com/aura.http/)
-|   |-- [aura.router](http://auraphp.github.com/aura.router/)
-|   |-- [aura.signal](http://auraphp.github.com/aura.signal/)
-|   |-- [aura.view](http://auraphp.github.com/aura.view/)
-|   |-- [aura.web](http://auraphp.github.com/aura.web/)
-|   `-- vendor.package //Naming your own package
-|       |-- config
-|       |   `-- default.php //will override default.php of the main config
-|       |-- README.md
-|       |-- src
-|       |   |-- CreatePackage.php //Sample
-|       |   `-- Example.php //Sample
-|       `-- templates
-|           `-- sample.txt
-|-- status.php 
-|-- tips 
-|-- tmp 
-|-- update.php //updating the aura packages
-`-- web
-    `-- index.php //Webroot directory
     
 Setting Your Virtual Host
 -------------------------
@@ -101,7 +66,6 @@ Paste the below lines
     ServerName aurasystem.local
     ServerAlias www.aurasystem.local
     DocumentRoot /var/www/system/web
-    ;Hoping you have downloaded the system folder in www folder. Else put the real path in the above and below line
     <Directory /var/www/system/web>
         AllowOverride All
     </directory>
