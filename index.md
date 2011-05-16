@@ -14,12 +14,19 @@ Packages
 --------
 
 [aura.autoload](http://auraphp.github.com/aura.autoload) PSR-0 Autoloader
+
 [aura.cli](http://auraphp.github.com/aura.cli) CLI package
+
 [aura.di](http://auraphp.github.com/aura.di) Dependency Injection Container
+
 [aura.http](http://auraphp.github.com/aura.http) Send HTTP response to client
+
 [aura.router](http://auraphp.github.com/aura.router) Routing
+
 [aura.signal](http://auraphp.github.com/aura.signal) Event Handling
+
 [aura.view](http://auraphp.github.com/aura.view) Like Zend_View, Savant, Solar etc
+
 [aura.web](http://auraphp.github.com/aura.web) Web controller
 
 Because the library packages are relatively volatile, they are not provided as submodules in the system.  Instead, use the `update.php` command-line script to install and upgrade the library packages via `git`.
