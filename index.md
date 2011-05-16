@@ -3,12 +3,31 @@ title: The Aura System package provides a full-stack Aura framework built around
 layout: default
 ---
 
-Introduction
-============
+Aura System
+===========
 
 The Aura System package provides a full-stack Aura framework built around Aura library packages.
 
-Aura is very new, so the system is quite limited at this point. In particular, while it provides a scaffold for developing and testing library packages, it does not yet provide a web-oriented controller and view system.  (A cli-oriented controller system *is* provided.)
+Aura is very new, so the system is quite limited at this point. It provides a scaffold for developing and testing library packages, also provide a [web-oriented controller](http://auraphp.github.com/aura.web/) and [view system](http://auraphp.github.com/aura.view/) . Also provides a [cli-oriented](http://auraphp.github.com/aura.cli/) controller system *is* provided.)
+
+Packages
+--------
+
+ [aura.autoload](http://auraphp.github.com/aura.autoload) PSR-0 Autoloader
+
+ [aura.cli](http://auraphp.github.com/aura.cli) CLI package
+
+ [aura.di](http://auraphp.github.com/aura.di) Dependency Injection Container
+
+ [aura.http](http://auraphp.github.com/aura.http) Send HTTP response to client
+
+ [aura.router](http://auraphp.github.com/aura.router) Routing
+
+ [aura.signal](http://auraphp.github.com/aura.signal) Event Handling
+
+ [aura.view](http://auraphp.github.com/aura.view) Like Zend_View, Savant, Solar etc
+
+ [aura.web](http://auraphp.github.com/aura.web) Web controller
 
 Because the library packages are relatively volatile, they are not provided as submodules in the system.  Instead, use the `update.php` command-line script to install and upgrade the library packages via `git`.
 
@@ -43,3 +62,69 @@ After installation or upgrade, you can run the tests for all packages like so:
 To run the tests for a single package, specify the package tests directory:
 
     $ php cli.php aura.framework.run-tests package/aura.di/tests
+    
+Structure of System
+===================
+You can issue the tree command from terminal ( if you are in GNU/Linux ).
+All the packages reside inside the package directory. You can create your own packages and place inside the package folder.
+    
+Setting Your Virtual Host
+-------------------------
+Open your terminal, and type this,
+
+    $ sudo su 
+
+    $ echo "127.0.0.1 blog.local www.aurasystem.local" >> /etc/hosts
+
+    $ vim /etc/apache2/sites-available/aurasystem.local
+
+Paste the below lines 
+
+    <VirtualHost *:80>
+        ServerName aurasystem.local
+        ServerAlias www.aurasystem.local
+        DocumentRoot /var/www/system/web
+        <Directory /var/www/system/web>
+            AllowOverride All
+        </directory>
+    </VirtualHost>
+
+Probably you may want to replace /var/www/system with your path where the system resides.
+
+    $ a2ensite aurasystem.local    
+    $ apache2ctl restart
+
+Probably need 
+    
+    $ a2enmod rewrite
+
+Example of Web Controller
+=========================
+The aura system package comes with a default HelloWorld controller which extends the base Page controller. 
+The example resides at system/package/aura.framework/src/example directory.
+Currently the HelloWorld controller is placed outside the HelloWorld folder. We will be moving the controller inside the HelloWorld folder in the next commits.
+You can create action starting with the name action . So for eg an action named read will be named as actionRead() .
+
+    /*
+    * Read Action
+    */
+    public function actionRead()
+    {
+        $this->response->setView('read');
+    }
+    
+You need to set the routes in the default.php of the config folder in system or you can create a routes.php file for the package and attach the file in router. This way its highly portable and will not make much dependencies.
+
+Attaching layout to the corresponding action
+--------------------------------------------
+Todo
+
+View of the action
+------------------
+Todo
+
+Example of a Command
+====================
+For the time please go through [http://auraphp.github.com/aura.cli/](http://auraphp.github.com/aura.cli/) . We are working on some changes.
+
+Feel free to drop your feed back at [http://groups.google.com/group/auraphp](http://groups.google.com/group/auraphp) or in #irc freenode.net #auraphp .
