@@ -46,16 +46,10 @@ To run the tests for a single package, specify the package tests directory:
     
 Structure of System
 ===================
-You can issue the tree command from terminal ( if you are in GNU/Linux ) . So the structure will be similar to the one below. Some of the files from the package is removed in the below tree to make it simple.
+You can issue the tree command from terminal ( if you are in GNU/Linux ).
 
 |-- cli.php //Running cli commands
 |-- config
-|   |-- default.php //routes , and default configuration. All defaults will be readin and you can override others
-|   |-- dev.php // override what you need other than default.
-|   |-- local.php
-|   |-- prod.php
-|   |-- staging.php
-|   `-- test.php
 |-- include
 |-- package
 |   |-- [aura.autoload](http://auraphp.github.com/aura.autoload/)
