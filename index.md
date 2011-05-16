@@ -48,7 +48,6 @@ Structure of System
 ===================
 You can issue the tree command from terminal ( if you are in GNU/Linux ).
 All the packages reside inside the package directory. You can create your own packages and place inside the package folder.
-
     
 Setting Your Virtual Host
 -------------------------
