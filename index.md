@@ -53,27 +53,30 @@ Setting Your Virtual Host
 -------------------------
 Open your terminal, and type this,
 
-$ sudo su 
+    $ sudo su 
 
-$ echo "127.0.0.1 blog.local www.aurasystem.local" >> /etc/hosts
+    $ echo "127.0.0.1 blog.local www.aurasystem.local" >> /etc/hosts
 
-$ vim /etc/apache2/sites-available/aurasystem.local
+    $ vim /etc/apache2/sites-available/aurasystem.local
 
 Paste the below lines 
 
-<VirtualHost *:80>
-    ServerName aurasystem.local
-    ServerAlias www.aurasystem.local
-    DocumentRoot /var/www/system/web
-    <Directory /var/www/system/web>
-        AllowOverride All
-    </directory>
-</VirtualHost>
+    <VirtualHost *:80>
+        ServerName aurasystem.local
+        ServerAlias www.aurasystem.local
+        DocumentRoot /var/www/system/web
+        <Directory /var/www/system/web>
+            AllowOverride All
+        </directory>
+    </VirtualHost>
 
-$ a2ensite aurasystem.local
-$ apache2ctl restart
+    $ a2ensite aurasystem.local
+    
+    $ apache2ctl restart
 
-Probably need $ a2enmod rewrite
+Probably need 
+    
+    $ a2enmod rewrite
 
 Example of Web Controller
 =========================
