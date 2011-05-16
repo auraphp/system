@@ -70,8 +70,9 @@ Paste the below lines
         </directory>
     </VirtualHost>
 
-    $ a2ensite aurasystem.local
-    
+Probably you may want to replace /var/www/system with your path where the system resides.
+
+    $ a2ensite aurasystem.local    
     $ apache2ctl restart
 
 Probably need 
