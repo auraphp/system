@@ -20,4 +20,5 @@ $di->get('router_map')->add('home', '/', array(
 ));
 
 // map the 'hello_world' controller value a particular class
-$di->params['aura\web\ControllerFactory']['map']['hello_world'] = 'aura\framework\example\HelloWorld';
+$di->params['aura\web\ControllerFactory']['map']['hello_world'] = 'aura\framework\web\hello_world\Page';
+$di->params['aura\web\ControllerFactory']['not_found'] = 'aura\framework\web\not_found\Page';

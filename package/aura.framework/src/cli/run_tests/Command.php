@@ -6,9 +6,11 @@
  * @license http://opensource.org/licenses/bsd-license.php BSD
  * 
  */
-namespace aura\framework;
-use aura\cli\Command as Command;
-use aura\cli\Getopt as Getopt;
+namespace aura\framework\cli\run_tests;
+use aura\cli\Command as CliCommand;
+use aura\cli\Getopt;
+use aura\framework\System;
+use aura\framework\Exception_TestFileNotFound;
 
 /**
  * 
@@ -31,7 +33,7 @@ use aura\cli\Getopt as Getopt;
  * @package aura.framework
  * 
  */
-class RunTests extends Command
+class Command extends CliCommand
 {
     /**
      * 
@@ -142,11 +144,9 @@ class RunTests extends Command
         $cmd = array($this->phpunit);
         
         // add bootstrap file
-        $bootstrap = dirname(__DIR__) . DIRECTORY_SEPARATOR
-                   . 'scripts' . DIRECTORY_SEPARATOR
-                   . 'test-bootstrap.php';
-        
-        $cmd[] = '--bootstrap=' . escapeshellarg($bootstrap);
+        $subpath   = 'aura.framework/scripts/test-bootstrap.php';
+        $bootstrap = $this->system->getPackagePath($subpath);
+        $cmd[]     = '--bootstrap=' . escapeshellarg($bootstrap);
         
         // add all remaining args
         foreach ($argv as $val) {
@@ -180,13 +180,8 @@ class RunTests extends Command
         
         // add coverage
         if (extension_loaded('xdebug')) {
-            $system_dir = $this->system->getRootPath();
-            $coverage_dir = $system_dir . DIRECTORY_SEPARATOR
-                          . 'tmp' . DIRECTORY_SEPARATOR
-                          . 'test' . DIRECTORY_SEPARATOR
-                          . 'coverage';
-            
-            $cmd[] = " --coverage-html=$coverage_dir";
+            $coverage_dir = $this->system->getTmpPath('test/coverage');
+            $cmd[]        = " --coverage-html=$coverage_dir";
         }
         
         // build out the command and run it
@@ -204,10 +199,8 @@ class RunTests extends Command
     {
         $xml = array();
         
-        $bootstrap = dirname(__DIR__) . DIRECTORY_SEPARATOR
-                   . 'scripts' . DIRECTORY_SEPARATOR
-                   . 'test-bootstrap.php';
-                   
+        $subpath   = 'aura.framework/scripts/test-bootstrap.php';
+        $bootstrap = $this->system->getPackagePath($subpath);
         $xml[] = "<phpunit bootstrap=\"{$bootstrap}\">";
         
         $xml[] = '<testsuites>';

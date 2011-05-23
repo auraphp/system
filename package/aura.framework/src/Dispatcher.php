@@ -232,10 +232,10 @@ class Dispatcher
         $layout_paths = $this->transfer->getLayoutPaths();
         
         // add the default paths for the controller
-        $subdirs = $this->loader->getSubdirs(get_class($this->controller));
-        foreach ($subdirs as $dir) {
-            $view_paths[]   = $dir . DIRECTORY_SEPARATOR . 'View';
-            $layout_paths[] = $dir . DIRECTORY_SEPARATOR . 'Layout';
+        $dirs = $this->loader->getDirs(get_class($this->controller));
+        foreach ($dirs as $dir) {
+            $view_paths[]   = $dir . DIRECTORY_SEPARATOR . 'view';
+            $layout_paths[] = $dir . DIRECTORY_SEPARATOR . 'layout';
         }
         
         // set values for the view and layout in the two-step view

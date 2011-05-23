@@ -1,5 +1,5 @@
 <?php
-namespace aura\framework;
+namespace aura\framework\cli\run_tests;
 use aura\cli\Getopt as Getopt;
 use aura\cli\Stdio as Stdio;
 use aura\cli\Vt100 as Vt100;
@@ -9,16 +9,17 @@ use aura\signal\Manager;
 use aura\signal\HandlerFactory;
 use aura\signal\ResultFactory;
 use aura\signal\ResultCollection;
+use aura\framework\System;
 
 /**
- * Test class for Run.
+ * Test class for run_tests\Command.
  */
-class RunTestsTest extends \PHPUnit_Framework_TestCase
+class CommandTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @var Run
      */
-    protected $run;
+    protected $command;
     
     protected $stdio;
     
@@ -34,12 +35,12 @@ class RunTestsTest extends \PHPUnit_Framework_TestCase
     
     protected $phpunit;
     
-    protected function newRun($argv = array(), $system_dir = AURA_TEST_RUN_SYSTEM_DIR)
+    protected function newCommand($argv = array(), $system_dir = AURA_TEST_RUN_SYSTEM_DIR)
     {
         $_SERVER['argv'] = $argv;
         $this->context = new Context;
         $this->system = new System($system_dir);
-        $this->tmp_dir =  $this->system->getTmpPath('test/aura.test/Run');
+        $this->tmp_dir =  $this->system->getTmpPath('test/aura.framework/cli\run_tests\Command');
         
         // use files because we can't use php://memory in proc_open() calls
         $this->outfile = tempnam($this->tmp_dir, '');
@@ -56,21 +57,19 @@ class RunTestsTest extends \PHPUnit_Framework_TestCase
         
         $this->signal = new Manager(new HandlerFactory, new ResultFactory, new ResultCollection);
         
-        $this->phpunit = dirname(__DIR__) . DIRECTORY_SEPARATOR
-                 . 'PHPUnit-3.4.15' . DIRECTORY_SEPARATOR
-                 . 'phpunit.php';
+        $this->phpunit = $this->system->getPackagePath('aura.framework/PHPUnit-3.4.15/phpunit.php');
         
-        $run = new RunTests(
+        $command = new Command(
             $this->context,
             $this->stdio,
             $this->getopt,
             $this->signal
         );
         
-        $run->setSystem($this->system);
-        $run->setPhpunit($this->phpunit);
+        $command->setSystem($this->system);
+        $command->setPhpunit($this->phpunit);
         
-        return $run;
+        return $command;
     }
     
     /**
@@ -91,14 +90,14 @@ class RunTestsTest extends \PHPUnit_Framework_TestCase
      */
     public function test_noSuchFile()
     {
-        $run = $this->newRun(array('foo/bar/BazTest.php'));
-        $run->exec();
+        $command = $this->newCommand(array('foo/bar/BazTest.php'));
+        $command->exec();
     }
     
     public function test()
     {
-        $run = $this->newRun(array('package/aura.framework/tests/MakeTestTest.php', '--tap'));
-        $run->exec();
+        $command = $this->newCommand(array('package/aura.framework/tests/cli/make_test/CommandTest.php', '--tap'));
+        $command->exec();
         // there should have been no errors
         $err = file_get_contents($this->errfile);
         $this->assertSame('', $err);

@@ -6,8 +6,12 @@
  * @license http://opensource.org/licenses/bsd-license.php BSD
  * 
  */
-namespace aura\framework;
-use aura\cli\Command as Command;
+namespace aura\framework\cli\make_test;
+use aura\cli\Command as CliCommand;
+use aura\framework\System;
+use aura\framework\Inflect;
+use aura\framework\Exception_SourceNotFound;
+use aura\framework\Exception_TestFileExists;
 
 /**
  * 
@@ -24,7 +28,7 @@ use aura\cli\Command as Command;
  * @package aura.framework
  * 
  */
-class MakeTest extends Command
+class Command extends CliCommand
 {
     /**
      * 
@@ -101,11 +105,9 @@ class MakeTest extends Command
     public function preAction()
     {
         $this->include_path = ini_get('include_path');
-        $newpath = $this->include_path
-                 . PATH_SEPARATOR
-                 . dirname(__DIR__) . DIRECTORY_SEPARATOR
-                 . 'PHPUnit-3.4.15';
-        ini_set('include_path', $newpath);
+        $dir = dirname(dirname(dirname(__DIR__))) . DIRECTORY_SEPARATOR
+             . 'PHPUnit-3.4.15';
+        ini_set('include_path', $this->include_path . PATH_SEPARATOR . $dir);
     }
     
     /**
