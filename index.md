@@ -74,7 +74,7 @@ Lets look into an eg:
 
 Let vendor is example and package is blog. We are going to create a post controller . From the directory structure it will be clear.
 
-    $example.blog/
+    example.blog/
             src/
                 web/
                     post/
