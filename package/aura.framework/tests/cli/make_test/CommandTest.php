@@ -1,5 +1,5 @@
 <?php
-namespace aura\framework;
+namespace aura\framework\cli\make_test;
 use aura\cli\Getopt as Getopt;
 use aura\cli\Stdio as Stdio;
 use aura\cli\OptionFactory as OptionFactory;
@@ -9,16 +9,18 @@ use aura\signal\Manager;
 use aura\signal\HandlerFactory;
 use aura\signal\ResultFactory;
 use aura\signal\ResultCollection;
+use aura\framework\System;
+use aura\framework\Inflect;
 
 /**
- * Test class for Make.
+ * Test class for make_test\Command.
  */
-class MakeTestTest extends \PHPUnit_Framework_TestCase
+class CommandTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @var Make
      */
-    protected $make;
+    protected $command;
     
     protected $stdio;
     
@@ -32,7 +34,7 @@ class MakeTestTest extends \PHPUnit_Framework_TestCase
     
     protected $context;
     
-    protected function newMake($argv = array(), $system_dir = AURA_TEST_RUN_SYSTEM_DIR)
+    protected function newCommand($argv = array(), $system_dir = AURA_TEST_RUN_SYSTEM_DIR)
     {
         $_SERVER['argv'] = $argv;
         $this->context = new Context;
@@ -53,17 +55,17 @@ class MakeTestTest extends \PHPUnit_Framework_TestCase
         
         $this->inflect = new Inflect;
         
-        $make = new MakeTest(
+        $command = new Command(
             $this->context,
             $this->stdio,
             $this->getopt,
             $this->signal
         );
         
-        $make->setSystem($this->system);
-        $make->setInflect($this->inflect);
+        $command->setSystem($this->system);
+        $command->setInflect($this->inflect);
         
-        return $make;
+        return $command;
     }
     
     /**
@@ -102,8 +104,8 @@ class MakeTestTest extends \PHPUnit_Framework_TestCase
      */
     public function test_sourceNotFound()
     {
-        $make = $this->newMake(array('package/aura.framework/src/NoSuchClass.php'));
-        $make->exec();
+        $command = $this->newCommand(array('package/aura.framework/src/NoSuchClass.php'));
+        $command->exec();
     }
     
     /**
@@ -111,8 +113,8 @@ class MakeTestTest extends \PHPUnit_Framework_TestCase
      */
     public function testTargetFileExists()
     {
-        $make = $this->newMake(array('package/aura.framework/src/MakeTest.php'));
-        $make->exec();
+        $command = $this->newCommand(array('package/aura.framework/src/cli/make_test/Command.php'));
+        $command->exec();
     }
     
     /**
@@ -151,11 +153,11 @@ class MockClass {}
         file_put_contents($incl_file, $code);
         
         // make a test from the fake class
-        $make = $this->newMake(array("$package_dir/mock_vendor.mock_package/src/MockClass.php"), $system_dir);
+        $command = $this->newCommand(array("$package_dir/mock_vendor.mock_package/src/MockClass.php"), $system_dir);
         
         // needs to be in the include-path
         include_once $incl_file;
-        $make->exec();
+        $command->exec();
         
         // find the output file
         $this->assertFileExists($test_file);

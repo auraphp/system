@@ -1,7 +1,7 @@
 <?php
-namespace aura\framework\example;
-use aura\web\Page;
-class HelloWorld extends Page
+namespace aura\framework\web\hello_world;
+use aura\web\Page as WebPage;
+class Page extends WebPage
 {
     public function actionIndex()
     {
