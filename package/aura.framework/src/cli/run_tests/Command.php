@@ -9,6 +9,7 @@
 namespace aura\framework\cli\run_tests;
 use aura\cli\Command as CliCommand;
 use aura\cli\Getopt;
+use aura\cli\Option;
 use aura\framework\System;
 use aura\framework\Exception_TestFileNotFound;
 
@@ -44,6 +45,14 @@ class Command extends CliCommand
      * 
      */
     protected $options_strict = Getopt::NON_STRICT;
+    
+    protected $options = array(
+        'exclude_package' => array(
+            'long' => 'exclude-package',
+            'multi' => true,
+            'param' => Option::PARAM_REQUIRED,
+        ),
+    );
     
     /**
      * 
@@ -205,11 +214,16 @@ class Command extends CliCommand
         
         $xml[] = '<testsuites>';
         
+        $exclude = $this->getopt->exclude_package;
+        
         $package_dir  = $this->system->getPackagePath();
         $package_glob = $package_dir . DIRECTORY_SEPARATOR . '*';
         $package_list = glob($package_glob, GLOB_ONLYDIR);
         foreach ($package_list as $package_base) {
             $package_name = basename($package_base);
+            if (in_array($package_name, $exclude)) {
+                continue;
+            }
             $package_test = $package_base . DIRECTORY_SEPARATOR . 'tests';
             if (is_dir($package_test)) {
               $xml[] = "<testsuite name=\"{$package_name}\">";

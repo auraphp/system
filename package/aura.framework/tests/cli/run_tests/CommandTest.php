@@ -102,4 +102,13 @@ class CommandTest extends \PHPUnit_Framework_TestCase
         $err = file_get_contents($this->errfile);
         $this->assertSame('', $err);
     }
+    
+    public function testRunAll()
+    {
+        $command = $this->newCommand(array('--exclude-package=aura.framework'));
+        $command->exec();
+        // there should have been no errors
+        $err = file_get_contents($this->errfile);
+        $this->assertSame('', $err);
+    }
 }
