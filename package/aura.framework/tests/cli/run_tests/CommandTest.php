@@ -40,7 +40,7 @@ class CommandTest extends \PHPUnit_Framework_TestCase
         $_SERVER['argv'] = $argv;
         $this->context = new Context;
         $this->system = new System($system_dir);
-        $this->tmp_dir =  $this->system->getTmpPath('test/aura.framework/cli\run_tests\Command');
+        $this->tmp_dir =  $this->system->getTmpPath('test/aura.framework/cli/run_tests/Command');
         
         // use files because we can't use php://memory in proc_open() calls
         $this->outfile = tempnam($this->tmp_dir, '');
@@ -94,7 +94,7 @@ class CommandTest extends \PHPUnit_Framework_TestCase
         $command->exec();
     }
     
-    public function test()
+    public function testRunOne()
     {
         $command = $this->newCommand(array('package/aura.framework/tests/cli/make_test/CommandTest.php', '--tap'));
         $command->exec();
