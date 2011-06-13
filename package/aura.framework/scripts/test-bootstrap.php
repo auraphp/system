@@ -8,8 +8,8 @@
  * @package aura.framework
  * 
  */
-namespace aura\framework;
-use aura\autoload\Loader;
+namespace Aura\Framework;
+use Aura\Autoload\Loader;
 
 function load_config($file, $system, $loader, $di) {
     require $file;

@@ -6,8 +6,8 @@
  * @license http://opensource.org/licenses/bsd-license.php BSD
  * 
  */
-namespace aura\framework\cli\hello_world;
-use aura\cli\Command as CliCommand;
+namespace Aura\Framework\Cli\hello_world;
+use Aura\Cli\Command as CliCommand;
 
 /**
  * 

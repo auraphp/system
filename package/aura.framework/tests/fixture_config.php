@@ -1,6 +1,6 @@
 <?php
 return array(
-    'aura\framework\MockEmptyClass' => array(
+    'Aura\Framework\MockEmptyClass' => array(
         'zim' => 'gir',
     ),
 );

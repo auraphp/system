@@ -1,15 +1,15 @@
 <?php
-namespace aura\framework\cli\hello_world;
-use aura\cli\Getopt as Getopt;
-use aura\cli\Stdio as Stdio;
-use aura\cli\Vt100 as Vt100;
-use aura\cli\Context as Context;
-use aura\cli\OptionFactory as OptionFactory;
-use aura\signal\Manager;
-use aura\signal\HandlerFactory;
-use aura\signal\ResultFactory;
-use aura\signal\ResultCollection;
-use aura\framework\System;
+namespace Aura\Framework\Cli\hello_world;
+use Aura\Cli\Getopt as Getopt;
+use Aura\Cli\Stdio as Stdio;
+use Aura\Cli\Vt100 as Vt100;
+use Aura\Cli\Context as Context;
+use Aura\Cli\OptionFactory as OptionFactory;
+use Aura\Signal\Manager;
+use Aura\Signal\HandlerFactory;
+use Aura\Signal\ResultFactory;
+use Aura\Signal\ResultCollection;
+use Aura\Framework\System;
 
 /**
  * Test class for Command.

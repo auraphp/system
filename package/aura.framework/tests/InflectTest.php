@@ -1,5 +1,5 @@
 <?php
-namespace aura\framework;
+namespace Aura\Framework;
 
 /**
  * Test class for Inflect.

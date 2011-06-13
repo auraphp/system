@@ -6,12 +6,12 @@
  * @license http://opensource.org/licenses/bsd-license.php BSD
  * 
  */
-namespace aura\framework\cli\run_tests;
-use aura\cli\Command as CliCommand;
-use aura\cli\Getopt;
-use aura\cli\Option;
-use aura\framework\System;
-use aura\framework\Exception_TestFileNotFound;
+namespace Aura\Framework\Cli\run_tests;
+use Aura\Cli\Command as CliCommand;
+use Aura\Cli\Getopt;
+use Aura\Cli\Option;
+use Aura\Framework\System;
+use Aura\Framework\Exception\TestFileNotFound;
 
 /**
  * 
@@ -146,7 +146,7 @@ class Command extends CliCommand
         // does the file or dir exist?
         $real = realpath($file);
         if (! file_exists($real)) {
-            throw new Exception_TestFileNotFound($file);
+            throw new TestFileNotFound($file);
         }
         
         // start building the phpunit command

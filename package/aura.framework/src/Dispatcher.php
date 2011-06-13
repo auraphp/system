@@ -6,14 +6,14 @@
  * @license http://opensource.org/licenses/bsd-license.php BSD
  * 
  */
-namespace aura\framework;
-use aura\web\ControllerFactory;
-use aura\web\Context;
-use aura\view\TwoStep as TwoStepView;
-use aura\http\Response as HttpResponse;
-use aura\signal\Manager as SignalManager;
-use aura\router\Map as RouterMap;
-use aura\autoload\Loader;
+namespace Aura\Framework;
+use Aura\Web\ControllerFactory;
+use Aura\Web\Context;
+use Aura\View\TwoStep as TwoStepView;
+use Aura\Http\Response as HttpResponse;
+use Aura\Signal\Manager as SignalManager;
+use Aura\Router\Map as RouterMap;
+use Aura\Autoload\Loader;
 
 /**
  * 
@@ -29,7 +29,7 @@ class Dispatcher
      * 
      * The web request context.
      * 
-     * @var aura\web\Context
+     * @var Aura\Web\Context
      * 
      */
     protected $context;
@@ -38,7 +38,7 @@ class Dispatcher
      * 
      * A factory to create web controllers.
      * 
-     * @var aura\web\ControllerFactory
+     * @var Aura\Web\ControllerFactory
      * 
      */
     protected $controller_factory;
@@ -47,7 +47,7 @@ class Dispatcher
      * 
      * A two-step view object to render views and layouts.
      * 
-     * @var aura\view\TwoStep
+     * @var Aura\View\TwoStep
      * 
      */
     protected $view;
@@ -56,7 +56,7 @@ class Dispatcher
      * 
      * An HTTP response object for sending the response.
      * 
-     * @var aura\http\Response
+     * @var Aura\Http\Response
      * 
      */
     protected $http_response;
@@ -65,7 +65,7 @@ class Dispatcher
      * 
      * A signal manager for events.
      * 
-     * @var aura\signal\Manager
+     * @var Aura\Signal\Manager
      * 
      */
     protected $signal;
@@ -74,7 +74,7 @@ class Dispatcher
      * 
      * An autoloader to help determine where controller directories are.
      * 
-     * @var aura\autoload\Loader
+     * @var Aura\Autoload\Loader
      * 
      */
     protected $loader;
@@ -83,7 +83,7 @@ class Dispatcher
      * 
      * A ResponseTransfer object from the Controller.
      * 
-     * @var aura\web\ResponseTransfer
+     * @var Aura\Web\ResponseTransfer
      * 
      */
     protected $transfer;
@@ -134,9 +134,9 @@ class Dispatcher
      * Dispatches a Route to a web controller, renders a view into the
      * ReponseTransfer, and returns an HTTP response.
      * 
-     * @param aura\router\Route $route A Route to dispatch.
+     * @param Aura\Router\Route $route A Route to dispatch.
      * 
-     * @return aura\http\Response
+     * @return Aura\Http\Response
      * 
      * @signal pre_dispatch
      * 
@@ -176,7 +176,7 @@ class Dispatcher
      * 
      * Creates and executes a web controller.
      * 
-     * @return aura\web\ResponseTransfer
+     * @return Aura\Web\ResponseTransfer
      * 
      */
     protected function dispatch()

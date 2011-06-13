@@ -6,12 +6,12 @@
  * @license http://opensource.org/licenses/bsd-license.php BSD
  * 
  */
-namespace aura\framework\cli\make_test;
-use aura\cli\Command as CliCommand;
-use aura\framework\System;
-use aura\framework\Inflect;
-use aura\framework\Exception_SourceNotFound;
-use aura\framework\Exception_TestFileExists;
+namespace Aura\Framework\Cli\make_test;
+use Aura\Cli\Command as CliCommand;
+use Aura\Framework\System;
+use Aura\Framework\Inflect;
+use Aura\Framework\Exception\SourceNotFound ;
+use Aura\Framework\Exception\TestFileExists;
 
 /**
  * 
@@ -155,7 +155,7 @@ class Command extends CliCommand
         
         // does the test file exist already?
         if (is_file($test_file)) {
-            throw new Exception_TestFileExists($test_file);
+            throw new TestFileExists($test_file);
         }
         
         // generate the test skeleton code
@@ -195,7 +195,7 @@ class Command extends CliCommand
         // incoming spec: packages/aura.framework/src/foo/Bar.php
         $real = realpath($spec);
         if (! $real) {
-            throw new Exception_SourceNotFound($spec);
+            throw new SourceNotFound($spec);
         }
         
         // strip off the package dir prefix

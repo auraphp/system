@@ -8,11 +8,11 @@
  * @package aura.framework
  * 
  */
-namespace aura\framework;
-use aura\autoload\Loader;
-use aura\di\Manager;
-use aura\di\Forge;
-use aura\di\Config;
+namespace Aura\Framework;
+use Aura\Autoload\Loader;
+use Aura\Di\Manager;
+use Aura\Di\Forge;
+use Aura\Di\Config;
 
 /**
  * 
@@ -54,7 +54,7 @@ $loader->register();
 /**
  * DI container
  */
-$loader->addPrefix('aura\di\\', "$system/package/aura.di/src");
+$loader->addPrefix('Aura\Di\\', "$system/package/aura.di/src");
 $di = new Manager(new Forge(new Config));
 
 /**

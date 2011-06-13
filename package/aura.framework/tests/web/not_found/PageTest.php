@@ -1,11 +1,11 @@
 <?php
-namespace aura\framework\web\not_found;
-use aura\signal\Manager as SignalManager;
-use aura\signal\HandlerFactory;
-use aura\signal\ResultFactory;
-use aura\signal\ResultCollection;
-use aura\web\Context;
-use aura\web\ResponseTransfer;
+namespace Aura\Framework\Web\not_found;
+use Aura\Signal\Manager as SignalManager;
+use Aura\Signal\HandlerFactory;
+use Aura\Signal\ResultFactory;
+use Aura\Signal\ResultCollection;
+use Aura\Web\Context;
+use Aura\Web\ResponseTransfer;
 
 /**
  * Test class for Page.
@@ -49,12 +49,12 @@ class PageTest extends \PHPUnit_Framework_TestCase
         <ol>
             <li>An <code>aura\\router\\Map</code> route for the path <code>\'/\'</code></li>
             <li>A <code>[\'values\'][\'controller\']</code> value for the mapped route</li>
-            <li>A <code>$di->params[\'aura\\web\\ControllerFactory\'][\'map\']</code> entry for the controller value.</li>
+            <li>A <code>$di->params[\'Aura\\Web\\ControllerFactory\'][\'map\']</code> entry for the controller value.</li>
         </ol>
     </body>
 </html>';
         
-        $this->assertType('aura\web\ResponseTransfer', $xfer);
+        $this->assertType('Aura\Web\ResponseTransfer', $xfer);
         $this->assertSame(404, $xfer->getStatusCode());
         $this->assertSame($html, $xfer->getContent());
         $this->assertNull($xfer->getView());

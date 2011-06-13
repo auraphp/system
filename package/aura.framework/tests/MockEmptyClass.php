@@ -1,5 +1,5 @@
 <?php
-namespace aura\framework;
+namespace Aura\Framework;
 class MockEmptyClass {
     
     protected $foo;

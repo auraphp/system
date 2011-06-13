@@ -1,11 +1,11 @@
 <?php
-namespace aura\framework\web\hello_world;
-use aura\signal\Manager as SignalManager;
-use aura\signal\HandlerFactory;
-use aura\signal\ResultFactory;
-use aura\signal\ResultCollection;
-use aura\web\Context;
-use aura\web\ResponseTransfer;
+namespace Aura\Framework\Web\hello_world;
+use Aura\Signal\Manager as SignalManager;
+use Aura\Signal\HandlerFactory;
+use Aura\Signal\ResultFactory;
+use Aura\Signal\ResultCollection;
+use Aura\Web\Context;
+use Aura\Web\ResponseTransfer;
 
 /**
  * Test class for Page.
@@ -38,7 +38,7 @@ class PageTest extends \PHPUnit_Framework_TestCase
         ));
         $xfer = $page->exec();
         
-        $this->assertType('aura\web\ResponseTransfer', $xfer);
+        $this->assertType('Aura\Web\ResponseTransfer', $xfer);
         $this->assertSame(200, $xfer->getStatusCode());
         $this->assertSame('index', $xfer->getView());
     }

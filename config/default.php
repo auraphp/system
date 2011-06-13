@@ -5,9 +5,9 @@
  * 
  * @var string $system Path to the Aura system root.
  * 
- * @var aura\framework\Autoloader $loader The autoloader for the system.
+ * @var Aura\Framework\Autoloader $loader The autoloader for the system.
  * 
- * @var aura\di\Container $di The DI container for the system.
+ * @var Aura\Di\Container $di The DI container for the system.
  * 
  */
 
@@ -20,5 +20,5 @@ $di->get('router_map')->add('home', '/', array(
 ));
 
 // map the 'hello_world' controller value a particular class
-$di->params['aura\web\ControllerFactory']['map']['hello_world'] = 'aura\framework\web\hello_world\Page';
-$di->params['aura\web\ControllerFactory']['not_found'] = 'aura\framework\web\not_found\Page';
+$di->params['Aura\Web\ControllerFactory']['map']['hello_world'] = 'Aura\Framework\Web\hello_world\Page';
+$di->params['Aura\Web\ControllerFactory']['not_found'] = 'Aura\Framework\Web\not_found\Page';

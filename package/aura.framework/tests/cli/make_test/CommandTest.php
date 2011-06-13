@@ -1,16 +1,16 @@
 <?php
-namespace aura\framework\cli\make_test;
-use aura\cli\Getopt as Getopt;
-use aura\cli\Stdio as Stdio;
-use aura\cli\OptionFactory as OptionFactory;
-use aura\cli\Vt100 as Vt100;
-use aura\cli\Context as Context;
-use aura\signal\Manager;
-use aura\signal\HandlerFactory;
-use aura\signal\ResultFactory;
-use aura\signal\ResultCollection;
-use aura\framework\System;
-use aura\framework\Inflect;
+namespace Aura\Framework\Cli\make_test;
+use Aura\Cli\Getopt as Getopt;
+use Aura\Cli\Stdio as Stdio;
+use Aura\Cli\OptionFactory as OptionFactory;
+use Aura\Cli\Vt100 as Vt100;
+use Aura\Cli\Context as Context;
+use Aura\Signal\Manager;
+use Aura\Signal\HandlerFactory;
+use Aura\Signal\ResultFactory;
+use Aura\Signal\ResultCollection;
+use Aura\Framework\System;
+use Aura\Framework\Inflect;
 
 /**
  * Test class for make_test\Command.
@@ -100,7 +100,7 @@ class CommandTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
-     * @expectedException aura\framework\Exception_SourceNotFound
+     * @expectedException Aura\Framework\Exception\SourceNotFound
      */
     public function test_sourceNotFound()
     {
@@ -109,7 +109,7 @@ class CommandTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
-     * @expectedException aura\framework\Exception_TestFileExists
+     * @expectedException Aura\Framework\Exception\TestFileExists
      */
     public function testTargetFileExists()
     {

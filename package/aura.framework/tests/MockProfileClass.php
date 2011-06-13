@@ -1,3 +1,3 @@
 <?php
-namespace aura\framework;
+namespace Aura\Framework;
 class MockProfileClass {}

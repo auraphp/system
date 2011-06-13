@@ -2,27 +2,27 @@
 /**
  * Instance params and setter values.
  */
-$map =& $di->params['aura\cli\CommandFactory']['map'];
-$map['aura.framework.make-test']   = 'aura\framework\cli\make_test\Command';
-$map['aura.framework.run-tests']   = 'aura\framework\cli\run_tests\Command';
-$map['aura.framework.hello-world'] = 'aura\framework\cli\hello_world\Command';
+$map =& $di->params['Aura\Cli\CommandFactory']['map'];
+$map['aura.framework.make-test']   = 'Aura\Framework\Cli\make_test\Command';
+$map['aura.framework.run-tests']   = 'Aura\Framework\Cli\run_tests\Command';
+$map['aura.framework.hello-world'] = 'Aura\Framework\Cli\hello_world\Command';
 
-$di->setter['aura\framework\cli\make_test\Command'] = array(
+$di->setter['Aura\Framework\Cli\make_test\Command'] = array(
     'setInflect' => $di->lazyGet('inflect'),
     'setSystem'  => $di->lazyGet('system'),
 );
 
-$di->setter['aura\framework\cli\run_tests\Command'] = array(
+$di->setter['Aura\Framework\Cli\run_tests\Command'] = array(
     'setPhpunit' => str_replace('/', DIRECTORY_SEPARATOR, "php " . dirname(__DIR__) . "/PHPUnit-3.4.15/phpunit.php"),
     'setSystem'  => $di->lazyGet('system'),
 );
 
-$di->params['aura\framework\Dispatcher'] = array(
+$di->params['Aura\Framework\Dispatcher'] = array(
     'context'            => $di->lazyGet('web_context'),
     'router'             => $di->lazyGet('router_map'),
-    'controller_factory' => $di->lazyNew('aura\web\ControllerFactory'),
-    'view'               => $di->lazyNew('aura\view\TwoStep'),
-    'http_response'      => $di->lazyNew('aura\http\Response'),
+    'controller_factory' => $di->lazyNew('Aura\Web\ControllerFactory'),
+    'view'               => $di->lazyNew('Aura\View\TwoStep'),
+    'http_response'      => $di->lazyNew('Aura\Http\Response'),
     'signal'             => $di->lazyGet('signal_manager'),
     'loader'             => $loader,
 );
@@ -31,13 +31,13 @@ $di->params['aura\framework\Dispatcher'] = array(
  * Dependency services.
  */
 $di->set('inflect', function() {
-    return new aura\framework\Inflect;
+    return new Aura\Framework\Inflect;
 });
 
 $di->set('system', function() use ($system) {
-    return new aura\framework\System($system);
+    return new Aura\Framework\System($system);
 });
 
 $di->set('dispatcher', function() use ($di) {
-    return $di->newInstance('aura\framework\Dispatcher');
+    return $di->newInstance('Aura\Framework\Dispatcher');
 });

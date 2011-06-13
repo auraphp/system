@@ -1,6 +1,6 @@
 <?php
-namespace aura\framework\web\not_found;
-use aura\web\Page as WebPage;
+namespace Aura\Framework\Web\not_found;
+use Aura\Web\Page as WebPage;
 class Page extends WebPage
 {
     // force the action to "index"
@@ -31,7 +31,7 @@ class Page extends WebPage
         <ol>
             <li>An <code>aura\\router\\Map</code> route for the path <code>$path</code></li>
             <li>A <code>['values']['controller']</code> value for the mapped route</li>
-            <li>A <code>\$di->params['aura\web\ControllerFactory']['map']</code> entry for the controller value.</li>
+            <li>A <code>\$di->params['Aura\Web\ControllerFactory']['map']</code> entry for the controller value.</li>
         </ol>
     </body>
 </html>

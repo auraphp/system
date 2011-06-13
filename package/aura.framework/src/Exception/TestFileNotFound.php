@@ -6,7 +6,7 @@
  * @license http://opensource.org/licenses/bsd-license.php BSD
  * 
  */
-namespace aura\framework;
+namespace Aura\Framework\Exception;
 
 /**
  * 
@@ -15,4 +15,4 @@ namespace aura\framework;
  * @package aura.framework
  * 
  */
-class Exception_TestFileNotFound extends Exception {}
+class TestFileNotFound extends \Aura\Framework\Exception {}
