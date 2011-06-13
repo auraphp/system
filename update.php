@@ -41,8 +41,8 @@ $data = json_decode($json);
 // for each of the repositories ...
 foreach ($data->repositories as $repo) {
     
-    // only use 'aura.package' repositories as packages
-    if (! preg_match('/aura\.[a-z0-9_]+/', $repo->name)) {
+    // only use 'Aura.Package' repositories as packages
+    if (! preg_match('/Aura\.[A-Z0-9_]+/', $repo->name)) {
         continue;
     }
     
