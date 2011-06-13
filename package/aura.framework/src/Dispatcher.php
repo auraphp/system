@@ -227,25 +227,26 @@ class Dispatcher
         $accept = $this->context->getAccept('type');
         $this->transfer->negotiateContentType($accept);
         
-        // get the override paths from the transfer object
-        $view_paths   = $this->transfer->getViewPaths();
-        $layout_paths = $this->transfer->getLayoutPaths();
-        
-        // add the default paths for the controller
-        $dirs = $this->loader->getDirs(get_class($this->controller));
-        foreach ($dirs as $dir) {
-            $view_paths[]   = $dir . DIRECTORY_SEPARATOR . 'view';
-            $layout_paths[] = $dir . DIRECTORY_SEPARATOR . 'layout';
-        }
-        
-        // set values for the view and layout in the two-step view
+        // set the view info
         $this->view->setViewName($this->transfer->matchView());
         $this->view->setViewData($this->transfer->getViewData());
-        $this->view->setViewPaths($view_paths);
+        $view_stack = $this->transfer->getViewStack();
+        foreach ($view_stack as $item) {
+            list($spec, $subdir) = $item;
+            $path = $this->loader->findDir($spec) . DIRECTORY_SEPARATOR . $subdir;
+            $this->view->addViewPath($path);
+        }
+        
+        // set the layout info
         $this->view->setLayoutName($this->transfer->matchLayout());
         $this->view->setLayoutData($this->transfer->getLayoutData());
-        $this->view->setLayoutPaths($layout_paths);
-        $this->view->setContentVar($this->transfer->getLayoutContentVar());
+        $layout_stack = $this->transfer->getLayoutStack();
+        foreach ($layout_stack as $item) {
+            list($spec, $subdir) = $item;
+            $path = $this->loader->findDir($spec) . DIRECTORY_SEPARATOR . $subdir;
+            $this->view->addLayoutPath($path);
+        }
+        $this->view->setLayoutContentVar($this->transfer->getLayoutContentVar());
         
         // render the content
         return $this->view->render();
