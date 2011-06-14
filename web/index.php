@@ -7,7 +7,7 @@
  * 
  */
 namespace Aura\Framework;
-require dirname(__DIR__) . '/package/aura.framework/scripts/bootstrap.php';
+require dirname(__DIR__) . '/package/Aura.Framework/scripts/bootstrap.php';
 $dispatcher = $di->get('dispatcher');
 
 $context = $di->get('web_context');

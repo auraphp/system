@@ -47,14 +47,14 @@ set_include_path("$system/include");
 /**
  * Autoloader
  */
-require "$system/package/aura.autoload/src.php";
+require "$system/package/Aura.Autoload/src.php";
 $loader = new Loader;
 $loader->register();
 
 /**
  * DI container
  */
-$loader->addPrefix('Aura\Di\\', "$system/package/aura.di/src");
+$loader->addPrefix('Aura\Di\\', "$system/package/Aura.Di/src");
 $di = new Manager(new Forge(new Config));
 
 /**

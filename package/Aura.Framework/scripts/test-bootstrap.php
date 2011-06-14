@@ -38,7 +38,7 @@ $config_mode = 'test';
 /**
  * Autoloader
  */
-require "$system/package/aura.autoload/src.php";
+require "$system/package/Aura.Autoload/src.php";
 $loader = new Loader;
 $loader->register();
 
