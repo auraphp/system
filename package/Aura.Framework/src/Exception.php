@@ -12,7 +12,7 @@ namespace Aura\Framework;
  * 
  * Generic package exception.
  * 
- * @package aura.framework
+ * @package Aura.Framework
  * 
  */
 class Exception extends \Exception {}

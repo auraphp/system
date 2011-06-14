@@ -6,7 +6,7 @@
  * @license http://opensource.org/licenses/bsd-license.php BSD
  * 
  */
-namespace Aura\Framework\Cli\make_test;
+namespace Aura\Framework\Cli\MakeTest;
 use Aura\Cli\Command as CliCommand;
 use Aura\Framework\System;
 use Aura\Framework\Inflect;
@@ -23,9 +23,9 @@ use Aura\Framework\Exception\TestFileExists;
  *      $ php cli.php aura.framework.make-test {$FILE}
  * 
  * ... where `$FILE` is a package file path, e.g. 
- * `package/aura.framework/System.php`.
+ * `package/Aura.Framework/System.php`.
  * 
- * @package aura.framework
+ * @package Aura.Framework
  * 
  */
 class Command extends CliCommand
@@ -192,7 +192,7 @@ class Command extends CliCommand
      */
     protected function getVendorPackageClass($spec)
     {
-        // incoming spec: packages/aura.framework/src/foo/Bar.php
+        // incoming spec: packages/Aura.Framework/src/foo/Bar.php
         $real = realpath($spec);
         if (! $real) {
             throw new SourceNotFound($spec);
@@ -202,7 +202,7 @@ class Command extends CliCommand
         $len  = strlen($this->system->getPackagePath() . DIRECTORY_SEPARATOR);
         $spec = substr($real, $len);
         
-        // this should leave us with, e.g., aura.framework/src/foo/Bar.php
+        // this should leave us with, e.g., Aura.Framework/src/foo/Bar.php
         // get the package name out
         $part = explode(DIRECTORY_SEPARATOR, $spec);
         

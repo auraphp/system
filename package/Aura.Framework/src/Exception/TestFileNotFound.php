@@ -12,7 +12,7 @@ namespace Aura\Framework\Exception;
  * 
  * Could not find the file for a given test.
  * 
- * @package aura.framework
+ * @package Aura.Framework
  * 
  */
 class TestFileNotFound extends \Aura\Framework\Exception {}

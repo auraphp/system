@@ -1,5 +1,5 @@
 <?php
-namespace Aura\Framework\Web\not_found;
+namespace Aura\Framework\Web\NotFound;
 use Aura\Web\Page as WebPage;
 class Page extends WebPage
 {

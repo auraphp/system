@@ -12,7 +12,7 @@ namespace Aura\Framework;
  * 
  * Keeps track of the Aura system directories.
  * 
- * @package aura.framework
+ * @package Aura.Framework
  * 
  */
 class System

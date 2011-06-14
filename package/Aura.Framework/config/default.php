@@ -3,16 +3,16 @@
  * Instance params and setter values.
  */
 $map =& $di->params['Aura\Cli\CommandFactory']['map'];
-$map['aura.framework.make-test']   = 'Aura\Framework\Cli\make_test\Command';
-$map['aura.framework.run-tests']   = 'Aura\Framework\Cli\run_tests\Command';
-$map['aura.framework.hello-world'] = 'Aura\Framework\Cli\hello_world\Command';
+$map['aura.framework.make-test']   = 'Aura\Framework\Cli\MakeTest\Command';
+$map['aura.framework.run-tests']   = 'Aura\Framework\Cli\RunTests\Command';
+$map['aura.framework.hello-world'] = 'Aura\Framework\Cli\HelloWorld\Command';
 
-$di->setter['Aura\Framework\Cli\make_test\Command'] = array(
+$di->setter['Aura\Framework\Cli\MakeTest\Command'] = array(
     'setInflect' => $di->lazyGet('inflect'),
     'setSystem'  => $di->lazyGet('system'),
 );
 
-$di->setter['Aura\Framework\Cli\run_tests\Command'] = array(
+$di->setter['Aura\Framework\Cli\RunTests\Command'] = array(
     'setPhpunit' => str_replace('/', DIRECTORY_SEPARATOR, "php " . dirname(__DIR__) . "/PHPUnit-3.4.15/phpunit.php"),
     'setSystem'  => $di->lazyGet('system'),
 );

@@ -9,7 +9,7 @@
 namespace Aura\Framework;
 
 // bootstrap
-require __DIR__ . '/package/aura.framework/scripts/bootstrap.php';
+require __DIR__ . '/package/Aura.Framework/scripts/bootstrap.php';
 
 // get the context and remove the invoking script name from the arguments
 $context = $di->get('cli_context');

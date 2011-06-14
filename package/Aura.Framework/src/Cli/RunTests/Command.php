@@ -6,7 +6,7 @@
  * @license http://opensource.org/licenses/bsd-license.php BSD
  * 
  */
-namespace Aura\Framework\Cli\run_tests;
+namespace Aura\Framework\Cli\RunTests;
 use Aura\Cli\Command as CliCommand;
 use Aura\Cli\Getopt;
 use Aura\Cli\Option;
@@ -28,10 +28,10 @@ use Aura\Framework\Exception\TestFileNotFound;
  *      $ php cli.php aura.framework.run-tests {$PATH}
  * 
  * ... where `$PATH` is the path to a package test directory, e.g.
- * `package/aura.framework/tests/`.  All options and switches passed at
+ * `package/Aura.Framework/tests/`.  All options and switches passed at
  * the command line will be passed to PHPUnit.
  * 
- * @package aura.framework
+ * @package Aura.Framework
  * 
  */
 class Command extends CliCommand
@@ -153,7 +153,7 @@ class Command extends CliCommand
         $cmd = array($this->phpunit);
         
         // add bootstrap file
-        $subpath   = 'aura.framework/scripts/test-bootstrap.php';
+        $subpath   = 'Aura.Framework/scripts/test-bootstrap.php';
         $bootstrap = $this->system->getPackagePath($subpath);
         $cmd[]     = '--bootstrap=' . escapeshellarg($bootstrap);
         
@@ -208,7 +208,7 @@ class Command extends CliCommand
     {
         $xml = array();
         
-        $subpath   = 'aura.framework/scripts/test-bootstrap.php';
+        $subpath   = 'Aura.Framework/scripts/test-bootstrap.php';
         $bootstrap = $this->system->getPackagePath($subpath);
         $xml[] = "<phpunit bootstrap=\"{$bootstrap}\">";
         

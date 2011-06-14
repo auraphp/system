@@ -8,7 +8,7 @@
  * 
  * @license http://opensource.org/licenses/bsd-license.php BSD
  * 
- * @package aura.framework
+ * @package Aura.Framework
  * 
  */
 namespace Aura\Framework;

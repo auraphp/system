@@ -20,7 +20,7 @@ use Aura\Autoload\Loader;
  * Dispatches a Route to a Controller, then uses the returned ResponseTransfer
  * to render a TwoStepView into an HttpResponse.
  * 
- * @package aura.framework
+ * @package Aura.Framework
  * 
  */
 class Dispatcher

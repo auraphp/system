@@ -1,5 +1,5 @@
 <?php
-namespace Aura\Framework\Web\not_found;
+namespace Aura\Framework\Web\HelloWorld;
 use Aura\Signal\Manager as SignalManager;
 use Aura\Signal\HandlerFactory;
 use Aura\Signal\ResultFactory;
@@ -38,25 +38,8 @@ class PageTest extends \PHPUnit_Framework_TestCase
         ));
         $xfer = $page->exec();
         
-        $html = '<html>
-    <head>
-        <title>Not Found</title>
-    </head>
-    <body>
-        <h1>404 Not Found</h1>
-        <p>No controller found for <code>NULL</code></p>
-        <p>Please check that your config has:</p>
-        <ol>
-            <li>An <code>aura\\router\\Map</code> route for the path <code>\'/\'</code></li>
-            <li>A <code>[\'values\'][\'controller\']</code> value for the mapped route</li>
-            <li>A <code>$di->params[\'Aura\\Web\\ControllerFactory\'][\'map\']</code> entry for the controller value.</li>
-        </ol>
-    </body>
-</html>';
-        
         $this->assertType('Aura\Web\ResponseTransfer', $xfer);
-        $this->assertSame(404, $xfer->getStatusCode());
-        $this->assertSame($html, $xfer->getContent());
-        $this->assertNull($xfer->getView());
+        $this->assertSame(200, $xfer->getStatusCode());
+        $this->assertSame('index', $xfer->getView());
     }
 }

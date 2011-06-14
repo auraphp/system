@@ -1,5 +1,5 @@
 <?php
-namespace Aura\Framework\Cli\make_test;
+namespace Aura\Framework\Cli\MakeTest;
 use Aura\Cli\Getopt as Getopt;
 use Aura\Cli\Stdio as Stdio;
 use Aura\Cli\OptionFactory as OptionFactory;
@@ -104,7 +104,7 @@ class CommandTest extends \PHPUnit_Framework_TestCase
      */
     public function test_sourceNotFound()
     {
-        $command = $this->newCommand(array('package/aura.framework/src/NoSuchClass.php'));
+        $command = $this->newCommand(array('package/Aura.Framework/src/NoSuchClass.php'));
         $command->exec();
     }
     
@@ -113,7 +113,7 @@ class CommandTest extends \PHPUnit_Framework_TestCase
      */
     public function testTargetFileExists()
     {
-        $command = $this->newCommand(array('package/aura.framework/src/cli/make_test/Command.php'));
+        $command = $this->newCommand(array('package/Aura.Framework/src/Cli/MakeTest/Command.php'));
         $command->exec();
     }
     
@@ -130,7 +130,7 @@ class CommandTest extends \PHPUnit_Framework_TestCase
         $system_dir = AURA_TEST_RUN_SYSTEM_DIR . DIRECTORY_SEPARATOR
                     . 'tmp' . DIRECTORY_SEPARATOR
                     . 'test' . DIRECTORY_SEPARATOR
-                    . 'aura.framework.MakeTestTest' . DIRECTORY_SEPARATOR
+                    . 'Aura.Framework.MakeTestTest' . DIRECTORY_SEPARATOR
                     . 'mock_system';
         
         $package_dir  = "$system_dir/package";

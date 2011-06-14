@@ -6,14 +6,14 @@
  * @license http://opensource.org/licenses/bsd-license.php BSD
  * 
  */
-namespace Aura\Framework\Cli\hello_world;
+namespace Aura\Framework\Cli\HelloWorld;
 use Aura\Cli\Command as CliCommand;
 
 /**
  * 
  * A simple CLI command to output "Hello, World!"
  * 
- * @package aura.framework
+ * @package Aura.Framework
  * 
  */
 class Command extends CliCommand
