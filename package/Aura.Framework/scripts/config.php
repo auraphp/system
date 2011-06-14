@@ -24,9 +24,7 @@ $package_list = glob($package_glob, GLOB_ONLYDIR);
 foreach ($package_list as $package_path) {
     
     // ... add it to the autoloader ...
-    $package_ns = str_replace('.', ' ', basename($package_path)) . '\\';
-    $package_ns = ucwords($package_ns); // TEMP FIX FOR UPPERCASE
-    $package_ns = str_replace(' ', '\\', $package_ns);
+    $package_ns = str_replace('.', '\\', basename($package_path)) . '\\';
     $package_src = $package_path . DIRECTORY_SEPARATOR . 'src';
     $loader->addPrefix($package_ns, $package_src);
     
