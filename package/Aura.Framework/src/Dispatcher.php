@@ -231,10 +231,13 @@ class Dispatcher
         $this->view->setViewName($this->transfer->matchView());
         $this->view->setViewData($this->transfer->getViewData());
         $view_stack = $this->transfer->getViewStack();
+        
         foreach ($view_stack as $item) {
             list($spec, $subdir) = $item;
-            $path = $this->loader->findDir($spec) . DIRECTORY_SEPARATOR . $subdir;
-            $this->view->addViewPath($path);
+            $paths = $this->loader->findDir($spec);
+            foreach ($paths as $path) {
+                $this->view->addViewPath($path . DIRECTORY_SEPARATOR . $subdir);
+            }
         }
         
         // set the layout info
@@ -243,8 +246,10 @@ class Dispatcher
         $layout_stack = $this->transfer->getLayoutStack();
         foreach ($layout_stack as $item) {
             list($spec, $subdir) = $item;
-            $path = $this->loader->findDir($spec) . DIRECTORY_SEPARATOR . $subdir;
-            $this->view->addLayoutPath($path);
+            $paths = $this->loader->findDir($spec);
+            foreach ($paths as $path) {
+                $this->view->addLayoutPath($path . DIRECTORY_SEPARATOR . $subdir);
+            }
         }
         $this->view->setLayoutContentVar($this->transfer->getLayoutContentVar());
         
