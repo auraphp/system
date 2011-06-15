@@ -217,15 +217,15 @@ class Dispatcher
      */
     protected function render()
     {
+        // negoatiate a content type
+        $accept = $this->context->getAccept('type');
+        $this->transfer->negotiateContentType($accept);
+        
         // only render if content is not already present
         $content = $this->transfer->getContent();
         if ($content) {
             return $content;
         }
-        
-        // negoatiate a content type for rendering
-        $accept = $this->context->getAccept('type');
-        $this->transfer->negotiateContentType($accept);
         
         // set the view info
         $this->view->setViewName($this->transfer->matchView());
