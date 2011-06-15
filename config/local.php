@@ -5,8 +5,8 @@
  * 
  * @var string $system Path to the Aura system root.
  * 
- * @var aura\framework\Autoloader $loader The autoloader for the system.
+ * @var Aura\Framework\Autoloader $loader The autoloader for the system.
  * 
- * @var aura\di\Container $di The DI container for the system.
+ * @var Aura\Di\Container $di The DI container for the system.
  * 
  */

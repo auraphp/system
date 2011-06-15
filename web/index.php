@@ -6,8 +6,8 @@
  * @license http://opensource.org/licenses/bsd-license.php BSD
  * 
  */
-namespace aura\framework;
-require dirname(__DIR__) . '/package/aura.framework/scripts/bootstrap.php';
+namespace Aura\Framework;
+require dirname(__DIR__) . '/package/Aura.Framework/scripts/bootstrap.php';
 $dispatcher = $di->get('dispatcher');
 
 $context = $di->get('web_context');

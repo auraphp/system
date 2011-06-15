@@ -6,10 +6,10 @@
  * @license http://opensource.org/licenses/bsd-license.php BSD
  * 
  */
-namespace aura\framework;
+namespace Aura\Framework;
 
 // bootstrap
-require_once __DIR__ . '/package/aura.framework/scripts/bootstrap.php';
+require __DIR__ . '/package/Aura.Framework/scripts/bootstrap.php';
 
 // get the context and remove the invoking script name from the arguments
 $context = $di->get('cli_context');
