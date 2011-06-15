@@ -1,5 +1,5 @@
 <?php
-namespace Aura\Framework\Web\HelloWorld;
+namespace Aura\Framework\Web\Hello;
 use Aura\Signal\Manager as SignalManager;
 use Aura\Signal\HandlerFactory;
 use Aura\Signal\ResultFactory;
@@ -31,15 +31,15 @@ class PageTest extends \PHPUnit_Framework_TestCase
     /**
      * @todo Implement testActionIndex().
      */
-    public function testActionIndex()
+    public function testActionWorld()
     {
         $page = $this->newPage(array(
-            'action' => 'index',
+            'action' => 'world',
         ));
         $xfer = $page->exec();
         
         $this->assertType('Aura\Web\ResponseTransfer', $xfer);
         $this->assertSame(200, $xfer->getStatusCode());
-        $this->assertSame('index', $xfer->getView());
+        $this->assertSame('world', $xfer->getView());
     }
 }

@@ -155,7 +155,15 @@ class Page extends \Aura\Web\Page
         }
         fclose($fh);
         
-        // set the response content, and done!
+        // set the response content
         $this->response->setContent($content);
+        
+        // if we have a format extension, use it
+        $format = strrchr($file, '.');
+        if ($format) {
+            $this->response->setFormat($format);
+        }
+        
+        // done!
     }
 }
