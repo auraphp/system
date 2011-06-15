@@ -141,11 +141,11 @@ class Page extends \Aura\Web\Page
             if (! is_dir($dir)) {
                 @mkdir($dir, 0755, true);
             }
+            
+            // copy from the source package to the target cache dir for the 
+            // next time this package asset is requested
+            copy($realpath, $webcache);
         }
-        
-        // copy from the source package to the target cache dir for the 
-        // next time this package asset is requested
-        copy($realpath, $webcache);
         
         // get the asset contents
         $fh = fopen($realpath, 'rb');
