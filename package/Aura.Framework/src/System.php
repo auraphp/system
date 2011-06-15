@@ -139,4 +139,9 @@ class System
     {
         return $this->getSubPath('include', $sub);
     }
+    
+    public function getWebPath($sub = null)
+    {
+        return $this->getSubPath('web', $sub);
+    }
 }

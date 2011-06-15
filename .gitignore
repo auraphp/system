@@ -1,5 +1,5 @@
 package/*
-!package/aura.framework
+!package/Aura.Framework
 !package/update.php
 tmp/*
 !tmp/.placeholder

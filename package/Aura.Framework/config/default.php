@@ -27,6 +27,12 @@ $di->params['Aura\Framework\Dispatcher'] = array(
     'loader'             => $loader,
 );
 
+$di->setter['Aura\Framework\Web\Asset\Page'] = array(
+    'setSystem' => $di->lazyGet('system'),
+    'setWebCacheDir' => 'cache/asset',
+    'setCacheConfigModes' => array('prod', 'staging'),
+);
+
 /**
  * Dependency services.
  */
