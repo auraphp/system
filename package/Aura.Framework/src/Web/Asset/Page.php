@@ -147,16 +147,12 @@ class Page extends \Aura\Web\Page
             copy($realpath, $webcache);
         }
         
-        // get the asset contents
+        // open the asset file using a shared (read) lock
         $fh = fopen($realpath, 'rb');
-        $content = '';
-        while (! feof($fh)) {
-            $content .= fread($fh, 8192);
-        }
-        fclose($fh);
+        flock($fh, LOCK_SH);
         
-        // set the response content
-        $this->response->setContent($content);
+        // set the response content to the file handle
+        $this->response->setContent($fh);
         
         // if we have a format extension, use it
         $format = strrchr($file, '.');
