@@ -1,1 +1,1 @@
-<img src="<?php echo $this->base(); ?>/asset/Aura.Framework/images/auralogo.jpg" />
+<img src="/asset/Aura.Framework/images/auralogo.jpg" />
