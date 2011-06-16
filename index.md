@@ -111,8 +111,11 @@ In this example `Post` is the name of the web contoller. All the web controller 
 
 Every action starts with word `action` and then the action name.
 
-All the images, js, css etc are placed in assets/images, assets/scripts, assets/styles respectievely. It can be accessed from via as /assests/Vendor.Package/* . 
-For eg to access an image from the view as `<img src="/asset/Aura.Framework/images/auralogo.jpg" />`.
+All the images, js, css etc are placed in assets/images, assets/scripts, assets/styles respectievely. It can be accessed from view as /assests/Vendor.Package/<type>/<name> . 
+
+For eg to access an image from the view as 
+    
+    <img src="/asset/Aura.Framework/images/auralogo.jpg" />
 
 Assets can be cached, so remember only to use in production and not in development. An example of the assets is in the Aura.Framework/src/Web/Hello controller's asset action. You can see it in action from localhost/hello/asset .
 The cache folder of the web root should be writeable to create the cache.
