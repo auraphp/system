@@ -75,15 +75,15 @@ class PHPUnit_Util_Fileloader
      */
     public static function checkAndLoad($filename, $syntaxCheck = FALSE)
     {
-        if (!is_readable($filename)) {
-            $filename = './' . $filename;
-        }
-
-        if (!is_readable($filename)) {
-            throw new RuntimeException(
-              sprintf('Cannot open file "%s".' . "\n", $filename)
-            );
-        }
+        // if (!is_readable($filename)) {
+        //     $filename = './' . $filename;
+        // }
+        // 
+        // if (!is_readable($filename)) {
+        //     throw new RuntimeException(
+        //       sprintf('Cannot open file "%s".' . "\n", $filename)
+        //     );
+        // }
 
         if ($syntaxCheck) {
             self::syntaxCheck($filename);
