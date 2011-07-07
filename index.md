@@ -111,7 +111,7 @@ In this example `Post` is the name of the web contoller. All the web controller 
 
 Every action starts with word `action` and then the action name.
 
-All the images, js, css etc are placed in assets/images, assets/scripts, assets/styles respectievely. It can be accessed from view as /assests/Vendor.Package/<type>/<name> . 
+All the images, js, css etc are placed in assets/images, assets/scripts, assets/styles respectievely. It can be accessed from view as `/assests/Vendor.Package/<type>/<name>` . 
 
 For eg to access an image from the view as 
     
