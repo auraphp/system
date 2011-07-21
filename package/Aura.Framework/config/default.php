@@ -3,9 +3,13 @@
  * Instance params and setter values.
  */
 $map =& $di->params['Aura\Cli\CommandFactory']['map'];
-$map['aura.framework.make-test']   = 'Aura\Framework\Cli\MakeTest\Command';
-$map['aura.framework.run-tests']   = 'Aura\Framework\Cli\RunTests\Command';
-$map['aura.framework.hello-world'] = 'Aura\Framework\Cli\HelloWorld\Command';
+$map['aura.framework.make-test']    = 'Aura\Framework\Cli\MakeTest\Command';
+$map['aura.framework.run-tests']    = 'Aura\Framework\Cli\RunTests\Command';
+$map['aura.framework.hello-world']  = 'Aura\Framework\Cli\HelloWorld\Command';
+$map['aura.framework.cache-src']    = 'Aura\Framework\Cli\CacheSrc\Command';
+$map['aura.framework.cache-config'] = 'Aura\Framework\Cli\CacheConfig\Command';
+
+$di->params['Aura\Cli\CommandFactory']['not_found'] = 'Aura\Framework\Cli\NotFound\Command';
 
 $di->setter['Aura\Framework\Cli\MakeTest\Command'] = array(
     'setInflect' => $di->lazyGet('inflect'),
@@ -14,6 +18,14 @@ $di->setter['Aura\Framework\Cli\MakeTest\Command'] = array(
 
 $di->setter['Aura\Framework\Cli\RunTests\Command'] = array(
     'setPhpunit' => str_replace('/', DIRECTORY_SEPARATOR, "php " . dirname(__DIR__) . "/PHPUnit-3.4.15/phpunit.php"),
+    'setSystem'  => $di->lazyGet('system'),
+);
+
+$di->setter['Aura\Framework\Cli\CacheSrc\Command'] = array(
+    'setSystem'  => $di->lazyGet('system'),
+);
+
+$di->setter['Aura\Framework\Cli\CacheConfig\Command'] = array(
     'setSystem'  => $di->lazyGet('system'),
 );
 
@@ -32,6 +44,11 @@ $di->setter['Aura\Framework\Web\Asset\Page'] = array(
     'setWebCacheDir' => 'cache/asset',
     'setCacheConfigModes' => array('prod', 'staging'),
 );
+
+/**
+ * Overrides for other packages.
+ */
+$di->setter['Aura\Web\Page']['setRouter'] = $di->lazyGet('router_map');
 
 /**
  * Dependency services.

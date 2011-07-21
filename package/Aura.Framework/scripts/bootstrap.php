@@ -60,7 +60,7 @@ $loader->addPrefix('Aura\Di\\', "$system/package/Aura.Di/src");
 $di = new Manager(new Forge(new Config));
 
 /**
- * Config
+ * Config and autoload registration
  */
 $cache_file = $system . DIRECTORY_SEPARATOR
             . 'tmp' . DIRECTORY_SEPARATOR
