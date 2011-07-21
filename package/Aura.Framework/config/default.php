@@ -46,6 +46,11 @@ $di->setter['Aura\Framework\Web\Asset\Page'] = array(
 );
 
 /**
+ * Overrides for other packages.
+ */
+$di->setter['Aura\Web\Page']['setRouter'] = $di->lazyGet('router_map');
+
+/**
  * Dependency services.
  */
 $di->set('inflect', function() {
