@@ -64,3 +64,13 @@ $di->set('system', function() use ($system) {
 $di->set('dispatcher', function() use ($di) {
     return $di->newInstance('Aura\Framework\Dispatcher');
 });
+
+//Get or create the view_helper Container
+$vhc = $di->subContainer('view_helper');
+
+//params for Route which is a Aura\Router\Map object
+$vhc->params['Aura\Framework\View\Helper\Router']['router'] = $di->lazyGet('router_map');
+
+$vhc->set('router', function() use ($vhc) {
+    return $vhc->newInstance('Aura\Framework\View\Helper\Router');
+});
