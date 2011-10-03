@@ -42,4 +42,16 @@ class PageTest extends \PHPUnit_Framework_TestCase
         $this->assertSame(200, $xfer->getStatusCode());
         $this->assertSame('world', $xfer->getView());
     }
+    
+    public function testActionAsset()
+    {
+        $page = $this->newPage(array(
+            'action' => 'asset',
+        ));
+        $xfer = $page->exec();
+        
+        $this->assertType('Aura\Web\ResponseTransfer', $xfer);
+        $this->assertSame(200, $xfer->getStatusCode());
+        $this->assertSame('asset', $xfer->getView());
+    }
 }
