@@ -1,13 +1,18 @@
 <?php
 /**
+ * Package prefix for autoloader.
+ */
+$loader->addPrefix('Aura\Framework\\', dirname(__DIR__) . DIRECTORY_SEPARATOR . 'src');
+
+/**
  * Instance params and setter values.
  */
 $map =& $di->params['Aura\Cli\CommandFactory']['map'];
 $map['aura.framework.make-test']    = 'Aura\Framework\Cli\MakeTest\Command';
 $map['aura.framework.run-tests']    = 'Aura\Framework\Cli\RunTests\Command';
 $map['aura.framework.hello-world']  = 'Aura\Framework\Cli\HelloWorld\Command';
-$map['aura.framework.cache-src']    = 'Aura\Framework\Cli\CacheSrc\Command';
 $map['aura.framework.cache-config'] = 'Aura\Framework\Cli\CacheConfig\Command';
+$map['aura.framework.cache-classmap'] = 'Aura\Framework\Cli\CacheClassmap\Command';
 
 $di->params['Aura\Cli\CommandFactory']['not_found'] = 'Aura\Framework\Cli\NotFound\Command';
 
@@ -21,11 +26,11 @@ $di->setter['Aura\Framework\Cli\RunTests\Command'] = array(
     'setSystem'  => $di->lazyGet('system'),
 );
 
-$di->setter['Aura\Framework\Cli\CacheSrc\Command'] = array(
+$di->setter['Aura\Framework\Cli\CacheConfig\Command'] = array(
     'setSystem'  => $di->lazyGet('system'),
 );
 
-$di->setter['Aura\Framework\Cli\CacheConfig\Command'] = array(
+$di->setter['Aura\Framework\Cli\CacheClassmap\Command'] = array(
     'setSystem'  => $di->lazyGet('system'),
 );
 
