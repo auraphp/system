@@ -11,8 +11,9 @@
 namespace Aura\Framework;
 use Aura\Autoload\Loader;
 
-function load_config($file, $system, $loader, $di) {
-    require $file;
+function load($file, $system = null, $loader = null, $di = null)
+{
+    return require $file;
 }
 
 class TestContainer
