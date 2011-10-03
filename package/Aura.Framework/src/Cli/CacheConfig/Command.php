@@ -76,6 +76,12 @@ class Command extends CliCommand
         // strip off the opening PHP tag
         $src = preg_replace('/^\s*\<\?php/m', '', $src);
         
+        // replace __DIR__ with string literal for dirname($file)
+        $src = str_replace('__DIR__', "'" . dirname($file) . "'", $src);
+        
+        // replace __FILE__ with string literal for $file
+        $src = str_replace('__DIR__', "'$file'", $src);
+        
         // add a leading comment about the file source
         $src = PHP_EOL
              . "// " . str_pad('', strlen($file), '-') . PHP_EOL
