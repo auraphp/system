@@ -37,6 +37,15 @@ class Command extends CliCommand
         $package_glob = $this->system->getPackagePath('*');
         $package_list = glob($package_glob, GLOB_ONLYDIR);
         
+        // retain the actual path to the packages, and create a "fake" path
+        // with a literal '$system' in it, for use in the cached file.
+        $package_path = $this->system->getPackagePath();
+        $package_fake = str_replace(
+            $this->system->getRootPath(),
+            '{$system}',
+            $package_path
+        );
+        
         // go through each package in the system ...
         foreach ($package_list as $package_dir) {
             
@@ -57,6 +66,12 @@ class Command extends CliCommand
                     $base = substr($base, 0, -4);
                     $base = str_replace(DIRECTORY_SEPARATOR, '\\', $base);
                     $class = $prefix . '\\' . $base;
+                    
+                    // convert the file's *real* absolute path to a fake
+                    // with '$system` in it. this allows us to cache file
+                    // locations relative to $system and keep them in code
+                    // repositories for deployment to other systems.
+                    $file = str_replace($package_path, $package_fake, $file);
                     $classmap[$class] = $file;
                     $this->stdio->outln($class . ' => ' . $file);
                 }
@@ -66,7 +81,11 @@ class Command extends CliCommand
         // create and/or clear the cached classmap.php file
         $cache = $this->system->getTmpPath("cache/classmap.php");
         @mkdir(dirname($cache), 0777, true);
+        
+        // export the classmap, and convert single quotes to double quotes
+        // so that $system is interpolated properly
         $output = "<?php return " . var_export($classmap, true) . ';';
+        $output = str_replace("'", '"', $output);
         file_put_contents($cache, $output);
         $this->stdio->outln("Cached to $cache.");
         $this->stdio->outln('Done.');

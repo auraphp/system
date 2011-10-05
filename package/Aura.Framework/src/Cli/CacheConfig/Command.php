@@ -76,11 +76,23 @@ class Command extends CliCommand
         // strip off the opening PHP tag
         $src = preg_replace('/^\s*\<\?php/m', '', $src);
         
-        // replace __DIR__ with string literal for dirname($file)
-        $src = str_replace('__DIR__', "'" . dirname($file) . "'", $src);
+        // replace __DIR__ with string literal for dirname($file),
+        // relative to the $system directory
+        $__dir__ = str_replace(
+            $this->system->getRootPath(),
+            '{$system}',
+            '"' . dirname($file) . '"'
+        );
+        $src = str_replace('__DIR__', $__dir__, $src);
         
-        // replace __FILE__ with string literal for $file
-        $src = str_replace('__DIR__', "'$file'", $src);
+        // replace __FILE__ with string literal for $file,
+        // relative to the $system directory
+        $__file__ = str_replace(
+            $this->system->getRootPath(),
+            '{$system}',
+            '"' . $file . '"'
+        );
+        $src = str_replace('__FILE__', $__file__, $src);
         
         // add a leading comment about the file source
         $src = PHP_EOL
