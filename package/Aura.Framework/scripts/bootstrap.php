@@ -58,7 +58,7 @@ $map_file = $system . DIRECTORY_SEPARATOR
           . 'classmap.php';
 
 if (file_exists($map_file)) {
-    $classes = load($map_file);
+    $classes = load($map_file, $system);
     $loader->setClasses($classes);
 }
 
