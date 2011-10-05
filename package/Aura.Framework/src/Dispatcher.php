@@ -13,8 +13,7 @@ use Aura\Router\Map as RouterMap;
 
 /**
  * 
- * Dispatches a Route to a Controller, then uses the returned ResponseTransfer
- * to render a TwoStepView into an HttpResponse.
+ * Dispatches a Route to a Controller and returns a ResponseTransfer object.
  * 
  * @package Aura.Framework
  * 

@@ -7,17 +7,13 @@
  * 
  */
 namespace Aura\Framework;
-use Aura\Web\Context;
-use Aura\View\TwoStep as TwoStepView;
-use Aura\Http\Response as HttpResponse;
-use Aura\Signal\Manager as SignalManager;
-use Aura\Router\Map as RouterMap;
 use Aura\Autoload\Loader;
+use Aura\View\TwoStep as TwoStepView;
 use Aura\Web\ResponseTransfer;
 
 /**
  * 
- * Renders a TwoStepView from a ResponseTransfer.
+ * Renders content in a ResponseTransfer using a TwoStepView.
  * 
  * @package Aura.Framework
  * 
@@ -49,7 +45,7 @@ class Renderer implements RendererInterface
      */
     public function __construct(
         TwoStepView $view,
-        Loader $loader
+        Loader      $loader
     ) {
         $this->view    = $view;
         $this->loader  = $loader;
