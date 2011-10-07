@@ -7,15 +7,6 @@ $loader->addPrefix('Aura\Framework\\', dirname(__DIR__) . DIRECTORY_SEPARATOR . 
 /**
  * Instance params and setter values.
  */
-$map =& $di->params['Aura\Cli\CommandFactory']['map'];
-$map['aura.framework.make-test']    = 'Aura\Framework\Cli\MakeTest\Command';
-$map['aura.framework.run-tests']    = 'Aura\Framework\Cli\RunTests\Command';
-$map['aura.framework.hello-world']  = 'Aura\Framework\Cli\HelloWorld\Command';
-$map['aura.framework.cache-config'] = 'Aura\Framework\Cli\CacheConfig\Command';
-$map['aura.framework.cache-classmap'] = 'Aura\Framework\Cli\CacheClassmap\Command';
-
-$di->params['Aura\Cli\CommandFactory']['not_found'] = 'Aura\Framework\Cli\NotFound\Command';
-
 $di->setter['Aura\Framework\Cli\MakeTest\Command'] = array(
     'setInflect' => $di->lazyGet('inflect'),
     'setSystem'  => $di->lazyGet('system'),
