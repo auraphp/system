@@ -58,7 +58,7 @@ class Renderer implements RendererInterface
      * @return string
      * 
      */
-    public function exec(ResponseTransfer $transfer, $accept = null)
+    public function exec(ResponseTransfer $transfer, array $accept = array())
     {
         // negoatiate a content type
         $transfer->negotiateContentType($accept);
