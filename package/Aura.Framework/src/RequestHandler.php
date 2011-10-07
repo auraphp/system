@@ -112,8 +112,6 @@ class RequestHandler
      * Dispatches a Route to a web controller, renders a view into the
      * ReponseTransfer, and returns an HTTP response.
      * 
-     * @param Aura\Web\Context $context The web request context.
-     * 
      * @return Aura\Http\Response
      * 
      * @signal pre_dispatch
