@@ -58,7 +58,7 @@ class Dispatcher implements DispatcherInterface
      * @return Aura\Web\ResponseTransfer
      * 
      */
-    public function exec($path, array $server = null)
+    public function exec($path, array $server = array())
     {
         // match to a route
         $route = $this->router->match($path, $server);
