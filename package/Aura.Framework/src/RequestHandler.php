@@ -80,11 +80,11 @@ class RequestHandler
      * 
      */
     public function __construct(
-        Context       $context,
-        SignalManager $signal,
-        Dispatcher    $dispatcher,
-        Renderer      $renderer,
-        Responder     $responder
+        Context                $context,
+        SignalManager          $signal,
+        DispatcherInterface    $dispatcher,
+        RendererInterface      $renderer,
+        ResponderInterface     $responder
     ) {
         $this->context    = $context;
         $this->signal     = $signal;
