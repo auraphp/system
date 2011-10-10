@@ -1,7 +1,5 @@
 <?php
-namespace Aura\Framework;
-
-namespace View\Helper;
+namespace Aura\Framework\View\Helper;
 
 /**
  * Test class for AssetHref.
@@ -12,7 +10,7 @@ class AssetHrefTest extends \PHPUnit_Framework_TestCase
     /**
      * @var AssetHref
      */
-    protected $object;
+    protected $helper;
 
     /**
      * Sets up the fixture, for example, opens a network connection.
@@ -21,37 +19,17 @@ class AssetHrefTest extends \PHPUnit_Framework_TestCase
     protected function setUp()
     {
         parent::setUp();
-        $this->object = new AssetHref;
-    }
-
-    /**
-     * Tears down the fixture, for example, closes a network connection.
-     * This method is called after a test is executed.
-     */
-    protected function tearDown()
-    {
-        parent::tearDown();
+        $this->helper = new AssetHref;
     }
 
     /**
      * @todo Implement testSetBase().
      */
-    public function testSetBase()
+    public function testSetBaseAndInvoke()
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-          'This test has not been implemented yet.'
-        );
-    }
-
-    /**
-     * @todo Implement test__invoke().
-     */
-    public function test__invoke()
-    {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-          'This test has not been implemented yet.'
-        );
+        $this->helper->setBase('http://assets.example.com');
+        $actual = $this->helper->__invoke('Vendor.Package/images/logo.png');
+        $expect = 'http://assets.example.com/Vendor.Package/images/logo.png';
+        $this->assertSame($expect, $actual);
     }
 }
