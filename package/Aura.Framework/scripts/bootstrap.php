@@ -73,24 +73,6 @@ $di = new Manager(new Forge(new Config));
 /**
  * Config and autoload registration
  */
-<<<<<<< HEAD
-$cache_file = $system . DIRECTORY_SEPARATOR
-            . 'tmp' . DIRECTORY_SEPARATOR
-            . 'cache' . DIRECTORY_SEPARATOR
-            . 'config' . DIRECTORY_SEPARATOR
-            . $config_mode . '.php';
-
-if (file_exists($cache_file)) {
-    load_config($cache_file, $system, $loader, $di);
-    $di->lock();
-    return;
-}
-
-/**
- * Load config from scratch
- */
-require_once __DIR__ . DIRECTORY_SEPARATOR . 'config.php';
-=======
+ 
 require __DIR__ . DIRECTORY_SEPARATOR . 'config.php';
->>>>>>> upstream/master
 $di->lock();
