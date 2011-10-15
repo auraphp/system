@@ -20,10 +20,10 @@ The `git` command must be in your `$PATH` for this to work.
 
 1.  Clone the Aura `system` repository
 
-        $ git clone https://github.com/auraphp/system
+        $ git clone https://github.com/auraphp/system.git
     
     This will give you the overall system skeleton, along with the built-in
-    `aura.framework` library package and the `update.php` script.
+    `Aura.Framework` library package and the `update.php` script.
 
 2.  Issue `php update.php` to install the remaining library packages.
 
@@ -38,11 +38,11 @@ Running Tests
 
 After installation or upgrade, you can run the tests for all packages like so:
 
-    $ php cli.php aura.framework.run-tests
+    $ php package/Aura.Framework/commands/run-tests
 
-To run the tests for a single package, specify the package tests directory:
+To run the tests for a single package, specify the package directory:
 
-    $ php cli.php aura.framework.run-tests package/Aura.Di/tests
+    $ php package/Aura.Framework/commands/run-tests package/Aura.Signal/
     
 Working with System
 ===================
