@@ -40,6 +40,7 @@ $config_mode = 'test';
  * Autoloader
  */
 require "$system/package/Aura.Autoload/src.php";
+
 $loader = new Loader;
 $loader->register();
 
@@ -51,7 +52,7 @@ $di = new TestContainer;
 /**
  * Load config
  */
-include __DIR__ . DIRECTORY_SEPARATOR . 'config.php';
+include_once __DIR__ . DIRECTORY_SEPARATOR . 'config.php';
 
 // kill off this variable, as it is likely to have closures; this avoids
 // "Exception: Serialization of 'Closure' is not allowed". and done!
