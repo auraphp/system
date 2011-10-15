@@ -87,6 +87,25 @@ class SystemTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @todo Implement testGetWebPath().
+     */
+    public function testGetWebPath()
+    {
+        $expect = __DIR__ . DIRECTORY_SEPARATOR . 'web';
+        $actual = $this->system->getWebPath();
+        $this->assertSame($expect, $actual);
+        
+        $expect = __DIR__ . DIRECTORY_SEPARATOR
+                . 'web' . DIRECTORY_SEPARATOR
+                . 'foo' . DIRECTORY_SEPARATOR
+                . 'bar' . DIRECTORY_SEPARATOR
+                . 'baz';
+                
+        $actual = $this->system->getWebPath('foo/bar/baz');
+        $this->assertSame($expect, $actual);
+    }
+
+    /**
      * @todo Implement testGetConfigPath().
      */
     public function testGetConfigPath()

@@ -1,102 +1,24 @@
 <?php
 namespace Aura\Framework\Cli\MakeTest;
-use Aura\Cli\Getopt as Getopt;
-use Aura\Cli\Stdio as Stdio;
-use Aura\Cli\OptionFactory as OptionFactory;
-use Aura\Cli\Vt100 as Vt100;
-use Aura\Cli\Context as Context;
-use Aura\Signal\Manager;
-use Aura\Signal\HandlerFactory;
-use Aura\Signal\ResultFactory;
-use Aura\Signal\ResultCollection;
-use Aura\Framework\System;
+use Aura\Framework\Cli\AbstractCommandTest;
 use Aura\Framework\Inflect;
 
 /**
  * Test class for make_test\Command.
  */
-class CommandTest extends \PHPUnit_Framework_TestCase
+class CommandTest extends AbstractCommandTest
 {
-    /**
-     * @var Make
-     */
-    protected $command;
-    
-    protected $stdio;
-    
-    protected $getopt;
-    
-    protected $signal;
-    
-    protected $system;
+    protected $command_name = 'MakeTest';
     
     protected $inflect;
     
-    protected $context;
-    
     protected function newCommand($argv = array(), $system_dir = AURA_TEST_RUN_SYSTEM_DIR)
     {
-        $_SERVER['argv'] = $argv;
-        $this->context = new Context;
-        
-        $stdin = fopen('php://memory', 'r');
-        $stdout = fopen('php://memory', 'w+');
-        $stderr = fopen('php://memory', 'w+');
-        $vt100 = new Vt100;
-        
-        $this->stdio = new Stdio($stdin, $stdout, $stderr, $vt100);
-        
-        $option_factory = new OptionFactory();
-        $this->getopt = new Getopt($option_factory);
-        
-        $this->signal = new Manager(new HandlerFactory, new ResultFactory, new ResultCollection);
-        
-        $this->system = new System($system_dir);
-        
+        $command = parent::newCommand($argv, $system_dir);
         $this->inflect = new Inflect;
-        
-        $command = new Command(
-            $this->context,
-            $this->stdio,
-            $this->getopt,
-            $this->signal
-        );
-        
         $command->setSystem($this->system);
         $command->setInflect($this->inflect);
-        
         return $command;
-    }
-    
-    /**
-     * Tears down the fixture, for example, closes a network connection.
-     * This method is called after a test is executed.
-     */
-    protected function tearDown()
-    {
-        parent::tearDown();
-    }
-    
-    protected function _readOut()
-    {
-        $stdout = $this->stdio->getStdout();
-        rewind($stdout);
-        $out = '';
-        while ($txt = fread($stdout, 8192) !== false) {
-            $out .= $txt;
-        }
-        return $out;
-    }
-    
-    protected function _readErr()
-    {
-        $stderr = $this->stdio->getStderr();
-        rewind($stderr);
-        $err = '';
-        while ($txt = fread($stderr, 8192) !== false) {
-            $err .= $txt;
-        }
-        return $err;
     }
     
     /**

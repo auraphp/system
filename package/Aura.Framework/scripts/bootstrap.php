@@ -21,8 +21,9 @@ use Aura\Di\Config;
  * @return void
  * 
  */
-function load_config($file, $system, $loader, $di) {
-    require_once $file;
+function load($file, $system = null, $loader = null, $di = null)
+{
+    return require $file;
 }
 
 /**
@@ -45,13 +46,23 @@ $config_mode = empty($_ENV['AURA_CONFIG_MODE'])
 set_include_path("$system/include");
 
 /**
- * Autoloader
+ * Autoloader and class map (if any)
  */
  
 require "$system/package/Aura.Autoload/src.php";
 
 $loader = new Loader;
 $loader->register();
+
+$map_file = $system . DIRECTORY_SEPARATOR
+          . 'tmp' . DIRECTORY_SEPARATOR
+          . 'cache' . DIRECTORY_SEPARATOR
+          . 'classmap.php';
+
+if (file_exists($map_file)) {
+    $classes = load($map_file, $system);
+    $loader->setClasses($classes);
+}
 
 /**
  * DI container
@@ -62,6 +73,7 @@ $di = new Manager(new Forge(new Config));
 /**
  * Config and autoload registration
  */
+<<<<<<< HEAD
 $cache_file = $system . DIRECTORY_SEPARATOR
             . 'tmp' . DIRECTORY_SEPARATOR
             . 'cache' . DIRECTORY_SEPARATOR
@@ -78,4 +90,7 @@ if (file_exists($cache_file)) {
  * Load config from scratch
  */
 require_once __DIR__ . DIRECTORY_SEPARATOR . 'config.php';
+=======
+require __DIR__ . DIRECTORY_SEPARATOR . 'config.php';
+>>>>>>> upstream/master
 $di->lock();

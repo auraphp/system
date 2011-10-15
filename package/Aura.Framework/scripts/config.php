@@ -4,7 +4,7 @@
  * This file is part of the Aura project for PHP.
  * 
  * Should be called from a bootstrap file that has defined $system, $loader,
- * $di, $config_mode, and a load_config() function.
+ * $di, $config_mode, and a load() function.
  * 
  * @license http://opensource.org/licenses/bsd-license.php BSD
  * 
@@ -13,51 +13,62 @@
  */
 namespace Aura\Framework;
 
-// get the list of all packages in the system
-$package_glob = $system . DIRECTORY_SEPARATOR
-              . 'package' . DIRECTORY_SEPARATOR
-              . '*';
+/**
+ * Look for cached configs for the packages.
+ */
+$cache_file = $system . DIRECTORY_SEPARATOR
+            . 'tmp' . DIRECTORY_SEPARATOR
+            . 'cache' . DIRECTORY_SEPARATOR
+            . 'config' . DIRECTORY_SEPARATOR
+            . "{$config_mode}.php";
 
-$package_list = glob($package_glob, GLOB_ONLYDIR);
+if (file_exists($cache_file)) {
+    
+    /**
+     * Use the cached package configs.
+     */
+    load($cache_file, $system, $loader, $di);
+    
+} else {
+    
+    /**
+     * Load config files for each package in the system.
+     */
+    $package_glob = $system . DIRECTORY_SEPARATOR
+                  . 'package' . DIRECTORY_SEPARATOR
+                  . '*';
 
-// for each package ...
-foreach ($package_list as $package_path) {
+    $package_list = glob($package_glob, GLOB_ONLYDIR);
+
+    foreach ($package_list as $package_path) {
     
-    // add it to the autoloader
-    $package_ns = str_replace('.', '\\', basename($package_path)) . '\\';
-    $package_src = $package_path . DIRECTORY_SEPARATOR . 'src';
-    $loader->addPrefix($package_ns, $package_src);
-    
-    // if we are in 'test' mode, add the tests dir too
-    if ($config_mode == 'test') {
-        $package_test = $package_path . DIRECTORY_SEPARATOR . 'tests';
-        $loader->addPrefix($package_ns, $package_test);
-    }
-    
-    // run its default config file, if any
-    $package_config = $package_path . DIRECTORY_SEPARATOR
-                    . 'config' . DIRECTORY_SEPARATOR
-                    . 'default.php';
-    if (file_exists($package_config)) {
-        load_config($package_config, $system, $loader, $di);
-    }
-    
-    // load its config-mode-specific file, if any
-    if ($config_mode != 'default') {
+        // run its default config file, if any
         $package_config = $package_path . DIRECTORY_SEPARATOR
                         . 'config' . DIRECTORY_SEPARATOR
-                        . "{$config_mode}.php";
+                        . 'default.php';
         if (file_exists($package_config)) {
-            load_config($package_config, $system, $loader, $di);
+            load($package_config, $system, $loader, $di);
+        }
+    
+        // load its config-mode-specific file, if any
+        if ($config_mode != 'default') {
+            $package_config = $package_path . DIRECTORY_SEPARATOR
+                            . 'config' . DIRECTORY_SEPARATOR
+                            . "{$config_mode}.php";
+            if (file_exists($package_config)) {
+                load($package_config, $system, $loader, $di);
+            }
         }
     }
 }
 
-// load the override config file for the config mode
+/**
+ * Finally, load the override config file for the config mode
+ */
 $config_file = $system . DIRECTORY_SEPARATOR
             . 'config' . DIRECTORY_SEPARATOR
             . "{$config_mode}.php";
 
 if (file_exists($config_file)) {
-    load_config($config_file, $system, $loader, $di);
+    load($config_file, $system, $loader, $di);
 }
