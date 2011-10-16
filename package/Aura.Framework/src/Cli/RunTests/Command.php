@@ -19,16 +19,16 @@ use Aura\Framework\Exception\TestFileNotFound;
  * 
  * Usage to run all tests:
  * 
- *      $ php cli.php aura.framework.run-tests
+ *      $ php package/Aura.Framework/commands/run-tests
  * 
  * No command-line options will be honored.
  * 
  * Usage to run tests in a single package:
  * 
- *      $ php cli.php aura.framework.run-tests {$PATH}
+ *      $ php package/Aura.Framework/commands/run-tests {$PATH}
  * 
- * ... where `$PATH` is the path to a package test directory, e.g.
- * `package/Aura.Framework/tests/`.  All options and switches passed at
+ * ... where `$PATH` is the path to a package directory, e.g.
+ * `package/Aura.Framework/`.  All options and switches passed at
  * the command line will be passed to PHPUnit.
  * 
  * @package Aura.Framework

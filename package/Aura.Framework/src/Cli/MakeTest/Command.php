@@ -20,10 +20,10 @@ use Aura\Framework\Exception\TestFileExists;
  * 
  * Usage is ...
  * 
- *      $ php cli.php aura.framework.make-test {$FILE}
+ *      $ php package/Aura.Framework/commands/make-test {$FILE}
  * 
  * ... where `$FILE` is a package file path, e.g. 
- * `package/Aura.Framework/System.php`.
+ * `package/Aura.Framework/src/System.php`.
  * 
  * @package Aura.Framework
  * 
