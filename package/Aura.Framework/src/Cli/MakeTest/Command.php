@@ -131,6 +131,10 @@ class Command extends CliCommand
      */
     public function action()
     {
+        if( empty($this->params) ) {
+            echo "No parameters specified";
+            return;
+        }
         // get the class file for the test source
         $spec = $this->params[0];
         

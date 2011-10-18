@@ -25,6 +25,10 @@ $di->setter['Aura\Framework\Cli\CacheClassmap\Command'] = array(
     'setSystem'  => $di->lazyGet('system'),
 );
 
+$di->setter['Aura\Framework\Cli\MakePackage\Command'] = array(
+    'setSystem'  => $di->lazyGet('system'),
+);
+
 $di->params['Aura\Framework\RequestHandler'] = array(
     'context'    => $di->lazyGet('web_context'),
     'signal'     => $di->lazyGet('signal_manager'),
