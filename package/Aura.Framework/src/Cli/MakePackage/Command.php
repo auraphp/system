@@ -8,12 +8,13 @@
  */
 namespace Aura\Framework\Cli\MakePackage;
 use Aura\Cli\Command as CliCommand;
-use Aura\Cli\Getopt;
-use Aura\Cli\Option;
 use Aura\Framework\System;
-use Aura\Framework\Exception\TestFileNotFound;
 
 /**
+ * 
+ * Run : php package/Aura.Framework/commands/make-package Vendor.Package
+ * 
+ * Vendor.Package is optional. If its not provided, you will get a prompt.
  * 
  * @package Aura.Framework
  * 
@@ -53,18 +54,38 @@ class Command extends CliCommand
      */
     public function action()
     {
-        $this->getVendorDotPackage();
+        if (empty($this->params)) {
+            $this->getVendorDotPackage();
+        } else {
+            // go back to the original arguments
+            $argv = $this->context->getArgv();
+            $this->processInput( $argv[0] );
+        }
     }
     
     /**
      * 
-     * Get Vendor.Package
+     * Get input of form Vendor.Package
      *
      */
     public function getVendorDotPackage()
     {
         $this->stdio->out('Please enter vendor.package name: ');
         $input = $this->stdio->in();
+        $this->processInput( $input );
+    }
+    
+    /**
+     * 
+     * Check given input is of the form vendor.package
+     * Show Help and go and get until he exit
+     */
+    public function processInput( $input )
+    {
+        /** 
+         * Get it in an array than list. There may be no dots in input
+         */
+        $list = explode( ".", strtolower($input) );
         switch( $input ) {
             case 'help':
             case '--h':
@@ -74,27 +95,49 @@ class Command extends CliCommand
                 $this->getVendorDotPackage();
                 break;
             case 'exit':
+            case 'quit':
                 $this->showExit();
                 break;
             default :
-                $this->createVendorDotPackage($input);
+                /**
+                 * Count not equals 2 means its not vendor.package format
+                 * Show help and get vendor.package format
+                 */
+                if( count ($list) != 2 ) {
+                    $this->showHelp();
+                    $this->getVendorDotPackage();
+                } else {
+                    /**
+                     * $list[0] is vendor , $list[1] is package
+                     */
+                    $this->createVendorDotPackage($list[0], $list[1]);
+                } 
         }
     }
     
+    /**
+     * Show help message
+     */
     public function showHelp()
     {
         $this->stdio->outln('Eg for Vendor.Package are Aura.Cli , Aura.Router');
         $this->stdio->outln('Vendor can be your name, your company name etc');
+        $this->stdio->outln('To exit from shell. Type exit or quit');
     }
     
+    /**
+     * Print and Exit
+     */
     public function showExit()
     {
         $this->stdio->outln('Exiting!');
     }
     
-    public function createVendorDotPackage($vendor_package)
+    /*
+     * Create the vendor.package directory structure
+     */
+    public function createVendorDotPackage($vendor, $package)
     {
-        list($vendor, $package) = explode( ".", strtolower($vendor_package) );
         $vendor = ucfirst($vendor);
         $package = ucfirst($package);
         // Get Package Path
@@ -104,6 +147,8 @@ class Command extends CliCommand
             // Directory already exists
             // errln
             $this->stdio->errln(" $vendor.$package Already exists");
+            $this->getVendorDotPackage();
+            // Lets get rid 0f the recursive calls that will occur :)
             return;
         }
         // Create directory recursive , Web , Cli
