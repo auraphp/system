@@ -49,7 +49,7 @@ class ResponderTest extends \PHPUnit_Framework_TestCase
         $transfer->setContent('Body content');
         
         $response = $this->responder->exec($transfer);
-        $this->assertType('Aura\Http\Response', $response);
+        $this->assertInstanceOf('Aura\Http\Response', $response);
         
         $this->assertEquals('1.0', $response->getVersion());
         

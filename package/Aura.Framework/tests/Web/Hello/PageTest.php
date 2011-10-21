@@ -12,7 +12,7 @@ class PageTest extends AbstractPageTest
         ));
         $xfer = $page->exec();
         
-        $this->assertType('Aura\Web\ResponseTransfer', $xfer);
+        $this->assertInstanceOf('Aura\Web\ResponseTransfer', $xfer);
         $this->assertSame(200, $xfer->getStatusCode());
         $this->assertSame('world', $xfer->getView());
     }
@@ -24,7 +24,7 @@ class PageTest extends AbstractPageTest
         ));
         $xfer = $page->exec();
         
-        $this->assertType('Aura\Web\ResponseTransfer', $xfer);
+        $this->assertInstanceOf('Aura\Web\ResponseTransfer', $xfer);
         $this->assertSame(200, $xfer->getStatusCode());
         $this->assertSame('asset', $xfer->getView());
     }

@@ -33,7 +33,7 @@ class PageTest extends AbstractPageTest
     </body>
 </html>';
         
-        $this->assertType('Aura\Web\ResponseTransfer', $xfer);
+        $this->assertInstanceOf('Aura\Web\ResponseTransfer', $xfer);
         $this->assertSame(404, $xfer->getStatusCode());
         $this->assertSame($html, $xfer->getContent());
         $this->assertNull($xfer->getView());

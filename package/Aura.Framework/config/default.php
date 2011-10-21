@@ -12,8 +12,11 @@ $di->setter['Aura\Framework\Cli\MakeTest\Command'] = array(
     'setSystem'  => $di->lazyGet('system'),
 );
 
+$phpunit = 'php -d include_path=' . dirname(__DIR__) . '/pear/php '
+         . dirname(__DIR__) . '/pear/bin/phpunit --verbose';
+
 $di->setter['Aura\Framework\Cli\RunTests\Command'] = array(
-    'setPhpunit' => str_replace('/', DIRECTORY_SEPARATOR, "php " . dirname(__DIR__) . "/PHPUnit-3.4.15/phpunit.php"),
+    'setPhpunit' => str_replace('/', DIRECTORY_SEPARATOR, $phpunit),
     'setSystem'  => $di->lazyGet('system'),
 );
 
