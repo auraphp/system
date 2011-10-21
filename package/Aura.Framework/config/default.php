@@ -28,6 +28,10 @@ $di->setter['Aura\Framework\Cli\CacheClassmap\Command'] = array(
     'setSystem'  => $di->lazyGet('system'),
 );
 
+$di->setter['Aura\Framework\Cli\MakePackage\Command'] = array(
+    'setSystem'  => $di->lazyGet('system'),
+);
+
 $di->params['Aura\Framework\RequestHandler'] = array(
     'context'    => $di->lazyGet('web_context'),
     'signal'     => $di->lazyGet('signal_manager'),
@@ -74,4 +78,14 @@ $di->set('system', function() use ($system) {
 
 $di->set('request_handler', function() use ($di) {
     return $di->newInstance('Aura\Framework\RequestHandler');
+});
+
+//Get or create the view_helper Container
+$vhc = $di->subContainer('view_helper');
+
+//params for Route which is a Aura\Router\Map object
+$vhc->params['Aura\Framework\View\Helper\Router']['router'] = $di->lazyGet('router_map');
+
+$vhc->set('router', function() use ($vhc) {
+    return $vhc->newInstance('Aura\Framework\View\Helper\Router');
 });

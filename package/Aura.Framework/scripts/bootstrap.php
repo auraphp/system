@@ -48,7 +48,9 @@ set_include_path("$system/include");
 /**
  * Autoloader and class map (if any)
  */
+ 
 require "$system/package/Aura.Autoload/src.php";
+
 $loader = new Loader;
 $loader->register();
 
@@ -71,5 +73,6 @@ $di = new Manager(new Forge(new Config));
 /**
  * Config and autoload registration
  */
+ 
 require __DIR__ . DIRECTORY_SEPARATOR . 'config.php';
 $di->lock();

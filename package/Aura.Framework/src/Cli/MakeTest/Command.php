@@ -20,10 +20,10 @@ use Aura\Framework\Exception\TestFileExists;
  * 
  * Usage is ...
  * 
- *      $ php cli.php aura.framework.make-test {$FILE}
+ *      $ php package/Aura.Framework/commands/make-test {$FILE}
  * 
  * ... where `$FILE` is a package file path, e.g. 
- * `package/Aura.Framework/System.php`.
+ * `package/Aura.Framework/src/System.php`.
  * 
  * @package Aura.Framework
  * 
@@ -131,6 +131,10 @@ class Command extends CliCommand
      */
     public function action()
     {
+        if( empty($this->params) ) {
+            echo "No parameters specified";
+            return;
+        }
         // get the class file for the test source
         $spec = $this->params[0];
         
