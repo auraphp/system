@@ -41,6 +41,6 @@ $di->get('router_map')->add(null, '/asset/{:package}/{:file:(.*)}', array(
 ));
 
 // map the 'hello_world' controller value a particular class
-$di->params['Aura\Web\ControllerFactory']['map']['hello'] = 'Aura\Framework\Web\Hello\Page';
-$di->params['Aura\Web\ControllerFactory']['map']['asset'] = 'Aura\Framework\Web\Asset\Page';
-$di->params['Aura\Web\ControllerFactory']['not_found'] = 'Aura\Framework\Web\NotFound\Page';
+$di->params['Aura\Framework\Web\ControllerFactory']['map']['hello'] = 'Aura\Framework\Web\Hello\Page';
+$di->params['Aura\Framework\Web\ControllerFactory']['map']['asset'] = 'Aura\Framework\Web\Asset\Page';
+$di->params['Aura\Framework\Web\ControllerFactory']['not_found'] = 'Aura\Framework\Web\NotFound\Page';

@@ -38,7 +38,11 @@ $di->params['Aura\Framework\RequestHandler'] = array(
 
 $di->params['Aura\Framework\Dispatcher'] = array(
     'router'             => $di->lazyGet('router_map'),
-    'controller_factory' => $di->lazyNew('Aura\Web\ControllerFactory'),
+    'controller_factory' => $di->lazyNew('Aura\Framework\Web\ControllerFactory'),
+);
+
+$di->params['Aura\Framework\Web\ControllerFactory'] = array(
+    'forge' => $di->getForge(),
 );
 
 $di->params['Aura\Framework\Renderer'] = array(
@@ -50,16 +54,17 @@ $di->params['Aura\Framework\Responder'] = array(
     'response' => $di->lazyNew('Aura\Http\Response'),
 );
 
+$di->setter['Aura\Framework\Cli\Command']['setSignal'] = $di->lazyGet('signal_manager');
+
+$di->setter['Aura\Framework\Web\Page']['setSignal'] = $di->lazyGet('signal_manager');
+
+$di->setter['Aura\Framework\Web\Page']['setRouter'] = $di->lazyGet('router_map');
+
 $di->setter['Aura\Framework\Web\Asset\Page'] = array(
     'setSystem' => $di->lazyGet('system'),
     'setWebCacheDir' => 'cache/asset',
     'setCacheConfigModes' => array('prod', 'staging'),
 );
-
-/**
- * Overrides for other packages.
- */
-$di->setter['Aura\Web\Page']['setRouter'] = $di->lazyGet('router_map');
 
 /**
  * Dependency services.
