@@ -19,7 +19,7 @@ if (! ini_get('allow_url_fopen')) {
 /**
  * Pull changes the system as a whole.
  */
-`git pull`;
+passthru('git pull');
 
 /**
  * Update the library packages.
@@ -52,13 +52,13 @@ foreach ($data->repositories as $repo) {
         
         // pull changes to existing package
         echo "Pulling package '{$repo->name}'." . PHP_EOL;
-        `cd $sub; git pull`;
+        passthru("cd $sub; git pull");
         
     } else {
         
         // clone new package for installation
         echo "Cloning package '{$repo->name}'." . PHP_EOL;
-        `cd $dir; git clone {$repo->url}`;
+        passthru("cd $dir; git clone {$repo->url}");
         
     }
 }
