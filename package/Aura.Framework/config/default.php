@@ -44,7 +44,7 @@ $di->params['Aura\Framework\Web\Front'] = array(
     'response'  => $di->lazyNew('Aura\Http\Response'),
 );
 
-$di->setter['Aura\Framework\Web\Page'] = array(
+$di->setter['Aura\Framework\Web\AbstractPage'] = array(
     'setInflect' => $di->lazyGet('inflect'),
     'setRouter'  => $di->lazyGet('router_map'),
     'setSignal'  => $di->lazyGet('signal_manager'),
