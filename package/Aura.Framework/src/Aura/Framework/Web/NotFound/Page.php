@@ -1,7 +1,7 @@
 <?php
 namespace Aura\Framework\Web\NotFound;
-use Aura\Framework\Web\Page as WebPage;
-class Page extends WebPage
+use Aura\Framework\Web\AbstractPage;
+class Page extends AbstractPage
 {
     // force the action to "index"
     public function preExec()

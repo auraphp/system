@@ -7,8 +7,7 @@
  * 
  */
 namespace Aura\Framework\Web\Asset;
-use Aura\Framework\System;
-use Aura\Framework\Web\Page as WebPage;
+use Aura\Framework\Web\AbstractPage;
 
 /**
  * 
@@ -36,7 +35,7 @@ use Aura\Framework\Web\Page as WebPage;
  * @package Aura.Framework
  * 
  */
-class Page extends WebPage
+class Page extends AbstractPage
 {
     /**
      * 

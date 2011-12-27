@@ -5,9 +5,9 @@ use Aura\Framework\System;
 use Aura\Router\Map as RouterMap;
 use Aura\Signal\Manager as SignalManager;
 use Aura\View\TwoStep;
-use Aura\Web\Page as WebPage;
+use Aura\Web\AbstractPage as WebAbstractPage;
 
-abstract class Page extends WebPage
+abstract class AbstractPage extends WebAbstractPage
 {
     protected $inflect;
     
