@@ -95,13 +95,12 @@ class Command extends CliCommand
         $src = str_replace('__FILE__', $__file__, $src);
         
         // add a leading comment about the file source
-        $src = PHP_EOL
-             . "// " . str_pad('', strlen($file), '-') . PHP_EOL
-             . "// $file" . PHP_EOL
-             . "// " . PHP_EOL . PHP_EOL 
+        $src = "// " . str_pad('', strlen($__file__), '-') . PHP_EOL
+             . "// $__file__" . PHP_EOL
+             . "// " . PHP_EOL
              . $src;
         
         // done!
-        return $src;
+        return trim($src) . PHP_EOL . PHP_EOL . PHP_EOL;
     }
 }
