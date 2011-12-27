@@ -18,7 +18,7 @@ use Aura\Framework\Exception\NoClassForController;
  * @package Aura.Web
  * 
  */
-class ControllerFactory
+class Factory
 {
     /**
      * 

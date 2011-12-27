@@ -105,8 +105,8 @@ class Command extends CliCommand
     public function preAction()
     {
         $this->include_path = ini_get('include_path');
-        $dir = dirname(dirname(dirname(__DIR__))) . DIRECTORY_SEPARATOR
-             . 'pear' . DIRECTORY_SEPARATOR . 'php';
+        $dir = dirname(dirname(dirname(dirname(dirname(__DIR__)))))
+             . DIRECTORY_SEPARATOR . 'pear' . DIRECTORY_SEPARATOR . 'php';
         ini_set('include_path', $this->include_path . PATH_SEPARATOR . $dir);
     }
     
@@ -138,7 +138,7 @@ class Command extends CliCommand
         list($vendor, $package, $class) = $this->getVendorPackageClass($spec);
         
         // the fully-qualified class to write a test from
-        $incl_name = "{$vendor}\\{$package}\\$class";
+        $incl_name = $class;
         
         // the *class name only* of the test to write
         $test_name = "{$class}Test";
@@ -192,17 +192,17 @@ class Command extends CliCommand
      */
     protected function getVendorPackageClass($spec)
     {
-        // incoming spec: packages/Aura.Framework/src/foo/Bar.php
+        // incoming spec: package/Vendor.Package/src/Vendor/Package/Class.php
         $real = realpath($spec);
         if (! $real) {
             throw new SourceNotFound($spec);
         }
         
-        // strip off the package dir prefix
+        // strip off the "package/" dir prefix
         $len  = strlen($this->system->getPackagePath() . DIRECTORY_SEPARATOR);
         $spec = substr($real, $len);
         
-        // this should leave us with, e.g., Aura.Framework/src/foo/Bar.php
+        // this should leave us with, e.g., Vendor.Package/src/Vendor/Package/Class.php
         // get the package name out
         $part = explode(DIRECTORY_SEPARATOR, $spec);
         
@@ -232,12 +232,6 @@ class Command extends CliCommand
      */
     protected function modifySkeleton($skel, $namespace)
     {
-        $skel = str_replace(
-            "<?php\n",
-            "<?php\nnamespace $namespace;\n\n",
-            $skel
-        );
-        
         $skel = preg_replace('/\nrequire_once.*\n/', '', $skel);
         
         $skel = str_replace(

@@ -29,9 +29,9 @@ class Page extends WebPage
         <p>No controller found for <code>$uri</code></p>
         <p>Please check that your config has:</p>
         <ol>
-            <li>An <code>aura\\router\\Map</code> route for the path <code>$path</code></li>
+            <li>An <code>Aura\\Router\\Map</code> route for the path <code>$path</code></li>
             <li>A <code>['values']['controller']</code> value for the mapped route</li>
-            <li>A <code>\$di->params['Aura\Web\ControllerFactory']['map']</code> entry for the controller value.</li>
+            <li>A <code>\$di->params['Aura\Framework\Web\Factory']['map']</code> entry for the controller value.</li>
         </ol>
     </body>
 </html>

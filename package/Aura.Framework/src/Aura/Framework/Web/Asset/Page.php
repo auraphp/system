@@ -59,20 +59,6 @@ class Page extends WebPage
     
     /**
      * 
-     * Sets the System object.
-     * 
-     * @param Aura\Framework\System $system
-     * 
-     * @return void
-     * 
-     */
-    public function setSystem(System $system)
-    {
-        $this->system = $system;
-    }
-    
-    /**
-     * 
      * Sets the config modes in which caching should take place.
      * 
      * @param array $modes An array of mode names.
@@ -114,6 +100,9 @@ class Page extends WebPage
      */
     public function actionIndex($package = null, $file = null)
     {
+        // add the format to the filename
+        $file .= $this->format;
+        
         // get the real path to the asset
         $fakepath = $this->system->getPackagePath("$package/assets/$file");
         $realpath = realpath($fakepath);
@@ -154,13 +143,5 @@ class Page extends WebPage
         
         // set the response content to the file handle
         $this->response->setContent($fh);
-        
-        // if we have a format extension, use it
-        $format = strrchr($file, '.');
-        if ($format) {
-            $this->response->setFormat($format);
-        }
-        
-        // done!
     }
 }

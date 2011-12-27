@@ -9,8 +9,8 @@
 namespace Aura\Framework;
 require dirname(__DIR__) . '/package/Aura.Framework/scripts/bootstrap.php';
 try {
-    $request_handler = $di->get('request_handler');
-    $response = $request_handler->exec();
+    $front = $di->get('web_front');
+    $response = $front->exec();
     $response->send();
 } catch (Exception $e) {
     echo $e . PHP_EOL;

@@ -2,11 +2,23 @@
 /**
  * Package prefix for autoloader.
  */
+
 $loader->addPrefix('Aura\Framework\\', dirname(__DIR__) . DIRECTORY_SEPARATOR . 'src');
 
 /**
  * Instance params and setter values.
  */
+ 
+$di->setter['Aura\Framework\Cli\Command']['setSignal'] = $di->lazyGet('signal_manager');
+
+$di->setter['Aura\Framework\Cli\CacheClassmap\Command'] = array(
+    'setSystem'  => $di->lazyGet('system'),
+);
+
+$di->setter['Aura\Framework\Cli\CacheConfig\Command'] = array(
+    'setSystem'  => $di->lazyGet('system'),
+);
+
 $di->setter['Aura\Framework\Cli\MakeTest\Command'] = array(
     'setInflect' => $di->lazyGet('inflect'),
     'setSystem'  => $di->lazyGet('system'),
@@ -20,51 +32,35 @@ $di->setter['Aura\Framework\Cli\RunTests\Command'] = array(
     'setSystem'  => $di->lazyGet('system'),
 );
 
-$di->setter['Aura\Framework\Cli\CacheConfig\Command'] = array(
-    'setSystem'  => $di->lazyGet('system'),
-);
-
-$di->setter['Aura\Framework\Cli\CacheClassmap\Command'] = array(
-    'setSystem'  => $di->lazyGet('system'),
-);
-
-$di->params['Aura\Framework\RequestHandler'] = array(
-    'context'    => $di->lazyGet('web_context'),
-    'signal'     => $di->lazyGet('signal_manager'),
-    'dispatcher' => $di->lazyNew('Aura\Framework\Dispatcher'),
-    'renderer'   => $di->lazyNew('Aura\Framework\Renderer'),
-    'responder'  => $di->lazyNew('Aura\Framework\Responder'),
-);
-
-$di->params['Aura\Framework\Dispatcher'] = array(
-    'router'             => $di->lazyGet('router_map'),
-    'controller_factory' => $di->lazyNew('Aura\Framework\Web\ControllerFactory'),
-);
-
-$di->params['Aura\Framework\Web\ControllerFactory'] = array(
+$di->params['Aura\Framework\Web\Factory'] = array(
     'forge' => $di->getForge(),
 );
 
-$di->params['Aura\Framework\Renderer'] = array(
-    'view'   => $di->lazyNew('Aura\View\TwoStep'),
-    'loader' => $loader,
+$di->params['Aura\Framework\Web\Front'] = array(
+    'signal'    => $di->lazyGet('signal_manager'),
+    'context'   => $di->lazyGet('web_context'),
+    'router'    => $di->lazyGet('router_map'),
+    'factory'   => $di->lazyNew('Aura\Framework\Web\Factory'),
+    'response'  => $di->lazyNew('Aura\Http\Response'),
 );
 
-$di->params['Aura\Framework\Responder'] = array(
-    'response' => $di->lazyNew('Aura\Http\Response'),
+$di->setter['Aura\Framework\Web\Page'] = array(
+    'setInflect' => $di->lazyGet('inflect'),
+    'setRouter'  => $di->lazyGet('router_map'),
+    'setSignal'  => $di->lazyGet('signal_manager'),
+    'setSystem'  => $di->lazyGet('system'),
+    'setView'    => $di->lazyNew('Aura\View\TwoStep'),
 );
-
-$di->setter['Aura\Framework\Cli\Command']['setSignal'] = $di->lazyGet('signal_manager');
-
-$di->setter['Aura\Framework\Web\Page']['setSignal'] = $di->lazyGet('signal_manager');
-
-$di->setter['Aura\Framework\Web\Page']['setRouter'] = $di->lazyGet('router_map');
 
 $di->setter['Aura\Framework\Web\Asset\Page'] = array(
     'setSystem' => $di->lazyGet('system'),
     'setWebCacheDir' => 'cache/asset',
     'setCacheConfigModes' => array('prod', 'staging'),
 );
+
+$di->params['Aura\View\HelperLocator']['registry']['assetHref'] = function() use ($di) {
+    return $di->newInstance('Aura\Framework\View\Helper\AssetHref');
+};
 
 /**
  * Dependency services.
@@ -77,6 +73,6 @@ $di->set('system', function() use ($system) {
     return new Aura\Framework\System($system);
 });
 
-$di->set('request_handler', function() use ($di) {
-    return $di->newInstance('Aura\Framework\RequestHandler');
+$di->set('web_front', function() use ($di) {
+    return $di->newInstance('Aura\Framework\Web\Front');
 });

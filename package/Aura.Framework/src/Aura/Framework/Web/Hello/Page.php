@@ -5,11 +5,11 @@ class Page extends WebPage
 {
     public function actionWorld()
     {
-        $this->response->setView('world');
+        $this->view->setInnerView('world');
     }
     
     public function actionAsset()
     {
-        $this->response->setView('asset');
+        $this->view->setInnerView('asset');
     }
 }

@@ -1,13 +1,19 @@
 <?php
 namespace Aura\Framework\Web;
+use Aura\Framework\Inflect;
 use Aura\Router\Map as RouterMap;
 use Aura\Router\RouteFactory;
-use Aura\Signal\Manager as SignalManager;
 use Aura\Signal\HandlerFactory;
-use Aura\Signal\ResultFactory;
+use Aura\Signal\Manager as SignalManager;
 use Aura\Signal\ResultCollection;
+use Aura\Signal\ResultFactory;
+use Aura\View\FormatTypes;
+use Aura\View\HelperLocator;
+use Aura\View\Template;
+use Aura\View\TemplateFinder;
+use Aura\View\TwoStep;
 use Aura\Web\Context;
-use Aura\Web\ResponseTransfer;
+use Aura\Web\Response;
 
 /**
  * Test class for Page.
@@ -20,15 +26,29 @@ abstract class AbstractPageTest extends \PHPUnit_Framework_TestCase
     protected function newPage($params = array())
     {
         $class = "\Aura\Framework\Web\\{$this->page_name}\Page";
+        
         $page = new $class(
             new Context($GLOBALS),
-            new ResponseTransfer,
+            new Response,
             $params
         );
+        
+        $inflect = new Inflect;
+        $page->setInflect($inflect);
+        
         $signal = new SignalManager(new HandlerFactory, new ResultFactory, new ResultCollection);
         $page->setSignal($signal);
+        
         $router = new RouterMap(new RouteFactory);
         $page->setRouter($router);
+
+        $template_finder = new TemplateFinder;
+        $helper_locator = new HelperLocator;
+        $template = new Template($template_finder, $helper_locator);
+        $format_types = new FormatTypes;
+        $view = new TwoStep($template, $format_types);
+        $page->setView($view);
+        
         return $page;
     }
 }

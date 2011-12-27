@@ -45,20 +45,20 @@ class CommandTest extends AbstractCommandTest
     public function test()
     {
         // write out a fake class in a fake package
-        $vendor_name  = 'mock_vendor';
-        $package_name = 'mock_package';
-        $class_name   = 'MockClass';
+        $vendor  = 'MockVendor';
+        $package = 'MockPackage';
+        $class   = 'MockClass';
         
         $system_dir = AURA_TEST_RUN_SYSTEM_DIR . DIRECTORY_SEPARATOR
                     . 'tmp' . DIRECTORY_SEPARATOR
                     . 'test' . DIRECTORY_SEPARATOR
-                    . 'Aura.Framework.MakeTestTest' . DIRECTORY_SEPARATOR
+                    . 'Aura.Framework.Cli.MakeTest.CommandTest' . DIRECTORY_SEPARATOR
                     . 'mock_system';
         
         $package_dir  = "$system_dir/package";
         
-        $incl_file = "{$package_dir}/{$vendor_name}.{$package_name}/src/{$class_name}.php";
-        $test_file = "{$package_dir}/{$vendor_name}.{$package_name}/tests/{$class_name}Test.php";
+        $incl_file = "{$package_dir}/{$vendor}.{$package}/src/{$vendor}/{$package}/{$class}.php";
+        $test_file = "{$package_dir}/{$vendor}.{$package}/tests/{$vendor}/{$package}/{$class}Test.php";
         
         @unlink($incl_file);
         @unlink($test_file);
@@ -67,15 +67,18 @@ class CommandTest extends AbstractCommandTest
         @mkdir(dirname($test_file), 0777, true);
         
         $code = "<?php
-namespace mock_vendor\\mock_package;
-class MockClass {}
+namespace {$vendor}\\{$package};
+class {$class} {}
 ";
         // write directly to the include dir instead of to a src dir and then
         // symlinking, to simplify things for the test
         file_put_contents($incl_file, $code);
         
         // make a test from the fake class
-        $command = $this->newCommand(array("$package_dir/mock_vendor.mock_package/src/MockClass.php"), $system_dir);
+        $command = $this->newCommand(
+            array("$package_dir/{$vendor}.{$package}/src/{$vendor}/{$package}/{$class}.php"),
+            $system_dir
+        );
         
         // needs to be in the include-path
         include_once $incl_file;
