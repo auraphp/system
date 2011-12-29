@@ -52,7 +52,7 @@ foreach ($data->repositories as $repo) {
         
         // pull changes to existing package
         echo "Pulling package '{$repo->name}'." . PHP_EOL;
-        passthru("cd $sub; git pull");
+        passthru("cd $sub; git pull --all");
         
     } else {
         
