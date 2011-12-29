@@ -62,6 +62,10 @@ $di->params['Aura\View\HelperLocator']['registry']['assetHref'] = function() use
     return $di->newInstance('Aura\Framework\View\Helper\AssetHref');
 };
 
+$di->params['Aura\View\HelperLocator']['registry']['route'] = function() use ($di) {
+    return $di->newInstance('Aura\Framework\View\Helper\Route');
+};
+
 /**
  * Dependency services.
  */
