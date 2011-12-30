@@ -65,7 +65,7 @@ if (file_exists($map_file)) {
 /**
  * DI container
  */
-$loader->addPrefix('Aura\Di\\', "$system/package/Aura.Di/src");
+$loader->add('Aura\Di\\', "$system/package/Aura.Di/src");
 $di = new Manager(new Forge(new Config));
 
 /**

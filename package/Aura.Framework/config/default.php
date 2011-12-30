@@ -3,7 +3,7 @@
  * Package prefix for autoloader.
  */
 
-$loader->addPrefix('Aura\Framework\\', dirname(__DIR__) . DIRECTORY_SEPARATOR . 'src');
+$loader->add('Aura\Framework\\', dirname(__DIR__) . DIRECTORY_SEPARATOR . 'src');
 
 /**
  * Instance params and setter values.
