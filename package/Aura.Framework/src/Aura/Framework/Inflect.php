@@ -94,7 +94,7 @@ class Inflect
             $class     = substr($spec, $pos + 1);
         }
         
-        return array($namespace, $class);
+        return [$namespace, $class];
     }
     
     /**

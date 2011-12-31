@@ -47,11 +47,11 @@ class PageTest extends AbstractPageTest
         @rmdir(dirname(dirname($dir))); //cache
     }
     
-    protected function newPage($params = array())
+    protected function newPage($params = [])
     {
         $page = parent::newPage($params);
         $page->setSystem($this->system);
-        $page->setCacheConfigModes(array('phpunit')); // ???
+        $page->setCacheConfigModes(['phpunit']); // ???
         $page->setWebCacheDir('cache/asset'); // ???
         return $page;
     }
@@ -60,11 +60,11 @@ class PageTest extends AbstractPageTest
     {
         $_ENV['AURA_CONFIG_MODE'] = 'phpunit';
         
-        $params = array(
+        $params = [
             'action' => 'index',
             'package' => 'Vendor.Package',
             'file' => 'file.txt',
-        );
+        ];
         
         $page = $this->newPage($params);
         
@@ -86,11 +86,11 @@ class PageTest extends AbstractPageTest
     
     public function testActionIndex_noSuchAsset()
     {
-        $params = array(
+        $params = [
             'action' => 'index',
             'package' => 'Vendor.Package',
             'file' => 'no-such-file.txt',
-        );
+        ];
         
         $page   = $this->newPage($params);
         $xfer   = $page->exec();
@@ -105,11 +105,11 @@ class PageTest extends AbstractPageTest
     {
         $_ENV['AURA_CONFIG_MODE'] = 'foobar';
         
-        $params = array(
+        $params = [
             'action' => 'index',
             'package' => 'Vendor.Package',
             'file' => 'file.txt',
-        );
+        ];
         
         $page = $this->newPage($params);
         

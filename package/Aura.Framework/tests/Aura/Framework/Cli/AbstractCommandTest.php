@@ -46,7 +46,7 @@ abstract class AbstractCommandTest extends \PHPUnit_Framework_TestCase
         unlink($this->errfile);
     }
     
-    protected function newCommand($argv = array(), $system_dir = AURA_TEST_RUN_SYSTEM_DIR)
+    protected function newCommand($argv = [], $system_dir = AURA_TEST_RUN_SYSTEM_DIR)
     {
         $_SERVER['argv'] = $argv;
         

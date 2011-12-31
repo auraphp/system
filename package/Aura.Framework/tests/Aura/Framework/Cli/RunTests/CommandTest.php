@@ -12,7 +12,7 @@ class CommandTest extends AbstractCommandTest
     
     protected $phpunit;
     
-    protected function newCommand($argv = array(), $system_dir = AURA_TEST_RUN_SYSTEM_DIR)
+    protected function newCommand($argv = [], $system_dir = AURA_TEST_RUN_SYSTEM_DIR)
     {
         $command = parent::newCommand($argv, $system_dir);
         
@@ -31,13 +31,13 @@ class CommandTest extends AbstractCommandTest
      */
     public function test_noSuchFile()
     {
-        $command = $this->newCommand(array('foo/bar/BazTest.php'));
+        $command = $this->newCommand(['foo/bar/BazTest.php']);
         $command->exec();
     }
     
     public function testRunOne()
     {
-        $command = $this->newCommand(array('package/Aura.Framework/tests/Aura/Framework/Cli/MakeTest/CommandTest.php', '--tap'));
+        $command = $this->newCommand(['package/Aura.Framework/tests/Aura/Framework/Cli/MakeTest/CommandTest.php', '--tap']);
         $command->exec();
         // there should have been no errors
         $err = file_get_contents($this->errfile);
@@ -47,7 +47,7 @@ class CommandTest extends AbstractCommandTest
     // // comment out to cut testing time in half
     // public function testRunAll()
     // {
-    //     $command = $this->newCommand(array('--exclude-package=Aura.Framework'));
+    //     $command = $this->newCommand(['--exclude-package=Aura.Framework']);
     //     $command->exec();
     //     // there should have been no errors
     //     $err = file_get_contents($this->errfile);

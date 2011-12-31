@@ -7,9 +7,9 @@ class PageTest extends AbstractPageTest
     
     public function testActionWorld()
     {
-        $page = $this->newPage(array(
+        $page = $this->newPage([
             'action' => 'world',
-        ));
+        ]);
         $xfer = $page->exec();
         
         $this->assertInstanceOf('Aura\Web\Response', $xfer);
@@ -19,9 +19,9 @@ class PageTest extends AbstractPageTest
     
     public function testActionAsset()
     {
-        $page = $this->newPage(array(
+        $page = $this->newPage([
             'action' => 'asset',
-        ));
+        ]);
         $xfer = $page->exec();
         
         $this->assertInstanceOf('Aura\Web\Response', $xfer);

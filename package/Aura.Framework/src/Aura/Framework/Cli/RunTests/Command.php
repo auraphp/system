@@ -46,13 +46,13 @@ class Command extends CliCommand
      */
     protected $options_strict = Getopt::NON_STRICT;
     
-    protected $options = array(
-        'exclude_package' => array(
+    protected $options = [
+        'exclude_package' => [
             'long' => 'exclude-package',
             'multi' => true,
             'param' => Option::PARAM_REQUIRED,
-        ),
-    );
+        ],
+    ];
     
     /**
      * 
@@ -116,11 +116,11 @@ class Command extends CliCommand
         }
         
         // build a pipe specification for proc_open
-        $spec = array(
+        $spec = [
             $this->stdio->getStdin(),
             $this->stdio->getStdout(),
             $this->stdio->getStderr()
-        );
+        ];
         
         // run phpunit as a separate process
         $system_dir = $this->system->getRootPath();
@@ -150,7 +150,7 @@ class Command extends CliCommand
         }
         
         // start building the phpunit command
-        $cmd = array($this->phpunit);
+        $cmd = [$this->phpunit];
         
         // add bootstrap file
         $subpath   = 'Aura.Framework/scripts/test-bootstrap.php';
@@ -182,7 +182,7 @@ class Command extends CliCommand
         $file = $this->writeXmlFile();
         
         // start building the phpunit command
-        $cmd = array($this->phpunit);
+        $cmd = [$this->phpunit];
         
         // add the xml file to the command
         $cmd[] = '--configuration=' . escapeshellarg($file);
@@ -206,7 +206,7 @@ class Command extends CliCommand
      */
     protected function writeXmlFile()
     {
-        $xml = array();
+        $xml = [];
         
         $subpath   = 'Aura.Framework/scripts/test-bootstrap.php';
         $bootstrap = $this->system->getPackagePath($subpath);

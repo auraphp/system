@@ -146,7 +146,7 @@ class Front
         } else {
             // no match
             $controller = null;
-            $params     = array();
+            $params     = [];
         }
         
         // create controller

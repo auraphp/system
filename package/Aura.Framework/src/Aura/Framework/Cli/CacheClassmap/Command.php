@@ -31,7 +31,7 @@ class Command extends CliCommand
         $this->stdio->outln("Caching package class map ... ");
         
         // the eventual class map
-        $classmap = array();
+        $classmap = [];
         
         // get the list of all packages in the system
         $package_glob = $this->system->getPackagePath('*');

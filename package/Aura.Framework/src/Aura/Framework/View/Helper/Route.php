@@ -53,7 +53,7 @@ class Route extends AbstractHelper
      * boolean false if not.
      * 
      */
-    public function __invoke($name, array $data = array())
+    public function __invoke($name, array $data = [])
     {
         return $this->router->generate($name, $data);
     }

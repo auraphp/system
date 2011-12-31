@@ -24,16 +24,16 @@ $dir = __DIR__ . DIRECTORY_SEPARATOR . 'package';
 
 // get the list of available repositories
 $url = 'http://github.com/api/v2/json/repos/show/auraphp';
-$context = stream_context_create(array(
-    'http' => array(
+$context = stream_context_create([
+    'http' => [
         'method' => "GET",
-    ),
-));
+    ],
+]);
 $json = file_get_contents($url, FALSE, $context);
 $data = json_decode($json);
 
 // sort the repos
-$repos = array();
+$repos = [];
 foreach ($data->repositories as $repo) {
     $repos[$repo->name] = $repo;
 }

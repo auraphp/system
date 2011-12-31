@@ -23,7 +23,7 @@ class FactoryTest extends \PHPUnit_Framework_TestCase
         parent::setUp();
     }
 
-    protected function newFactory(array $map = array(), $not_found = null)
+    protected function newFactory(array $map = [], $not_found = null)
     {
         return new Factory(
             new Forge(new Config),
@@ -45,20 +45,20 @@ class FactoryTest extends \PHPUnit_Framework_TestCase
      */
     public function testNewInstance()
     {
-        $factory = $this->newFactory(array(
+        $factory = $this->newFactory([
             'mock' => 'Aura\Framework\Mock\Page',
-        ));
+        ]);
         $name = 'mock';
-        $params = array();
+        $params = [];
         $controller = $factory->newInstance($name, $params);
         $this->assertInstanceOf('Aura\Framework\Mock\Page', $controller);
     }
     
     public function testNewInstanceNotFound()
     {
-        $factory = $this->newFactory(array(), 'Aura\Framework\Mock\Page');
+        $factory = $this->newFactory([], 'Aura\Framework\Mock\Page');
         $name = 'no-such-name';
-        $params = array();
+        $params = [];
         $controller = $factory->newInstance($name, $params);
         $this->assertInstanceOf('Aura\Framework\Mock\Page', $controller);
     }
@@ -67,7 +67,7 @@ class FactoryTest extends \PHPUnit_Framework_TestCase
     {
         $factory = $this->newFactory();
         $name = 'no-such-name';
-        $params = array();
+        $params = [];
         $this->setExpectedException('Aura\Framework\Exception\NoClassForController');
         $controller = $factory->newInstance($name, $params);
     }

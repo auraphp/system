@@ -13,7 +13,7 @@ class CommandTest extends AbstractCommandTest
      */
     protected $command_name = 'CacheConfig';
     
-    protected function newCommand($argv = array(), $system_dir = AURA_TEST_RUN_SYSTEM_DIR)
+    protected function newCommand($argv = [], $system_dir = AURA_TEST_RUN_SYSTEM_DIR)
     {
         $command = parent::newCommand($argv, $system_dir);
         $command->setSystem($this->system);

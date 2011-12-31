@@ -9,10 +9,10 @@ abstract class Command extends CliCommand
     public function setSignal(SignalManager $signal)
     {
         $this->signal = $signal;
-        $this->signal->handler($this, 'pre_exec', array($this, 'preExec'));
-        $this->signal->handler($this, 'pre_action', array($this, 'preAction'));
-        $this->signal->handler($this, 'post_action', array($this, 'postAction'));
-        $this->signal->handler($this, 'post_exec', array($this, 'postExec'));
+        $this->signal->handler($this, 'pre_exec',    [$this, 'preExec']);
+        $this->signal->handler($this, 'pre_action',  [$this, 'preAction']);
+        $this->signal->handler($this, 'post_action', [$this, 'postAction']);
+        $this->signal->handler($this, 'post_exec',   [$this, 'postExec']);
     }
     
     public function exec()

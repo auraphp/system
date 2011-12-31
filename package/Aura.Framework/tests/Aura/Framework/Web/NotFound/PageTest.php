@@ -12,9 +12,9 @@ class PageTest extends AbstractPageTest
     
     public function testActionIndex()
     {
-        $page = $this->newPage(array(
+        $page = $this->newPage([
             'action' => 'index',
-        ));
+        ]);
         
         $xfer = $page->exec();
         

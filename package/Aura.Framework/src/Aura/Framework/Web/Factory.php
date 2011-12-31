@@ -36,7 +36,7 @@ class Factory
      * @var ForgeInterface
      * 
      */
-    protected $map = array();
+    protected $map = [];
     
     /**
      * 
@@ -61,7 +61,7 @@ class Factory
      */
     public function __construct(
         ForgeInterface $forge,
-        array $map = array(),
+        array $map = [],
         $not_found = null
     ) {
         $this->forge     = $forge;
@@ -90,8 +90,6 @@ class Factory
             throw new NoClassForController("'$name'");
         }
         
-        return $this->forge->newInstance($class, array(
-            'params' => $params
-        ));
+        return $this->forge->newInstance($class, ['params' => $params]);
     }
 }

@@ -12,7 +12,7 @@ class CommandTest extends AbstractCommandTest
     
     protected $inflect;
     
-    protected function newCommand($argv = array(), $system_dir = AURA_TEST_RUN_SYSTEM_DIR)
+    protected function newCommand($argv = [], $system_dir = AURA_TEST_RUN_SYSTEM_DIR)
     {
         $command = parent::newCommand($argv, $system_dir);
         $this->inflect = new Inflect;
@@ -26,7 +26,7 @@ class CommandTest extends AbstractCommandTest
      */
     public function test_sourceNotFound()
     {
-        $command = $this->newCommand(array('package/Aura.Framework/src/NoSuchClass.php'));
+        $command = $this->newCommand(['package/Aura.Framework/src/NoSuchClass.php']);
         $command->exec();
     }
     
@@ -35,7 +35,7 @@ class CommandTest extends AbstractCommandTest
      */
     public function testTargetFileExists()
     {
-        $command = $this->newCommand(array('package/Aura.Framework/src/Aura/Framework/Cli/MakeTest/Command.php'));
+        $command = $this->newCommand(['package/Aura.Framework/src/Aura/Framework/Cli/MakeTest/Command.php']);
         $command->exec();
     }
     
@@ -76,7 +76,7 @@ class {$class} {}
         
         // make a test from the fake class
         $command = $this->newCommand(
-            array("$package_dir/{$vendor}.{$package}/src/{$vendor}/{$package}/{$class}.php"),
+            ["$package_dir/{$vendor}.{$package}/src/{$vendor}/{$package}/{$class}.php"],
             $system_dir
         );
         

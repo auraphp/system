@@ -215,7 +215,7 @@ class Command extends CliCommand
         // turn the rest into a class, minus .php
         $class = substr(implode('\\', $part), 0, -4);
         
-        return array($vendor, $package, $class);
+        return [$vendor, $package, $class];
     }
     
     /**

@@ -23,7 +23,7 @@ abstract class AbstractPageTest extends \PHPUnit_Framework_TestCase
 {
     protected $page_name;
 
-    protected function newPage($params = array())
+    protected function newPage($params = [])
     {
         $class = "\Aura\Framework\Web\\{$this->page_name}\Page";
         

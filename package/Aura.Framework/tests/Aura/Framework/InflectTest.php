@@ -47,7 +47,7 @@ class InflectTest extends \PHPUnit_Framework_TestCase
     public function testClassToFile()
     {
         // used PSR-0 spec as a base
-        $list = array(
+        $list = [
             'Doctrine\Common\IsolatedClassLoader'   => 'Doctrine/Common/IsolatedClassLoader.php',
             'Symfony\Core\Request'                  => 'Symfony/Core/Request.php',
             'Zend'                                  => 'Zend.php',
@@ -55,7 +55,7 @@ class InflectTest extends \PHPUnit_Framework_TestCase
             'Zend\Mail\Message'                     => 'Zend/Mail/Message.php',
             'aura\package\ClassName'               => 'aura/package/ClassName.php',
             'aura\pkg_name\Class_Name'             => 'aura/pkg_name/Class/Name.php',
-        );
+        ];
         
         foreach ($list as $class => $expect) {
             $actual = $this->inflect->classToFile($class);

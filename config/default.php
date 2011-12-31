@@ -12,33 +12,33 @@
  */
 
 // set up a simple "hello world" routing
-$di->get('router_map')->add('home', '/', array(
-    'values' => array(
+$di->get('router_map')->add('home', '/', [
+    'values' => [
         'controller' => 'hello',
         'action' => 'world',
-    ),
-));
+    ],
+]);
 
-$di->get('router_map')->add('hello_world', '/hello/world', array(
-    'values' => array(
+$di->get('router_map')->add('hello_world', '/hello/world', [
+    'values' => [
         'controller' => 'hello',
         'action' => 'world',
-    ),
-));
+    ],
+]);
 
-$di->get('router_map')->add('hello_asset', '/hello/asset', array(
-    'values' => array(
+$di->get('router_map')->add('hello_asset', '/hello/asset', [
+    'values' => [
         'controller' => 'hello',
         'action' => 'asset',
-    ),
-));
+    ],
+]);
 
-$di->get('router_map')->add(null, '/asset/{:package}/{:file:(.*?)}{:format:(\..+)?}', array(
-    'values' => array(
+$di->get('router_map')->add(null, '/asset/{:package}/{:file:(.*?)}{:format:(\..+)?}', [
+    'values' => [
         'controller' => 'asset',
         'action' => 'index',
-    ),
-));
+    ],
+]);
 
 // map the 'hello_world' controller value a particular class
 $di->params['Aura\Framework\Web\Factory']['map']['hello'] = 'Aura\Framework\Web\Hello\Page';

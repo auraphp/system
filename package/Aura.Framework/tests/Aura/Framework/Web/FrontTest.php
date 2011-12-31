@@ -44,15 +44,15 @@ class FrontTest extends \PHPUnit_Framework_TestCase
         $this->context = new Context($GLOBALS);
         
         $this->router = new RouterMap(new RouteFactory);
-        $this->router->add(null, '/mock', array(
-            'values' => array(
+        $this->router->add(null, '/mock', [
+            'values' => [
                 'controller' => 'mock',
-            ),
-        ));
+            ],
+        ]);
         
         $this->forge = new Forge(new Config);
         
-        $map = array('mock' => 'Aura\Framework\Mock\Page');
+        $map = ['mock' => 'Aura\Framework\Mock\Page'];
         $not_found = 'Aura\Framework\Mock\NotFound';
         $this->factory = new Factory($this->forge, $map, $not_found);
         

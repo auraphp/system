@@ -44,7 +44,7 @@ class Page extends AbstractPage
      * @var array
      * 
      */
-    protected $cache_config_modes = array();
+    protected $cache_config_modes = [];
     
     /**
      * 
@@ -65,7 +65,7 @@ class Page extends AbstractPage
      * @return void
      * 
      */
-    public function setCacheConfigModes(array $modes = array())
+    public function setCacheConfigModes(array $modes = [])
     {
         $this->cache_config_modes = $modes;
     }
