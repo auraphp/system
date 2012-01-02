@@ -5,6 +5,8 @@
  * 
  * @license http://opensource.org/licenses/bsd-license.php BSD
  * 
+ * @package Aura.Framework
+ * 
  */
 namespace Aura\Framework\Cli\MakeTest;
 use Aura\Framework\Cli\Command as CliCommand;
@@ -20,12 +22,10 @@ use Aura\Framework\Exception\TestFileExists;
  * 
  * Usage is ...
  * 
- *      $ php cli.php aura.framework.make-test {$FILE}
+ *      $ php package/Aura.Framework/cli/make-test {$FILE}
  * 
  * ... where `$FILE` is a package file path, e.g. 
  * `package/Aura.Framework/System.php`.
- * 
- * @package Aura.Framework
  * 
  */
 class Command extends CliCommand
