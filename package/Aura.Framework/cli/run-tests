@@ -1,3 +1,0 @@
-<?php
-require dirname(__DIR__) . '/src/Aura/Framework/Cli/Runner.php';
-\Aura\Framework\Cli\Runner::exec('Aura\\Framework\\Cli\\RunTests\\Command');
