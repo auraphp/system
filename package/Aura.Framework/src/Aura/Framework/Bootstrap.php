@@ -57,20 +57,24 @@ class Bootstrap
             $this->loader->add('Aura\Di\\', $this->system->getPackagePath('Aura.Di/src'));
         }
         
-        // set the DI container
+        // set the DI container object
         $this->di = new DiManager(new DiForge(new DiConfig));
+        
+        // set the config object
+        $this->config = new Config($this->system, $this->loader, $this->di);
         
         // add the bootstrap objects to the container
         $this->di->set('framework_config', $this->config);
         $this->di->set('framework_loader', $this->loader);
         $this->di->set('framework_system', $this->system);
         
-        // load the configs
-        $this->config = new Config($this->system, $this->loader, $this->di);
+        // load configs
         $this->config->exec();
         
         // lock the container
         $this->di->lock();
+        
+        // done!
     }
     
     public function execWeb()
