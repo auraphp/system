@@ -1,1 +1,0 @@
-mock layout begins, <?php echo $this->layout_content; ?>, mock layout ends
