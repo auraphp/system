@@ -7,12 +7,6 @@
  * 
  */
 namespace Aura\Framework;
-require dirname(__DIR__) . '/package/Aura.Framework/scripts/bootstrap.php';
-try {
-    $front = $di->get('web_front');
-    $response = $front->exec();
-    $response->send();
-} catch (Exception $e) {
-    echo $e . PHP_EOL;
-    exit(1);
-}
+require dirname(__DIR__) . '/package/Aura.Framework/src/Aura/Framework/Bootstrap.php';
+$bootstrap = new Bootstrap();
+$bootstrap->execWeb();
