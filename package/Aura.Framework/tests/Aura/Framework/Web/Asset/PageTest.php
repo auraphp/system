@@ -13,11 +13,11 @@ class PageTest extends AbstractPageTest
     
     protected $asset_file;
     
-    protected function setUp()
+    public function setUp()
     {
         parent::setUp();
         
-        $system_dir = AURA_TEST_RUN_SYSTEM_DIR . DIRECTORY_SEPARATOR
+        $system_dir = dirname(dirname(dirname(dirname(__DIR__)))) . DIRECTORY_SEPARATOR
                     . 'tmp' . DIRECTORY_SEPARATOR
                     . 'test' . DIRECTORY_SEPARATOR
                     . 'Aura.Framework.Web.Asset.PageTest' . DIRECTORY_SEPARATOR
@@ -28,12 +28,12 @@ class PageTest extends AbstractPageTest
         $web_dir = $this->system->getWebPath();
         @mkdir($web_dir, 0777, true);
         
-        $this->asset_file = $this->system->getPackagePath('Vendor.Package/assets/file.txt');
+        $this->asset_file = $this->system->getPackagePath('Vendor.Package/web/file.txt');
         @mkdir(dirname($this->asset_file), 0777, true);
         file_put_contents($this->asset_file, $this->content);
     }
     
-    protected function tearDown()
+    public function tearDown()
     {
         // delete any cached files
         $dir = $this->system->getWebPath('cache/asset/Vendor.Package');
@@ -96,7 +96,7 @@ class PageTest extends AbstractPageTest
         $xfer   = $page->exec();
         $actual = $xfer->getContent();
         $expect = "Asset not found: "
-                . $this->system->getPackagePath('Vendor.Package/assets/no-such-file.txt');
+                . $this->system->getPackagePath('Vendor.Package/web/no-such-file.txt');
         
         $this->assertSame($actual, $expect);
     }

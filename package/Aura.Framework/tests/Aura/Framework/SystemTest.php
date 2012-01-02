@@ -15,17 +15,17 @@ class SystemTest extends \PHPUnit_Framework_TestCase
      * Sets up the fixture, for example, opens a network connection.
      * This method is called before a test is executed.
      */
-    protected function setUp()
+    public function setUp()
     {
         parent::setUp();
-        $this->system = new System(__DIR__);
+        $this->system = Mock\System::newInstance();
     }
 
     /**
      * Tears down the fixture, for example, closes a network connection.
      * This method is called after a test is executed.
      */
-    protected function tearDown()
+    public function tearDown()
     {
         parent::tearDown();
     }
@@ -35,15 +35,16 @@ class SystemTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetRootPath()
     {
-        $expect = __DIR__;
+        $expect = dirname(dirname(__DIR__))
+                . DIRECTORY_SEPARATOR . 'tmp';
+        
         $actual = $this->system->getRootPath();
         $this->assertSame($expect, $actual);
         
-        $expect = __DIR__ . DIRECTORY_SEPARATOR
-                . 'foo' . DIRECTORY_SEPARATOR
-                . 'bar' . DIRECTORY_SEPARATOR
-                . 'baz';
-                
+        $expect .= DIRECTORY_SEPARATOR . 'foo'
+                 . DIRECTORY_SEPARATOR . 'bar'
+                 . DIRECTORY_SEPARATOR . 'baz';
+        
         $actual = $this->system->getRootPath('foo/bar/baz');
         $this->assertSame($expect, $actual);
     }
@@ -53,112 +54,98 @@ class SystemTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetPackagePath()
     {
-        $expect = __DIR__ . DIRECTORY_SEPARATOR . 'package';
+        $expect = dirname(dirname(__DIR__))
+                . DIRECTORY_SEPARATOR . 'tmp'
+                . DIRECTORY_SEPARATOR . 'package';
+        
         $actual = $this->system->getPackagePath();
         $this->assertSame($expect, $actual);
         
-        $expect = __DIR__ . DIRECTORY_SEPARATOR
-                . 'package' . DIRECTORY_SEPARATOR
-                . 'foo' . DIRECTORY_SEPARATOR
-                . 'bar' . DIRECTORY_SEPARATOR
-                . 'baz';
+        $expect .= DIRECTORY_SEPARATOR . 'foo'
+                 . DIRECTORY_SEPARATOR . 'bar'
+                 . DIRECTORY_SEPARATOR . 'baz';
                 
         $actual = $this->system->getPackagePath('foo/bar/baz');
         $this->assertSame($expect, $actual);
     }
-
+    
     /**
      * @todo Implement testGetTmpPath().
      */
     public function testGetTmpPath()
     {
-        $expect = __DIR__ . DIRECTORY_SEPARATOR . 'tmp';
+        $expect = dirname(dirname(__DIR__))
+                . DIRECTORY_SEPARATOR . 'tmp'
+                . DIRECTORY_SEPARATOR . 'tmp';
+        
         $actual = $this->system->getTmpPath();
         $this->assertSame($expect, $actual);
         
-        $expect = __DIR__ . DIRECTORY_SEPARATOR
-                . 'tmp' . DIRECTORY_SEPARATOR
-                . 'foo' . DIRECTORY_SEPARATOR
-                . 'bar' . DIRECTORY_SEPARATOR
-                . 'baz';
+        $expect .= DIRECTORY_SEPARATOR . 'foo'
+                 . DIRECTORY_SEPARATOR . 'bar'
+                 . DIRECTORY_SEPARATOR . 'baz';
                 
         $actual = $this->system->getTmpPath('foo/bar/baz');
         $this->assertSame($expect, $actual);
     }
-
+    
     /**
      * @todo Implement testGetWebPath().
      */
     public function testGetWebPath()
     {
-        $expect = __DIR__ . DIRECTORY_SEPARATOR . 'web';
+        $expect = dirname(dirname(__DIR__))
+                . DIRECTORY_SEPARATOR . 'tmp'
+                . DIRECTORY_SEPARATOR . 'web';
+        
         $actual = $this->system->getWebPath();
         $this->assertSame($expect, $actual);
         
-        $expect = __DIR__ . DIRECTORY_SEPARATOR
-                . 'web' . DIRECTORY_SEPARATOR
-                . 'foo' . DIRECTORY_SEPARATOR
-                . 'bar' . DIRECTORY_SEPARATOR
-                . 'baz';
+        $expect .= DIRECTORY_SEPARATOR . 'foo'
+                 . DIRECTORY_SEPARATOR . 'bar'
+                 . DIRECTORY_SEPARATOR . 'baz';
                 
         $actual = $this->system->getWebPath('foo/bar/baz');
         $this->assertSame($expect, $actual);
     }
-
+    
     /**
      * @todo Implement testGetConfigPath().
      */
     public function testGetConfigPath()
     {
-        $expect = __DIR__ . DIRECTORY_SEPARATOR . 'config';
+        $expect = dirname(dirname(__DIR__))
+                . DIRECTORY_SEPARATOR . 'tmp'
+                . DIRECTORY_SEPARATOR . 'config';
+        
         $actual = $this->system->getConfigPath();
         $this->assertSame($expect, $actual);
         
-        $expect = __DIR__ . DIRECTORY_SEPARATOR
-                . 'config' . DIRECTORY_SEPARATOR
-                . 'foo' . DIRECTORY_SEPARATOR
-                . 'bar' . DIRECTORY_SEPARATOR
-                . 'baz';
+        $expect .= DIRECTORY_SEPARATOR . 'foo'
+                 . DIRECTORY_SEPARATOR . 'bar'
+                 . DIRECTORY_SEPARATOR . 'baz';
                 
         $actual = $this->system->getConfigPath('foo/bar/baz');
         $this->assertSame($expect, $actual);
     }
-
+    
     /**
      * @todo Implement testGetIncludePath().
      */
     public function testGetIncludePath()
     {
-        $expect = __DIR__ . DIRECTORY_SEPARATOR . 'include';
+        $expect = dirname(dirname(__DIR__))
+                . DIRECTORY_SEPARATOR . 'tmp'
+                . DIRECTORY_SEPARATOR . 'include';
+        
         $actual = $this->system->getIncludePath();
         $this->assertSame($expect, $actual);
         
-        $expect = __DIR__ . DIRECTORY_SEPARATOR
-                . 'include' . DIRECTORY_SEPARATOR
-                . 'foo' . DIRECTORY_SEPARATOR
-                . 'bar' . DIRECTORY_SEPARATOR
-                . 'baz';
+        $expect .= DIRECTORY_SEPARATOR . 'foo'
+                 . DIRECTORY_SEPARATOR . 'bar'
+                 . DIRECTORY_SEPARATOR . 'baz';
                 
         $actual = $this->system->getIncludePath('foo/bar/baz');
         $this->assertSame($expect, $actual);
     }
-
-    // /**
-    //  * @todo Implement testGetPublicPath().
-    //  */
-    // public function testGetPublicPath()
-    // {
-    //     $expect = __DIR__ . DIRECTORY_SEPARATOR . 'public';
-    //     $actual = $this->system->getPublicPath();
-    //     $this->assertSame($expect, $actual);
-    //     
-    //     $expect = __DIR__ . DIRECTORY_SEPARATOR
-    //             . 'public' . DIRECTORY_SEPARATOR
-    //             . 'foo' . DIRECTORY_SEPARATOR
-    //             . 'bar' . DIRECTORY_SEPARATOR
-    //             . 'baz';
-    //             
-    //     $actual = $this->system->getPublicPath('foo/bar/baz');
-    //     $this->assertSame($expect, $actual);
-    // }
 }

@@ -12,9 +12,9 @@ class CommandTest extends AbstractCommandTest
     
     protected $inflect;
     
-    protected function newCommand($argv = [], $system_dir = AURA_TEST_RUN_SYSTEM_DIR)
+    protected function newCommand($argv = [])
     {
-        $command = parent::newCommand($argv, $system_dir);
+        $command = parent::newCommand($argv);
         $this->inflect = new Inflect;
         $command->setSystem($this->system);
         $command->setInflect($this->inflect);
@@ -30,12 +30,20 @@ class CommandTest extends AbstractCommandTest
         $command->exec();
     }
     
-    /**
-     * @expectedException Aura\Framework\Exception\TestFileExists
-     */
     public function testTargetFileExists()
     {
-        $command = $this->newCommand(['package/Aura.Framework/src/Aura/Framework/Cli/MakeTest/Command.php']);
+        $src_file = $this->system->getPackagePath('Vendor.Package/src/Vendor/Package/Classname.php');
+        mkdir(dirname($src_file), 0777, true);
+        $src_text = "<?php namespace Vendor\Package; class Classname {}";
+        file_put_contents($src_file, $src_text);
+        
+        $test_file = $this->system->getPackagePath('Vendor.Package/tests/Vendor/Package/ClassnameTest.php');
+        mkdir(dirname($test_file), 0777, true);
+        $test_text = "<?php namespace Vendor\Package; class ClassnameTest {}";
+        file_put_contents($test_file, $test_text);
+        
+        $this->setExpectedException('Aura\Framework\Exception\TestFileExists');
+        $command = $this->newCommand([$src_file]);
         $command->exec();
     }
     
@@ -49,13 +57,9 @@ class CommandTest extends AbstractCommandTest
         $package = 'MockPackage';
         $class   = 'MockClass';
         
-        $system_dir = AURA_TEST_RUN_SYSTEM_DIR . DIRECTORY_SEPARATOR
-                    . 'tmp' . DIRECTORY_SEPARATOR
-                    . 'test' . DIRECTORY_SEPARATOR
-                    . 'Aura.Framework.Cli.MakeTest.CommandTest' . DIRECTORY_SEPARATOR
-                    . 'mock_system';
+        $system_dir = $this->system->getRootPath();
         
-        $package_dir  = "$system_dir/package";
+        $package_dir  = $this->system->getPackagePath();
         
         $incl_file = "{$package_dir}/{$vendor}.{$package}/src/{$vendor}/{$package}/{$class}.php";
         $test_file = "{$package_dir}/{$vendor}.{$package}/tests/{$vendor}/{$package}/{$class}Test.php";

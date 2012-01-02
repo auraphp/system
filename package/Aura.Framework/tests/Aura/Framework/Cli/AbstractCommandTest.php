@@ -9,7 +9,7 @@ use Aura\Signal\Manager;
 use Aura\Signal\HandlerFactory;
 use Aura\Signal\ResultFactory;
 use Aura\Signal\ResultCollection;
-use Aura\Framework\System;
+use Aura\Framework\Mock\System;
 
 /**
  * Test class for Command.
@@ -35,7 +35,14 @@ abstract class AbstractCommandTest extends \PHPUnit_Framework_TestCase
     
     protected $errfile;
     
-    protected function tearDown()
+    public function setUp()
+    {
+        $root = dirname(dirname(dirname(__DIR__)));
+        $this->system = System::newInstance($root);
+        $this->system->create();
+    }
+    
+    public function tearDown()
     {
         parent::tearDown();
         if ($this->stdio) {
@@ -44,15 +51,14 @@ abstract class AbstractCommandTest extends \PHPUnit_Framework_TestCase
         }
         unlink($this->outfile);
         unlink($this->errfile);
+        $this->system->remove();
     }
     
-    protected function newCommand($argv = [], $system_dir = AURA_TEST_RUN_SYSTEM_DIR)
+    protected function newCommand($argv = [])
     {
         $_SERVER['argv'] = $argv;
         
         $this->context = new Context;
-        
-        $this->system = new System($system_dir);
         
         $sub = "test/Aura.Framework/Cli/{$this->command_name}/Command";
         $this->tmp_dir =  $this->system->getTmpPath();
