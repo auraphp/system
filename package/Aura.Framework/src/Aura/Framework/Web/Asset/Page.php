@@ -11,20 +11,20 @@ use Aura\Framework\Web\AbstractPage;
 
 /**
  * 
- * Provides a public interface to package assets.
+ * Provides a public interface to web assets for a package.
  * 
  * Your package should be set up like this:
  * 
  *      Vendor.Package/
- *          assets/
- *              images/
- *              scripts/
- *              styles/
- *                  foo.css
  *          config/
  *          scripts/
  *          src/
  *          tests/
+ *          web/
+ *              images/
+ *              scripts/
+ *              styles/
+ *                  foo.css
  * 
  * You can then use the URL `/asset/Vendor.Package/styles/foo.css` to access
  * the package asset, even though it's not in the web document root.
@@ -39,7 +39,7 @@ class Page extends AbstractPage
 {
     /**
      * 
-     * The Aura config modes in which we should cache assets.
+     * The Aura config modes in which we should cache web assets.
      * 
      * @var array
      * 
@@ -49,7 +49,7 @@ class Page extends AbstractPage
     /**
      * 
      * The subdirectory inside the web document root where we should cache
-     * assets.
+     * web assets.
      * 
      * @var array
      * 
@@ -72,7 +72,7 @@ class Page extends AbstractPage
     
     /**
      * 
-     * Sets the subdirectory in the web document root where assets should
+     * Sets the subdirectory in the web document root where web assets should
      * be cached.
      * 
      * @param string $dir
@@ -103,7 +103,7 @@ class Page extends AbstractPage
         $file .= $this->format;
         
         // get the real path to the asset
-        $fakepath = $this->system->getPackagePath("$package/assets/$file");
+        $fakepath = $this->system->getPackagePath("$package/web/$file");
         $realpath = realpath($fakepath);
         
         // does the asset file exist?
