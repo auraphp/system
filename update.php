@@ -6,7 +6,6 @@
  * @license http://opensource.org/licenses/bsd-license.php BSD
  * 
  */
-namespace Aura\Framework;
 
 /**
  * Need 'allow_url_fopen' to be on.
@@ -19,7 +18,7 @@ if (! ini_get('allow_url_fopen')) {
 /**
  * Pull changes the system as a whole.
  */
-`git pull`;
+passthru('git pull');
 
 /**
  * Update the library packages.
@@ -30,16 +29,23 @@ $dir = __DIR__ . DIRECTORY_SEPARATOR . 'package';
 
 // get the list of available repositories
 $url = 'http://github.com/api/v2/json/repos/show/auraphp';
-$context = stream_context_create(array(
-    'http' => array(
+$context = stream_context_create([
+    'http' => [
         'method' => "GET",
-    ),
-));
+    ],
+]);
 $json = file_get_contents($url, FALSE, $context);
 $data = json_decode($json);
 
-// for each of the repositories ...
+// sort the repos
+$repos = [];
 foreach ($data->repositories as $repo) {
+    $repos[$repo->name] = $repo;
+}
+ksort($repos);
+
+// for each of the repositories ...
+foreach ($repos as $repo) {
     
     // only use 'Aura.Package' repositories as packages
     if (! preg_match('/Aura\.[A-Z0-9_]+/', $repo->name)) {
@@ -52,13 +58,13 @@ foreach ($data->repositories as $repo) {
         
         // pull changes to existing package
         echo "Pulling package '{$repo->name}'." . PHP_EOL;
-        `cd $sub; git pull`;
+        passthru("cd $sub; git pull --all");
         
     } else {
         
         // clone new package for installation
         echo "Cloning package '{$repo->name}'." . PHP_EOL;
-        `cd $dir; git clone {$repo->url}`;
+        passthru("cd $dir; git clone {$repo->url}");
         
     }
 }
