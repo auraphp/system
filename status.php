@@ -6,7 +6,6 @@
  * @license http://opensource.org/licenses/bsd-license.php BSD
  * 
  */
-namespace Aura\Framework;
 
 /**
  * Show status of the system as a whole.

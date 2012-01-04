@@ -6,7 +6,6 @@
  * @license http://opensource.org/licenses/bsd-license.php BSD
  * 
  */
-namespace Aura\Framework;
 
 /**
  * Need 'allow_url_fopen' to be on.
@@ -38,8 +37,15 @@ $context = stream_context_create([
 $json = file_get_contents($url, FALSE, $context);
 $data = json_decode($json);
 
-// for each of the repositories ...
+// sort the repos
+$repos = [];
 foreach ($data->repositories as $repo) {
+    $repos[$repo->name] = $repo;
+}
+ksort($repos);
+
+// for each of the repositories ...
+foreach ($repos as $repo) {
     
     // only use 'Aura.Package' repositories as packages
     if (! preg_match('/Aura\.[A-Z0-9_]+/', $repo->name)) {
