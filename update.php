@@ -26,6 +26,9 @@ passthru('git pull');
  
 // the package directory
 $dir = __DIR__ . DIRECTORY_SEPARATOR . 'package';
+if (! is_dir($dir)) {
+    mkdir($dir, 0777);
+}
 
 // get the list of available repositories
 $url = 'http://github.com/api/v2/json/repos/show/auraphp';
