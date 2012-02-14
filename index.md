@@ -8,129 +8,233 @@ The Aura System
 
 The Aura System provides a full-stack Aura framework built around Aura library packages.
 
-Aura is very new, so the system is quite limited at this point. In particular, while it provides a scaffold for developing and testing library packages, it does provide a [web-oriented controller] ( http://auraphp.github.com/Aura.Web ), [view]( http://auraphp.github.com/Aura.View ) and a [router] ( http://auraphp.github.com/Aura.Router ) system. A [cli-oriented controller]( http://auraphp.github.com/Aura.Cli ) system is also provided.)
-
-Because the library packages are relatively volatile, they are not provided as submodules in the system.  Instead, use the `update.php` command-line script to install and upgrade the library packages via `git`.
-
 
 Installation
 ============
 
+You can use a cloned version of the system and then manually install packages,
+or you can download a full system tarball.
+
+Tarball
+-------
+
+1.  Download the latest tarball from the
+    [downloads page](https://github.com/auraphp/system/downloads).
+
+2.  Uncompress the tarball to your document root.
+
+3.  Browse to `/path/to/system/web/index.php` to see "Hello World!".
+
+
+Cloning
+-------
+
 The `git` command must be in your `$PATH` for this to work.
 
-1.  Clone the Aura `system` repository
+1.  Clone the Aura `system` repository to your document root.
 
         $ git clone https://github.com/auraphp/system.git
     
-    This will give you the overall system skeleton, along with the built-in
-    `Aura.Framework` library package and the `update.php` script.
+    This will give you the overall system skeleton along with an
+    `update.php` script.
 
 2.  Issue `php update.php` to install the remaining library packages.
 
         $ cd system
         $ php update.php
+        
+    You can subsequently update the system and all library packages (including
+    installation of newly-available packages) with the same `php update.php`
+    command.
 
-You can subsequently update the system and all library packages (including installation of newly-available packages) with the same `php update.php` command.
+3. Browse to `/path/to/system/web/index.php` to see "Hello World!".
+
+
+Better URLs
+-----------
+
+To see better URLs under either installation process, add a virtual host to
+your web server, and point its document root to `/path/to/system/web`. The `mod_rewrite` module should be installed. That will allow you to browse to the virtual host without needing `index.php` in the URL.
+
+Command Line
+------------
+
+You can also check Aura from the command line.  Go to the system directory and run a CLI command from the Aura Framework package:
+
+    $ php package/Aura.Framework/cli/hello-world
+
+You should see output of `'Hello World!'`.
 
 
 Running Tests
 =============
 
-After installation or upgrade, you can run the tests for all packages like so:
+For testing, you need to have [PHPUnit 3.6](http://www.phpunit.de/manual/current/en/) or later installed.
 
-    $ php package/Aura.Framework/cli/run-tests
+To run the tests in each individual package, change to that package's `tests` direcotry and issue `phpunit`:
 
-To run the tests for a single package, specify the package tests directory:
+    $ cd /path/to/system/package/Aura.Autoload/tests
+    $ phpunit
 
-    $ php package/Aura.Framework/cli/run-tests package/Aura.Signal/tests
-    
-Working with System
+
+System Organization
 ===================
 
-The Aura framework has a HelloWorld example for both cli and web. You can see it in package/Aura.Framework/src/
+The system directory structure is pretty straightforward:
 
-Creating your own packages
-==========================
+    {$system}/
+        config/                     # mode-specific config files
+            default.php             # default config overrides
+            dev.php                 # shared development server
+            local.php               # local (individual) development server
+            prod.php                # production
+            stage.php               # staging
+            test.php                # testing
+        include/                    # a place for generic includes
+        package/                    # a place for Aura packages
+        tmp/                        # temporary files
+        web/                        # web server document root
+            .htaccess               # mod_rewrite rules
+            cache/                  # public cached files
+            favicon.ico             # favicon to reduce error_log lines
+            index.php               # bootstrap script
 
-You can create your own packages like the directory structure below.
+Package Organization
+====================
+
+In Aura, all code is grouped into packages.  There is no difference between library packages, support packages, web packages, and so on -- they are all just "packages."
+
+The package directory structure looks like this:
 
     Vendor.Package/
-        src/
+        cli/                        # command-line script invokers
+        composer.json               # composer/packagist file
+        config/                     # package-level configs
+            default.php             # default configs
+            test.php                # configs for "test" mode
+        meta/                       # metadata for packaging scripts
+        LICENSE                     # license file
+        README.md                   # readme file
+        src/                        # the actual source code organized for PSR-0
             Vendor/
                 Package/
-                    Web/
-                        SomePageName/
-                            Page.php
-                            view/
-                            layout/
-                            etc/
-                    Cli/
-                        SomeCommandName/
-                            Command.php
-                        
-All web controllers are placed in Web folder. Each controller has its own folder and the name of all the controllers is Page.php which resides inside the controller folder.
+                    Class.php
+        tests/                      # test files for phpunit
+            Vendor/
+                Package/
+                    ClassTest.php
+            bootstrap.php
+            phpunit.xml
+        web/                        # public web assets
+            styles/                 # css files
+            images/                 # image files
+            scripts/                # javascript (or other script) files
 
-All cli controllers are placed in Cli folder. And the name will be Command.php
-                        
-Lets look into an eg: 
----------------------
+In general, your `src/` files should be organized like so:
 
-Let vendor is example and package is blog. We are going to create a post controller . From the directory structure it will be clear.
+    Vendor/
+        Package/
+            Cli/                    # all CLI commands
+                CommandName/        # a particular CLI command and its support files
+                    Command.php     # the actual command logic
+                    data/           # other data for the command
+            Web/                    # all web pages
+                PageName/           # a particular web page and its support files
+                    Page.php        # the actual page action logic
+                    view/           # views for the page
+                    layout/         # layouts for the page
+                    data/           # other data for the page
+            View/
+                Helper/
+                    HelperName.php  # a view helper
 
-    Example.Blog/
-        assets/
-            images/
-            styles/
-            scripts/
-        scripts/
+You can of course place other libraries in the package if you like.
             
-        tests/
-            
-        config/
-            
-        src/
-            Example/
-                Blog/
-                    Web/
-                        Post/
-                            Page.php
-                            view/
-                            layout/
-                            etc/
-                    Cli/
-                        Feed/
-                            Command.php
+                                    
+An Example Page Controller
+==========================
 
-In this example `Post` is the name of the web contoller. All the web controller names are named as Page.php which extends the [Aura\Web\Page] ( http://auraphp.github.com/Aura.Web ) which are placed in the post directory.
+Let's create a package and a page controller, and wire it up for browsing.
+
+Package Structure
+-----------------
+
+First, create the package structure (just the parts we need):
+
+    $ cd /path/to/system/package
+    $ mkdir -p Example.Package/src/Example/Package/Web/Quick/view
+
+
+Page Controller and View
+------------------------
+
+Change to the page controller directory ...
+    
+    $ cd Example.Package/src/Example/Package/Web/Quick/
+    
+... and edit a file called `Page.php`. Add this code:
 
     <?php
-    namespace Aura\Framework\Web\Post;
-    use Aura\Web\Page as WebPage;
-    class Page extends WebPage
+    namespace Example\Package\Web\Quick;
+    use Aura\Framework\Web\AbstractPage;
+    class Page extends AbstractPage
     {
         public function actionIndex()
         {
-            $this->response->setView('index');
+            $this->view->setInnerView('index.php');
         }
     }
 
-Every action starts with word `action` and then the action name.
+Next, create a view for the action. Edit a file called `view/index.php` and
+add the following text:
 
-All the images, js, css etc are placed in assets/images, assets/scripts, assets/styles respectievely. It can be accessed from view as `/assests/Vendor.Package/<type>/<name>` . 
+    The quick brown fox jumps over the lazy dog.
 
-For eg to access an image from the view as 
+At this point your package directory should look like this:
+
+    Example.Package/
+        src/
+            Example/
+                Package/
+                    Web/
+                        Quick/
+                            Page.php
+                            view/
+                                index.php
+
+Config
+------
+
+Now we need to wire up the page controller to the autoloader and the routing
+system. We could do this at the package-level config, but let's concentrate on
+the package-level config for now.
+
+Change to the config directory:
+
+    $ cd /path/to/system/config
     
-    <img src="/asset/Aura.Framework/images/auralogo.jpg" />
+Edit the `default.php` file and add this code at the
+end of the file:
 
-Assets can be cached, so remember only to use in production and not in development. An example of the assets is in the Aura.Framework/src/Web/Hello controller's asset action. You can see it in action from localhost/hello/asset .
-The cache folder of the web root should be writeable to create the cache.
-
-    $di->setter['Aura\Framework\Web\Asset\Page'] = array(
-        'setSystem' => $di->lazyGet('system'),
-        'setWebCacheDir' => 'cache/asset',
-        'setCacheConfigModes' => array('prod', 'staging'),
-    );
+    <?php
+    /** Example Package configs */
     
-By default its not cached, so if you want to cache add `default` also to the list. So it will be array('default', 'prod', 'staging').
+    // add the package to the autoloader
+    $loader->add('Example\Package\\', dirname(__DIR__) . '/package/Example.Package/src');
+    
+    // add a route to the page and action
+    $di->get('router_map')->add('quick_index', '/quick', [
+        'values' => [
+            'controller' => 'quick',
+            'action' => 'index',
+        ],
+    ]);
+    
+    // map the 'quick' controller value to a page controller class
+    $di->params['Aura\Framework\Web\Factory']['map']['quick'] = 'Example\Package\Web\Quick\Page';
 
-More coming soon .... Till then bye!.
+Try It Out
+----------
+
+You should now be able to browse to the `/quick` URL and see `"The quick brown fox jumps over the lazy dog."`
+
