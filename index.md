@@ -59,7 +59,7 @@ your web server, and point its document root to `/path/to/system/web`. The `mod_
 Command Line
 ------------
 
-You can also check Aura from the command line.  Go to the system directory and run a CLI command from the Aura Framework package:
+You can also try Aura from the command line.  Go to the system directory and run a CLI command from the Aura Framework package:
 
     $ php package/Aura.Framework/cli/hello-world
 
@@ -207,14 +207,13 @@ Config
 
 Now we need to wire up the page controller to the autoloader and the routing
 system. We could do this at the package-level config, but let's concentrate on
-the package-level config for now.
+the system-level config for now.
 
-Change to the config directory:
+Change to the system config directory:
 
     $ cd /path/to/system/config
     
-Edit the `default.php` file and add this code at the
-end of the file:
+Edit the `default.php` file and add this code at the end of the file:
 
     <?php
     /** Example Package configs */
