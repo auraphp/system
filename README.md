@@ -17,7 +17,7 @@ Getting Started
 3. Browse to `'/path/to/auraphp-system-{$VERSION}/web/index.php'` to see "Hello World!"
 
 For a more production-oriented solution, you should add a virtual host and
-and points its document root to `'/path/to/auraphp-system-version/web'`.
+and point its document root to `'/path/to/auraphp-system-version/web'`.
 
 
 Documentation
