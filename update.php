@@ -31,10 +31,11 @@ if (! is_dir($dir)) {
 }
 
 // get the list of available repositories
-$url = 'http://github.com/api/v2/json/repos/show/auraphp';
+$url = 'https://api.github.com/orgs/auraphp/repos';
 $context = stream_context_create([
     'http' => [
         'method' => "GET",
+        'header' => "Accept: application/json"
     ],
 ]);
 $json = file_get_contents($url, FALSE, $context);
@@ -42,7 +43,7 @@ $data = json_decode($json);
 
 // sort the repos
 $repos = [];
-foreach ($data->repositories as $repo) {
+foreach ($data as $repo) {
     $repos[$repo->name] = $repo;
 }
 ksort($repos);
@@ -67,7 +68,7 @@ foreach ($repos as $repo) {
         
         // clone new package for installation
         echo "Cloning package '{$repo->name}'." . PHP_EOL;
-        passthru("cd $dir; git clone {$repo->url}");
+        passthru("cd $dir; git clone {$repo->clone_url}");
         
     }
 }
