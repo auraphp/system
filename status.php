@@ -22,10 +22,11 @@ passthru('git status');
 $dir = __DIR__ . DIRECTORY_SEPARATOR . 'package';
 
 // get the list of available repositories
-$url = 'http://github.com/api/v2/json/repos/show/auraphp';
+$url = 'https://api.github.com/orgs/auraphp/repos';
 $context = stream_context_create([
     'http' => [
         'method' => "GET",
+        'header' => "Accept: application/json"
     ],
 ]);
 $json = file_get_contents($url, FALSE, $context);
@@ -33,7 +34,7 @@ $data = json_decode($json);
 
 // sort the repos
 $repos = [];
-foreach ($data->repositories as $repo) {
+foreach ($data as $repo) {
     $repos[$repo->name] = $repo;
 }
 ksort($repos);
