@@ -30,4 +30,6 @@ at <http://auraphp.github.com/system>.
 Downloads
 ---------
 
-- [Aura System 1.0.0-beta2](https://github.com/downloads/auraphp/system/auraphp-system-1.0.0-beta2.tgz)
+- [Aura System 1.0.0-beta3](https://github.com/downloads/auraphp/system/auraphp-system-1.0.0-beta3.tgz)
+
+- - [Aura System 1.0.0-beta2](https://github.com/downloads/auraphp/system/auraphp-system-1.0.0-beta2.tgz)
