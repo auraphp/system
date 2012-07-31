@@ -10,7 +10,7 @@ all the Aura packages of the same version number.
 Getting Started
 ---------------
 
-1. Download a copy of the [latest system tarball](https://github.com/downloads/auraphp/system/auraphp-system-1.0.0-beta2.tgz).
+1. Download a copy of the [latest system tarball](https://github.com/downloads/auraphp/system/auraphp-system-1.0.0-beta3.tgz).
 
 2. Uncompress it and place it in your document root.
 
@@ -32,4 +32,4 @@ Downloads
 
 - [Aura System 1.0.0-beta3](https://github.com/downloads/auraphp/system/auraphp-system-1.0.0-beta3.tgz)
 
-- - [Aura System 1.0.0-beta2](https://github.com/downloads/auraphp/system/auraphp-system-1.0.0-beta2.tgz)
+- [Aura System 1.0.0-beta2](https://github.com/downloads/auraphp/system/auraphp-system-1.0.0-beta2.tgz)
