@@ -1,13 +1,14 @@
 {
-    "name": "hari/aura-system",
+    "name": "aura/system",
     "minimum-stability": "dev",
     "require": {
-        "shama/aura-system-installer": "*",
+        "aura/system-installer": "*",
         "aura/autoload": "1.0.0-beta3",
         "aura/cli": "1.0.0-beta3",
         "aura/di": "1.0.0-beta3",
         "aura/http": "1.0.0-beta3",
         "aura/framework": "1.0.0-beta3",
+        "aura/filter": "dev-master",
         "aura/marshal": "1.0.0-beta3",
         "aura/router": "1.0.0-beta3",
         "aura/signal": "1.0.0-beta3",
