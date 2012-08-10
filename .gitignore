@@ -4,3 +4,5 @@ package/*
 !package/.placeholder
 tmp/*
 !tmp/.placeholder
+vendor/*
+composer.lock
