@@ -1,20 +1,19 @@
 {
-    "name": "aura/system",
     "minimum-stability": "dev",
     "require": {
-        "composer/installers"   : "*",
-        "aura/autoload"         : "dev-develop",
-        "aura/cli"              : "dev-develop",
-        "aura/di"               : "dev-develop",
-        "aura/http"             : "dev-develop",
-        "aura/framework"        : "dev-develop",
-        "aura/filter"           : "dev-develop",
-        "aura/marshal"          : "dev-develop",
-        "aura/router"           : "dev-develop",
-        "aura/signal"           : "dev-develop",
-        "aura/sql"              : "dev-develop",
-        "aura/uri"              : "dev-develop",
-        "aura/view"             : "dev-develop",
-        "aura/web"              : "dev-develop"
+        "aura/composer"   : "*",
+        "aura/autoload"   : "dev-develop",
+        "aura/cli"        : "dev-develop",
+        "aura/di"         : "dev-develop",
+        "aura/http"       : "dev-develop",
+        "aura/framework"  : "dev-develop",
+        "aura/filter"     : "dev-develop",
+        "aura/marshal"    : "dev-develop",
+        "aura/router"     : "dev-develop",
+        "aura/signal"     : "dev-develop",
+        "aura/sql"        : "dev-develop",
+        "aura/uri"        : "dev-develop",
+        "aura/view"       : "dev-develop",
+        "aura/web"        : "dev-develop"
     }
 }
