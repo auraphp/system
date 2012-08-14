@@ -1,3 +1,4 @@
+composer.lock
 composer.phar
 include/*
 !include/.placeholder
@@ -5,3 +6,4 @@ package/*
 !package/.placeholder
 tmp/*
 !tmp/.placeholder
+vendor
