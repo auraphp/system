@@ -1,7 +1,7 @@
 {
     "minimum-stability": "dev",
     "require": {
-        "aura/composer"         : "*",
+        "aura/composer"         : "dev-develop",
         "aura/autoload"         : "dev-develop",
         "aura/cli"              : "dev-develop",
         "aura/di"               : "dev-develop",
