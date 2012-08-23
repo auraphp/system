@@ -4,7 +4,7 @@ layout: default
 ---
 
 The Aura System
-=====================================
+===============
 
 The Aura System provides a full-stack Aura framework built around Aura library packages.
 
@@ -49,6 +49,22 @@ The `git` command must be in your `$PATH` for this to work.
 
 3. Browse to `/path/to/system/web/index.php` to see "Hello World!".
 
+Altenatively via composer
+-------------------------
+
+1.  Download system tar or zip
+
+    Uncompress it and place it in your document root.
+
+2.  Download composer via wget if you are a *nix environment or get it from http://getcomposer.org
+
+        wget http://getcomposer.org/composer.phar
+
+    And now run
+
+        php composer.phar update
+
+3.  Browse to `/path/to/system/web/index.php` to see "Hello World!"
 
 Better URLs
 -----------
@@ -90,7 +106,7 @@ The system directory structure is pretty straightforward:
             prod.php                # production
             stage.php               # staging
             test.php                # testing
-        include/                    # a place for generic includes
+        vendor/                     # a place for generic 3rd party vendors
         package/                    # a place for Aura packages
         tmp/                        # temporary files
         web/                        # web server document root
@@ -141,8 +157,8 @@ In general, your `src/` files should be organized like so:
             Web/                    # all web pages
                 PageName/           # a particular web page and its support files
                     Page.php        # the actual page action logic
-                    view/           # views for the page
-                    layout/         # layouts for the page
+                    views/          # views for the page
+                    layouts/        # layouts for the page
                     data/           # other data for the page
             View/
                 Helper/
@@ -162,7 +178,7 @@ Package Structure
 First, create the package structure (just the parts we need):
 
     $ cd /path/to/system/package
-    $ mkdir -p Example.Package/src/Example/Package/Web/Quick/view
+    $ mkdir -p Example.Package/src/Example/Package/Web/Quick/views
 
 
 Page Controller and View
@@ -176,16 +192,16 @@ Change to the page controller directory ...
 
     <?php
     namespace Example\Package\Web\Quick;
-    use Aura\Framework\Web\AbstractPage;
+    use Aura\Framework\Web\Controller\AbstractPage;
     class Page extends AbstractPage
     {
         public function actionIndex()
         {
-            $this->view->setInnerView('index.php');
+            $this->view = 'index';
         }
     }
 
-Next, create a view for the action. Edit a file called `view/index.php` and
+Next, create a view for the action. Edit a file called `views/index.php` and
 add the following text:
 
     The quick brown fox jumps over the lazy dog.
@@ -199,7 +215,7 @@ At this point your package directory should look like this:
                     Web/
                         Quick/
                             Page.php
-                            view/
+                            views/
                                 index.php
 
 Config
@@ -219,7 +235,7 @@ Edit the `default.php` file and add this code at the end of the file:
     /** Example Package configs */
     
     // add the package to the autoloader
-    $loader->add('Example\Package\\', dirname(__DIR__) . '/package/Example.Package/src');
+    $loader->add('Example\Package\\', dirname(__DIR__) . DIRECTORY_SEPARATOR . 'src');
     
     // add a route to the page and action
     $di->get('router_map')->add('quick_index', '/quick', [
@@ -230,7 +246,7 @@ Edit the `default.php` file and add this code at the end of the file:
     ]);
     
     // map the 'quick' controller value to a page controller class
-    $di->params['Aura\Framework\Web\Factory']['map']['quick'] = 'Example\Package\Web\Quick\Page';
+    $di->params['Aura\Framework\Web\Controller\Factory']['map']['quick'] = 'Example\Package\Web\Quick\Page';
 
 Try It Out
 ----------
