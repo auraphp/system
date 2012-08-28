@@ -17,7 +17,7 @@ passthru('git status');
 /**
  * Show status of the library packages.
  */
- 
+
 // the package directory
 $dir = __DIR__ . DIRECTORY_SEPARATOR . 'package';
 

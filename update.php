@@ -23,7 +23,7 @@ passthru('git pull');
 /**
  * Update the library packages.
  */
- 
+
 // the package directory
 $dir = __DIR__ . DIRECTORY_SEPARATOR . 'package';
 if (! is_dir($dir)) {
