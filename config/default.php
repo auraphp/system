@@ -44,7 +44,3 @@ $di->get('router_map')->add(null, '/asset/{:package}/{:file:(.*?)}{:format:(\..+
 $di->params['Aura\Framework\Web\Controller\Factory']['map']['hello'] = 'Aura\Framework\Web\Hello\Page';
 $di->params['Aura\Framework\Web\Controller\Factory']['map']['asset'] = 'Aura\Framework\Web\Asset\Page';
 $di->params['Aura\Framework\Web\Controller\Factory']['not_found']    = 'Aura\Framework\Web\NotFound\Page';
-
-$di->set('signal_manager', function () use ($di) {
-    return $di->newInstance('Aura\Framework\Signal\Manager');
-});
