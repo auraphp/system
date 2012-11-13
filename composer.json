@@ -6,7 +6,6 @@
         "aura/cli"              : "dev-develop",
         "aura/di"               : "dev-develop",
         "aura/filter"           : "dev-develop",
-        "aura/framework"        : "dev-develop",
         "aura/http"             : "dev-develop",
         "aura/marshal"          : "dev-develop",
         "aura/router"           : "dev-develop",
@@ -15,6 +14,7 @@
         "aura/sql"              : "dev-develop",
         "aura/uri"              : "dev-develop",
         "aura/view"             : "dev-develop",
-        "aura/web"              : "dev-develop"
+        "aura/web"              : "dev-develop",
+        "aura/framework"        : "dev-develop"
     }
 }
