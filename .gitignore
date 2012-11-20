@@ -6,4 +6,5 @@ package/*
 !package/.placeholder
 tmp/*
 !tmp/.placeholder
-vendor
+vendor/*
+!vendor/.placeholder
