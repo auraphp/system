@@ -16,7 +16,7 @@ Getting Started
 
 3. Browse to `'/path/to/auraphp-system-{$VERSION}/web/index.php'` to see "Hello World!"
 
-Altenatively via composer
+Alternatively via composer
 -------------------------
 
 1. Download system [tar](https://github.com/auraphp/system/tarball/master) or [zip](https://github.com/auraphp/system/zipball/master)
