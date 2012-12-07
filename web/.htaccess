@@ -2,7 +2,7 @@
     # turn on rewriting
     RewriteEngine On
     
-    # turn empty reqests into requests for "index.php",
+    # turn empty requests into requests for "index.php",
     # keeping the query string intact
     RewriteRule ^$ index.php [QSA]
     
