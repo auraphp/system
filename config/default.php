@@ -10,6 +10,3 @@
  * @var Aura\Di\Container $di The DI container for the system.
  * 
  */
-$di->params['Aura\Router\Map']['attach']['/'] = function () use ($system) {
-    return include "$system/package/Aura.Demo/routes.php";
-};
