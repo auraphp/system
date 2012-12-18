@@ -6,7 +6,8 @@ layout: default
 The Aura System
 ===============
 
-The Aura System provides a full-stack Aura framework built around Aura library packages.
+The Aura System provides a full-stack Aura framework built around Aura library
+packages.
 
 
 Installation
@@ -19,7 +20,7 @@ Tarball
 -------
 
 1.  Download the latest tarball from the
-    [downloads page](https://github.com/auraphp/system/downloads).
+    [downloads directory](http://auraphp.github.com/system/downloads).
 
 2.  Uncompress the tarball to your document root.
 
@@ -49,45 +50,35 @@ The `git` command must be in your `$PATH` for this to work.
 
 3. Browse to `/path/to/system/web/index.php` to see "Hello World!".
 
-Altenatively via composer
--------------------------
 
-1.  Download system tar or zip
-
-    Uncompress it and place it in your document root.
-
-2.  Download composer via wget if you are a *nix environment or get it from http://getcomposer.org
-
-        wget http://getcomposer.org/composer.phar
-
-    And now run
-
-        php composer.phar update
-
-3.  Browse to `/path/to/system/web/index.php` to see "Hello World!"
-
-Better URLs
+Pretty URLs
 -----------
 
-To see better URLs under either installation process, add a virtual host to
-your web server, and point its document root to `/path/to/system/web`. The `mod_rewrite` module should be installed. That will allow you to browse to the virtual host without needing `index.php` in the URL.
+To see pretty URLs under either installation process, add a virtual host to
+your web server, then point its document root to `/path/to/system/web`. The
+`mod_rewrite` module should be installed. That will allow you to browse to the
+virtual host without needing `index.php` in the URL.
 
 Command Line
 ------------
 
-You can also try Aura from the command line.  Go to the system directory and run a CLI command from the Aura Framework package:
+You can also try Aura from the command line. Go to the system directory and
+run a CLI command from the Aura Framework package:
 
-    $ php package/Aura.Framework/cli/hello-world
+    $ php /path/to/system/package/Aura.Demo/cli/hello
 
-You should see output of `'Hello World!'`.
+You should see output of `Hello World!`.
 
 
 Running Tests
 =============
 
-For testing, you need to have [PHPUnit 3.6](http://www.phpunit.de/manual/current/en/) or later installed.
+For testing, you need to have [PHPUnit 3.7][phpunit] or later installed.
 
-To run the tests in each individual package, change to that package's `tests` direcotry and issue `phpunit`:
+  [phpunit]: (http://www.phpunit.de/manual/current/en/)
+  
+To run the tests in each individual package, change to that package's `tests`
+direcotry and issue `phpunit`:
 
     $ cd /path/to/system/package/Aura.Autoload/tests
     $ phpunit
@@ -100,25 +91,31 @@ The system directory structure is pretty straightforward:
 
     {$system}/
         config/                     # mode-specific config files
+            _mode                   # The config mode, 'default' by default
+            _packages               # Load these packages in order
             default.php             # default config overrides
             dev.php                 # shared development server
             local.php               # local (individual) development server
             prod.php                # production
             stage.php               # staging
             test.php                # testing
-        vendor/                     # a place for generic 3rd party vendors
-        package/                    # a place for Aura packages
+        include/                    # generic include-path directory
+        package/                    # Aura packages
         tmp/                        # temporary files
+        vendor/                     # Composer vendors
         web/                        # web server document root
             .htaccess               # mod_rewrite rules
             cache/                  # public cached files
             favicon.ico             # favicon to reduce error_log lines
             index.php               # bootstrap script
 
+
 Package Organization
 ====================
 
-In Aura, all code is grouped into packages.  There is no difference between library packages, support packages, web packages, and so on -- they are all just "packages."
+In Aura, all code is grouped into packages. There is no difference between
+library packages, support packages, web packages, and so on -- they are all
+just "packages."
 
 The package directory structure looks like this:
 
@@ -251,5 +248,6 @@ Edit the `default.php` file and add this code at the end of the file:
 Try It Out
 ----------
 
-You should now be able to browse to the `/quick` URL and see `"The quick brown fox jumps over the lazy dog."`
+You should now be able to browse to the `/quick` URL and see `"The quick brown
+fox jumps over the lazy dog."`
 
