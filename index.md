@@ -75,7 +75,7 @@ Running Tests
 
 For testing, you need to have [PHPUnit 3.7][phpunit] or later installed.
 
-  [phpunit]: (http://www.phpunit.de/manual/current/en/)
+  [phpunit]: http://www.phpunit.de/manual/current/en/
   
 To run the tests in each individual package, change to that package's `tests`
 direcotry and issue `phpunit`:
