@@ -1,0 +1,24 @@
+<?php
+require dirname(__DIR__) . '/package/Aura.Framework/src/Aura/Framework/Bootstrap/Factory.php';
+$factory = new \Aura\Framework\Bootstrap\Factory;
+$cli = $factory->newInstance('cli');
+if (isset($argv[1]) && isset($argv[2])) {
+    try {
+        $package = dirname(__DIR__) . 
+            DIRECTORY_SEPARATOR . 'package' .
+            DIRECTORY_SEPARATOR . $argv[1];
+
+        if (is_dir($package)) {
+            $cmd = DIRECTORY_SEPARATOR . 'cli' .
+                DIRECTORY_SEPARATOR . $argv[2];
+            $return = $cli->exec($package . $cmd);
+            exit($return);
+        } else {
+            echo "Package doesn't exists" . PHP_EOL;
+        }
+    } catch (Exception $e) {
+        throw new Exception($e);
+    }
+} else {
+    echo "Expecting argument package and command" . PHP_EOL;
+}
