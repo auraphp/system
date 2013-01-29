@@ -3,6 +3,5 @@ class AuraFrameworkCliAbstractCommand extends \Aura\Framework\Cli\AbstractComman
 {
     public function action()
     {
-        
     }
 }

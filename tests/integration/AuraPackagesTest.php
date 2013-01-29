@@ -336,4 +336,196 @@ class AuraPackagesTest extends PHPUnit_Framework_TestCase
          */
         $this->assertNewInstanceOf('Aura\Http\Transport');
     }
+    
+    public function testIntlPackage()
+    {
+        /**
+         * Loader
+         */
+        $this->assertLoaderHasPathsFor('Aura\\Intl\\');
+
+        /**
+         * Services
+         */
+        $this->assertServiceIsInstanceOf('intl_package_factory', 'Aura\Intl\PackageFactory');
+        $this->assertServiceIsInstanceOf('intl_translator_locator', 'Aura\Intl\TranslatorLocator');
+
+        /**
+         * Aura\Intl\FormatterLocator
+         */
+        $this->assertNewInstanceOf('Aura\Intl\FormatterLocator');
+
+        /**
+         * Aura\Intl\TranslatorLocator
+         */
+        $this->assertNewInstanceOf('Aura\Intl\TranslatorLocator');
+    }
+    
+    public function testMarshalPackage()
+    {
+        /**
+         * Loader
+         */
+        $this->assertLoaderHasPathsFor('Aura\Marshal\\');
+
+        /**
+         * Services
+         */
+        $this->assertServiceIsInstanceOf('marshal_manager', 'Aura\Marshal\Manager');
+
+        /**
+         * Aura\Marshal\Manager
+         */
+        $this->assertNewInstanceOf('Aura\Marshal\Manager');
+    }
+
+    public function testRouterPackage()
+    {
+        /**
+         * Loader
+         */
+        $this->assertLoaderHasPathsFor('Aura\Router\\');
+
+        /**
+         * Services
+         */
+        $this->assertServiceIsInstanceOf('router_map', 'Aura\Router\Map');
+
+        /**
+         * Aura\Router\Map
+         */
+        $this->assertNewInstanceOf('Aura\Router\Map');
+    }
+
+    public function testSessionPackage()
+    {
+        /**
+         * Loader
+         */
+        $this->assertLoaderHasPathsFor('Aura\Session\\');
+
+        /**
+         * Services
+         */
+        $this->assertServiceIsInstanceOf('session_manager', 'Aura\Session\Manager');
+
+        /**
+         * Aura\Session\Manager
+         */
+        $this->assertNewInstanceOf('Aura\Session\Manager');
+
+        /**
+         * Aura\Session\Segment
+         */
+        $this->assertNewInstanceOf('Aura\Session\Segment');
+    }
+
+    public function testSignalPackage()
+    {
+        /**
+         * Loader
+         */
+        $this->assertLoaderHasPathsFor('Aura\Signal\\');
+
+        /**
+         * Services
+         */
+        $this->assertServiceIsInstanceOf('signal_manager', 'Aura\Signal\Manager');
+
+        /**
+         * Aura\Signal\Manager
+         */
+        $this->assertNewInstanceOf('Aura\Signal\Manager');
+    }
+
+    public function testSqlPackage()
+    {
+        /**
+         * Loader
+         */
+        $this->assertLoaderHasPathsFor('Aura\Sql\\');
+    }
+
+    public function testUriPackage()
+    {
+        /**
+         * Loader
+         */
+        $this->assertLoaderHasPathsFor('Aura\Uri\\');
+    }
+    
+    public function testViewPackage()
+    {
+        /**
+         * Loader
+         */
+        $this->assertLoaderHasPathsFor('Aura\View\\');
+
+        /**
+         * Aura\View\Helper\DateTime
+         */
+        $this->assertNewInstanceOf('Aura\View\Helper\Datetime');
+
+        /**
+         * Aura\View\Helper\Escape
+         */
+        $this->assertNewInstanceOf('Aura\View\Helper\Escape');
+
+        /**
+         * Aura\View\HelperLocator
+         */
+        $helper = $this->assertNewInstanceOf('Aura\View\HelperLocator');
+        $this->assertInstanceOf('Aura\View\Helper\Anchor',   $helper->get('anchor'));
+        $this->assertInstanceOf('Aura\View\Helper\Attribs',  $helper->get('attribs'));
+        $this->assertInstanceOf('Aura\View\Helper\Base',     $helper->get('base'));
+        $this->assertInstanceOf('Aura\View\Helper\Datetime', $helper->get('datetime'));
+        $this->assertInstanceOf('Aura\View\Helper\Escape',   $helper->get('escape'));
+        $this->assertInstanceOf('Aura\View\Helper\Image',    $helper->get('image'));
+        $this->assertInstanceOf('Aura\View\Helper\Links',    $helper->get('links'));
+        $this->assertInstanceOf('Aura\View\Helper\Metas',    $helper->get('metas'));
+        $this->assertInstanceOf('Aura\View\Helper\Scripts',  $helper->get('scripts'));
+        $this->assertInstanceOf('Aura\View\Helper\Scripts',  $helper->get('scriptsFoot'));
+        $this->assertInstanceOf('Aura\View\Helper\Styles',   $helper->get('styles'));
+        $this->assertInstanceOf('Aura\View\Helper\Title',    $helper->get('title'));
+
+        /**
+         * Aura\View\Template
+         */
+        $this->assertNewInstanceOf('Aura\View\Template');
+
+        /**
+         * Aura\View\TwoStep
+         */
+        $this->assertNewInstanceOf('Aura\View\TwoStep');
+    }
+    
+    public function testWebPackage()
+    {
+        /**
+         * Loader
+         */
+        $this->assertLoaderHasPathsFor('Aura\Web\\');
+
+        /**
+         * Services
+         */
+        $this->assertServiceIsInstanceOf('web_accept',   'Aura\Web\Accept');
+        $this->assertServiceIsInstanceOf('web_context',  'Aura\Web\Context');
+        $this->assertServiceIsInstanceOf('web_response', 'Aura\Web\Response');
+
+        /**
+         * Aura\Web\Accept
+         */
+        $this->assertNewInstanceOf('Aura\Web\Accept');
+
+        /**
+         * Aura\Web\Context
+         */
+        $this->assertNewInstanceOf('Aura\Web\Context');
+
+        /**
+         * Aura\Web\Controller\AbstractPage
+         */
+        $this->assertNewInstanceOf('Aura\Web\Controller\AbstractPage', 'AuraWebControllerAbstractPage');
+    }
 }
