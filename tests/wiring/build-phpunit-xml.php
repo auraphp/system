@@ -1,6 +1,6 @@
 <?php
 $xml   = [];
-$xml[] = '<phpunit bootstrap="./bootstrap.php">';
+$xml[] = '<phpunit bootstrap="./bootstrap.php" backupGlobals="false">';
 $xml[] = '    <testsuites>';
 $xml[] = '        <testsuite>';
 
