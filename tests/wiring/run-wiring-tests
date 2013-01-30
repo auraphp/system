@@ -1,0 +1,2 @@
+php build-phpunit-xml.php
+phpunit
