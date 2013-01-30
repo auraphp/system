@@ -8,3 +8,4 @@ tmp/*
 !tmp/.placeholder
 vendor/*
 !vendor/.placeholder
+tests/wiring/phpunit.xml
