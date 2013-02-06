@@ -3,6 +3,7 @@ Aura.Cli
 Aura.Di
 Aura.Filter
 Aura.Http
+Aura.Input
 Aura.Intl
 Aura.Marshal
 Aura.Router
