@@ -25,8 +25,10 @@ $dir = __DIR__ . DIRECTORY_SEPARATOR . 'package';
 $url = 'https://api.github.com/orgs/auraphp/repos';
 $context = stream_context_create([
     'http' => [
-        'method' => "GET",
-        'header' => "Accept: application/json"
+        'method' => 'GET',
+        'header' => implode("\r\n", [
+            'User-Agent: php/5.4',
+        ]),
     ],
 ]);
 $json = file_get_contents($url, FALSE, $context);
