@@ -27,7 +27,7 @@ passthru('git pull');
 // the package directory
 $dir = __DIR__ . DIRECTORY_SEPARATOR . 'package';
 if (! is_dir($dir)) {
-    mkdir($dir, 0777);
+    mkdir($dir, 0755);
 }
 
 // get the list of available repositories
