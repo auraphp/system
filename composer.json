@@ -1,4 +1,25 @@
 {
+    "name": "aura/system",
+    "type": "library",
+    "description": "The aura framework for PHP",
+    "keywords": [
+        "auraphp", 
+        "system", 
+        "framework"
+    ],
+    "license": "BSD-2-Clause",
+    "authors": [
+        {
+            "name": "Paul M Jones",
+            "email": "pmjones88@gmail.com",
+            "homepage": "http://paul-m-jones.com"
+        },
+        {
+            "name": "Aura Contributors",
+            "email": "auraphp@googlegroups.com",
+            "homepage": "https://github.com/auraphp/system/contributors"
+        }
+    ],
     "minimum-stability": "dev",
     "require": {
         "aura/installer-system" : "1.0.0",
