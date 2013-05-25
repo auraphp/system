@@ -1,7 +1,7 @@
 {
     "name": "aura/system",
-    "type": "library",
-    "description": "The aura framework for PHP",
+    "type": "project",
+    "description": "A full-stack framework system built from Aura library packages.",
     "keywords": [
         "aura",
         "auraphp",
