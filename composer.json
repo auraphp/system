@@ -3,17 +3,13 @@
     "type": "library",
     "description": "The aura framework for PHP",
     "keywords": [
-        "auraphp", 
-        "system", 
+        "aura",
+        "auraphp",
+        "system",
         "framework"
     ],
     "license": "BSD-2-Clause",
     "authors": [
-        {
-            "name": "Paul M Jones",
-            "email": "pmjones88@gmail.com",
-            "homepage": "http://paul-m-jones.com"
-        },
         {
             "name": "Aura Contributors",
             "email": "auraphp@googlegroups.com",
