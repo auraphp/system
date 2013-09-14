@@ -1,6 +1,8 @@
 Aura System
 ===========
 
+[![Build Status](https://travis-ci.org/auraphp/system.png?branch=develop)](https://travis-ci.org/auraphp/system)
+
 The Aura System is a skeleton for a full-stack Aura framework composed of Aura
 packages.
 
