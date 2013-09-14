@@ -2,7 +2,7 @@
     <testsuites>
         <testsuite>
             <directory>../package/Aura.Framework/tests/Aura/Framework</directory>
-            <directory>../package/Aura.Demo/tests/Aura/Demo</directory>
+            <directory>../package/Aura.Framework_Demo/tests/Aura/Framework_Demo</directory>
             <file>../package/Aura.Autoload/tests/WiringTest.php</file>
             <file>../package/Aura.Cli/tests/WiringTest.php</file>
             <file>../package/Aura.Demo/tests/WiringTest.php</file>

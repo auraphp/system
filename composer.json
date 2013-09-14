@@ -35,6 +35,6 @@
         "aura/view"             : "dev-develop",
         "aura/web"              : "dev-develop",
         "aura/framework"        : "dev-develop",
-        "aura/demo"             : "dev-develop"
+        "aura/framework-demo"   : "dev-develop"
     }
 }
