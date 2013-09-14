@@ -1,5 +1,4 @@
 composer.lock
-composer.phar
 include/*
 !include/.placeholder
 package/*
@@ -8,4 +7,3 @@ tmp/*
 !tmp/.placeholder
 vendor/*
 !vendor/.placeholder
-tests/wiring/phpunit.xml
