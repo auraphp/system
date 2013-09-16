@@ -12,7 +12,7 @@ packages.
 
 To install via [Composer](http://getcomposer.org), issue the following command:
 
-    composer create-project aura/system /path/to/{$PROJECT}
+    composer create-project aura/system --stability=dev /path/to/{$PROJECT} dev-develop
 
 Alternatively, download the latest tarball from the
 [downloads directory](http://auraphp.github.com/system/downloads) and
@@ -26,7 +26,7 @@ Aura.Framework command:
     cd /path/to/{$PROJECT}
     php package/Aura.Framework/cli/server
 
-You can then open a browser and go to `http://0.0.0.0:8080/` to see the
+You can then open a browser and go to <http://0.0.0.0:8000> to see the
 "Hello World!" demo output.
 
 Press `Ctrl-C` to stop the built-in PHP server.
@@ -114,30 +114,31 @@ package and a space for our first web page ...
     
     cd /path/to/{$PROJECT}/include
     mkdir -p Example/Package/Web/Home
+    cd Example/Package/Web/Home
     
 ... then create a file called `HomePage.php`. Add this code for a bare-bones
 index action:
 
 ```php
 <?php
-    namespace Example\Package\Web\Home;
-    
-    use Aura\Framework\Web\Controller\AbstractPage;
-    
-    class HomePage extends AbstractPage
+namespace Example\Package\Web\Home;
+
+use Aura\Framework\Web\Controller\AbstractPage;
+
+class HomePage extends AbstractPage
+{
+    public function actionIndex()
     {
-        public function actionIndex()
-        {
-            $this->view = 'index';
-        }
+        $this->view = 'index';
     }
+}
 ?>
 ```
 
 ### Create The View
 
-Next, create a view for the index action in a file called `views/index.php`.
-Add the following code:
+Next, create a view for the index action in a file called `views/index.php`
+and add the following code to it
 
 ```php
 <?php echo "This is an example home page."; ?>
@@ -173,8 +174,11 @@ Edit the `default.php` file and add this code at the end of the file:
 
 ```php
 <?php
-    // attach the path for a route named 'home' to the controller and action
-    $di->params['Aura\Router\Map']['attach'][''] = [
+// attach the path for a route named 'home' to the controller and action
+$di->params['Aura\Router\Map']['attach'][''] = [
+    // all routes with the '' path prefix (i.e., no prefix)
+    'routes' => [
+        // a route named 'home'
         'home' => [
             'path' => '/',
             'values' => [
@@ -182,13 +186,13 @@ Edit the `default.php` file and add this code at the end of the file:
                 'action'     => 'index',
             ],
         ],
-    ];
-    
-    // map the 'home' controller value to the controller class
-    $di->params['Aura\Framework\Web\Controller\Factory']['map']['home'] = 'Example\Package\Web\Home\HomePage';
+    ]
+];
+
+// map the 'home' controller value to the controller class
+$di->params['Aura\Framework\Web\Controller\Factory']['map']['home'] = 'Example\Package\Web\Home\HomePage';
 ?>
 
 ### Try It Out
 
-You should now be able to browse to the `/` URL and see `"The quick brown
-fox jumps over the lazy dog."`
+You should now be able to browse to the `/` URL to see "This is an example home page."
