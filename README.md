@@ -12,7 +12,7 @@ packages.
 
 To install via [Composer](http://getcomposer.org), issue the following command:
 
-    composer create-project aura/system --stability=dev /path/to/{$PROJECT} dev-develop
+    composer create-project aura/system --stability=dev {$PROJECT_PATH} dev-develop
 
 Alternatively, download the latest tarball from the
 [downloads directory](http://auraphp.github.com/system/downloads) and
@@ -23,7 +23,7 @@ uncompress it to start your project.
 Once you have installed the Aura system, start the built-in PHP server with an
 Aura.Framework command:
 
-    cd /path/to/{$PROJECT}
+    cd {$PROJECT_PATH}
     php package/Aura.Framework/cli/server
 
 You can then open a browser and go to <http://0.0.0.0:8000> to see the
@@ -31,16 +31,17 @@ You can then open a browser and go to <http://0.0.0.0:8000> to see the
 
 Press `Ctrl-C` to stop the built-in PHP server.
 
-Additionally, you can run a "hello world" test at the command line:
+Additionally, you can run a command-line test:
 
-    cd /path/to/{$PROJECT}
+    cd {$PROJECT_PATH}
     php package/Aura.Framework_Demo/cli/hello
+
+You should see "Hello World!" as the output.
 
 ### Using A Real Web Server
 
-To get Aura running under Apache or another real web server, add a virtual
-host to your web server, then point its document root to
-`/path/to/{$PROJECT}/web`.
+To run Aura under Apache or another real web server, add a virtual host to
+your web server, then point its document root to `{$PROJECT_PATH}/web`.
 
 The `mod_rewrite` module should be installed. That will allow you to browse to
 the virtual host without needing `index.php` in the URL.
@@ -87,13 +88,13 @@ For testing, you need to have [PHPUnit 3.7][phpunit] or later installed.
 To run the integration tests for the system as a whole, change to the `tests`
 directory and issue `phpunit`:
 
-    cd /path/to/{$PROJECT}/tests
+    cd {$PROJECT_PATH}/tests
     phpunit
 
 To run the unit tests for a package, change to that package's `tests`
 directory and issue `phpunit`:
 
-    cd /path/to/{$PROJECT}/package/Aura.Autoload/tests
+    cd {$PROJECT_PATH}/package/Aura.Autoload/tests
     phpunit
 
 
@@ -112,7 +113,7 @@ creating an independent package for distribution.
 Change to the `include/` directory and create a location for the example
 package and a space for our first web page ...
     
-    cd /path/to/{$PROJECT}/include
+    cd {$PROJECT_PATH}/include
     mkdir -p Example/Package/Web/Home
     cd Example/Package/Web/Home
     
@@ -163,12 +164,9 @@ At this point your `include/` directory should look like this:
 ### Define Configuration
 
 Now we need to wire up the page controller to the autoloader and the routing
-system. We could do this at the package-level config, but let's concentrate on
-the system-level config for now.
+system. Change to the system config directory:
 
-Change to the system config directory:
-
-    $ cd /path/to/{$PROJECT}/config
+    $ cd {$PROJECT_PATH}/config
     
 Edit the `default.php` file and add this code at the end of the file:
 
@@ -195,4 +193,5 @@ $di->params['Aura\Framework\Web\Controller\Factory']['map']['home'] = 'Example\P
 
 ### Try It Out
 
-You should now be able to browse to the `/` URL to see "This is an example home page."
+You should now be able to browse to the `/` URL to see "This is an example
+home page."
