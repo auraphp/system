@@ -18,7 +18,7 @@
     ],
     "minimum-stability": "dev",
     "require": {
-        "aura/installer-system" : "1.0.0",
+        "aura/installer-system" : "1.0.2",
         "aura/autoload"         : "dev-develop",
         "aura/cli"              : "dev-develop",
         "aura/di"               : "dev-develop",
