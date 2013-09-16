@@ -10,7 +10,8 @@ packages.
 
 ### Installation
 
-To install via [Composer](http://getcomposer.org), issue the following command:
+To install via [Composer](http://getcomposer.org) to a `{$PROJECT_PATH}` of
+your choosing, issue the following command:
 
     composer create-project aura/system --stability=dev {$PROJECT_PATH} dev-develop
 
@@ -43,8 +44,8 @@ You should see "Hello World!" as the output.
 To run Aura under Apache or another real web server, add a virtual host to
 your web server, then point its document root to `{$PROJECT_PATH}/web`.
 
-The `mod_rewrite` module should be installed. That will allow you to browse to
-the virtual host without needing `index.php` in the URL.
+If `mod_rewrite` or an equivalent module is installed on the server, you will
+be able to browse without needing `index.php` in the URL.
 
 ### Remove the Framework_Demo Package
 
