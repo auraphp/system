@@ -103,12 +103,11 @@ Let's create a package and a page controller, and wire it up for browsing.
 We will do so in a project-specific way, leaving out the complexities of
 creating an independent package for distribution.
 
-### Web Page Controller, View, and Config
+> Warning: If you have not removed the `Framework_Demo` package yet, please
+> [do so](#remove-the-framework_demo-package) before continuing.  Otherwise,
+> your routes will not work correctly.
 
-**If you have not removed the `Framework_Demo` package yet, please
-[do so](#remove-the-framework-demo-package) before continuing.**
-
-#### Create The Controller
+### Create The Controller
 
 Change to the `include/` directory and create a location for the example
 package and a space for our first web page ...
@@ -135,7 +134,7 @@ index action:
 ?>
 ```
 
-#### Create The View
+### Create The View
 
 Next, create a view for the index action in a file called `views/index.php`.
 Add the following code:
@@ -160,7 +159,7 @@ At this point your `include/` directory should look like this:
 > support libraries without having to change the project organization later.
 
 
-#### Define Configuration
+### Define Configuration
 
 Now we need to wire up the page controller to the autoloader and the routing
 system. We could do this at the package-level config, but let's concentrate on
@@ -189,7 +188,7 @@ Edit the `default.php` file and add this code at the end of the file:
     $di->params['Aura\Framework\Web\Controller\Factory']['map']['home'] = 'Example\Package\Web\Home\HomePage';
 ?>
 
-#### Try It Out
+### Try It Out
 
 You should now be able to browse to the `/` URL and see `"The quick brown
 fox jumps over the lazy dog."`
