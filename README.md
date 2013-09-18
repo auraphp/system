@@ -10,16 +10,13 @@ packages.
 
 ### Installation
 
-To install via [Composer](http://getcomposer.org) to a `{$PROJECT_PATH}` of
-your choosing, issue the following command:
+Install via [Composer](http://getcomposer.org) to a `{$PROJECT_PATH}` of
+your choosing:
 
     composer create-project aura/system {$PROJECT_PATH}
 
-Alternatively, download the latest tarball from the
-[downloads directory](http://auraphp.github.com/system/downloads) and
-uncompress it to start your project.
-
-### Check The Installation
+This will create the system skeleton and install all of the necessary
+packages.
 
 Once you have installed the Aura system, start the built-in PHP server with an
 Aura.Framework command:
@@ -39,26 +36,40 @@ Additionally, you can run a command-line test:
 
 You should see "Hello World!" as the output.
 
-### Using A Real Web Server
+### Run The Tests
 
-To run Aura under Apache or another real web server, add a virtual host to
-your web server, then point its document root to `{$PROJECT_PATH}/web`.
+For testing, you need to have [PHPUnit 3.7][phpunit] or later installed.
+
+  [phpunit]: http://www.phpunit.de/manual/current/en/
+
+To run the integration tests for the system as a whole, change to the `tests`
+directory and issue `phpunit`:
+
+    cd {$PROJECT_PATH}/tests
+    phpunit
+
+To run the unit tests for a package, change to that package's `tests`
+directory and issue `phpunit`:
+
+    cd {$PROJECT_PATH}/package/Aura.Autoload/tests
+    phpunit
+
+### Web Server
+
+To run Aura under Apache or another web server, add a virtual host to your web
+server configuration, then point its document root to `{$PROJECT_PATH}/web`.
 
 If `mod_rewrite` or an equivalent module is installed on the server, you will
 be able to browse without needing `index.php` in the URL.
 
-### Remove the Framework_Demo Package
+### Remove the Demo Package
 
-When you are satisifed that the installation is working, you can safely remove
-the Aura.Framework_Demo package.
+When you are satisifed that the installation is working, edit the
+`composer.json` file to remove the `aura/framework-demo` package requirement
+and then run `composer update`.
 
-If you installed via composer, edit composer.json file to remove the package
-requirement and then run `composer update`.
 
-If you installed via tarball, edit `config/_packages` to remove the package
-listing, then remove the `package/Aura.Framework_Demo` directory.
-
-### System Organization
+## System Organization
 
 The system directory structure is pretty straightforward:
 
@@ -84,25 +95,6 @@ The system directory structure is pretty straightforward:
             index.php               # bootstrap script
 
 
-## Running Tests
-
-For testing, you need to have [PHPUnit 3.7][phpunit] or later installed.
-
-  [phpunit]: http://www.phpunit.de/manual/current/en/
-
-To run the integration tests for the system as a whole, change to the `tests`
-directory and issue `phpunit`:
-
-    cd {$PROJECT_PATH}/tests
-    phpunit
-
-To run the unit tests for a package, change to that package's `tests`
-directory and issue `phpunit`:
-
-    cd {$PROJECT_PATH}/package/Aura.Autoload/tests
-    phpunit
-
-
 ## Writing A Page Controller
 
 Let's create a package and a page controller, and wire it up for browsing.
@@ -110,7 +102,7 @@ We will do so in a project-specific way, leaving out the complexities of
 creating an independent package for distribution.
 
 > Warning: If you have not removed the `Framework_Demo` package yet, please
-> [do so](#remove-the-framework_demo-package) before continuing.  Otherwise,
+> [do so](#remove-the-demo-package) before continuing.  Otherwise,
 > your routes will not work correctly.
 
 ### Create The Controller
@@ -166,7 +158,7 @@ At this point your `include/` directory should look like this:
 > support libraries without having to change the project organization later.
 
 
-### Define Configuration
+### Configure The System
 
 Now we need to wire up the page controller to the autoloader and the routing
 system. Change to the system config directory:
