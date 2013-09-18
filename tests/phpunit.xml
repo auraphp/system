@@ -1,0 +1,27 @@
+<phpunit bootstrap="./bootstrap.php" backupGlobals="false">
+    <testsuites>
+        <testsuite>
+            <directory>../package/Aura.Framework/tests/Aura/Framework</directory>
+            <directory>../package/Aura.Framework_Demo/tests/Aura/Framework_Demo</directory>
+            <file>../package/Aura.Autoload/tests/WiringTest.php</file>
+            <file>../package/Aura.Cli/tests/WiringTest.php</file>
+            <file>../package/Aura.Demo/tests/WiringTest.php</file>
+            <file>../package/Aura.Di/tests/WiringTest.php</file>
+            <file>../package/Aura.Dispatcher/tests/WiringTest.php</file>
+            <file>../package/Aura.Filter/tests/WiringTest.php</file>
+            <file>../package/Aura.Framework/tests/WiringTest.php</file>
+            <file>../package/Aura.Html/tests/WiringTest.php</file>
+            <file>../package/Aura.Http/tests/WiringTest.php</file>
+            <file>../package/Aura.Input/tests/WiringTest.php</file>
+            <file>../package/Aura.Intl/tests/WiringTest.php</file>
+            <file>../package/Aura.Marshal/tests/WiringTest.php</file>
+            <file>../package/Aura.Router/tests/WiringTest.php</file>
+            <file>../package/Aura.Session/tests/WiringTest.php</file>
+            <file>../package/Aura.Signal/tests/WiringTest.php</file>
+            <file>../package/Aura.Sql/tests/WiringTest.php</file>
+            <file>../package/Aura.Uri/tests/WiringTest.php</file>
+            <file>../package/Aura.View/tests/WiringTest.php</file>
+            <file>../package/Aura.Web/tests/WiringTest.php</file>
+        </testsuite>
+    </testsuites>
+</phpunit>

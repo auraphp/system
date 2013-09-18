@@ -2,7 +2,6 @@ language: php
 php:
   - 5.4
 before_script:
-  - wget http://getcomposer.org/composer.phar
-  - php composer.phar update
-  - cd package/Aura.Framework/tests
+  - composer install
+  - cd tests
 script: phpunit

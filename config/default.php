@@ -3,7 +3,8 @@
  * 
  * Overrides for 'default' config mode.
  * 
- * @var string $system Path to the Aura system root.
+ * @var Aura\Framework\System $system Aura system directories; when cast to
+ * a string, the Aura system root directory.
  * 
  * @var Aura\Autoload\Loader $loader The autoloader for the system.
  * 

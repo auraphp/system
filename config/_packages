@@ -3,6 +3,7 @@ Aura.Cli
 Aura.Di
 Aura.Filter
 Aura.Http
+Aura.Input
 Aura.Intl
 Aura.Marshal
 Aura.Router
@@ -13,4 +14,4 @@ Aura.Uri
 Aura.View
 Aura.Web
 Aura.Framework
-Aura.Demo
+Aura.Framework_Demo

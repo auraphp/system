@@ -1,5 +1,4 @@
 composer.lock
-composer.phar
 include/*
 !include/.placeholder
 package/*
