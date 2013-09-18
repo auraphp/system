@@ -13,7 +13,7 @@ packages.
 To install via [Composer](http://getcomposer.org) to a `{$PROJECT_PATH}` of
 your choosing, issue the following command:
 
-    composer create-project aura/system --stability=dev {$PROJECT_PATH} dev-develop
+    composer create-project aura/system {$PROJECT_PATH}
 
 Alternatively, download the latest tarball from the
 [downloads directory](http://auraphp.github.com/system/downloads) and
@@ -50,29 +50,33 @@ be able to browse without needing `index.php` in the URL.
 ### Remove the Framework_Demo Package
 
 When you are satisifed that the installation is working, you can safely remove
-the Aura.Framework_Demo package. If you installed via composer, edit composer.json file
-to remove the package requirement and then run `composer update`. If you
-installed via tarball, edit `config/_packages` to remove the package listing,
-then remove the `package/Aura.Framework_Demo` directory.
+the Aura.Framework_Demo package.
+
+If you installed via composer, edit composer.json file to remove the package
+requirement and then run `composer update`.
+
+If you installed via tarball, edit `config/_packages` to remove the package
+listing, then remove the `package/Aura.Framework_Demo` directory.
 
 ### System Organization
 
 The system directory structure is pretty straightforward:
 
-    {$PROJECT}/
+    {$PROJECT_PATH}/
         config/                     # mode-specific config files
-            _mode                   # The config mode, 'default' by default
-            _packages               # Load these packages in order
-            default.php             # default config overrides
-            dev.php                 # shared development server
-            local.php               # local (individual) development server
-            prod.php                # production
-            stage.php               # staging
-            test.php                # testing
-        include/                    # generic include-path directory
-        package/                    # Aura packages
+            _mode                   # the config mode to use
+            _packages               # load these packages in order
+            default.php             # default config
+            dev.php                 # shared development server config
+            local.php               # local development server config
+            prod.php                # production config
+            stage.php               # staging config
+            test.php                # testing config
+        include/                    # application include-path directory
+        package/                    # aura-package libraries
+        tests/                      # system tests
         tmp/                        # temporary files
-        vendor/                     # Composer vendors
+        vendor/                     # composer vendors
         web/                        # web server document root
             .htaccess               # mod_rewrite rules
             cache/                  # public cached files
