@@ -187,6 +187,7 @@ $di->params['Aura\Router\Map']['attach'][''] = [
 // map the 'home' controller value to the controller class
 $di->params['Aura\Framework\Web\Controller\Factory']['map']['home'] = 'Example\Package\Web\Home\HomePage';
 ?>
+```
 
 ### Try It Out
 
